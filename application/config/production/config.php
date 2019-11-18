@@ -1,6 +1,6 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-$config['base_url']	= 'http://' . $_SERVER['HTTP_HOST'] . '/makadata';
+$config['base_url']	= 'https://' . $_SERVER['HTTP_HOST'];
 
 $config['index_page'] = '';
 $config['uri_protocol']	= 'AUTO';
