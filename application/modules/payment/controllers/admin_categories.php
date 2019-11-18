@@ -1,0 +1,177 @@
+<?php
+
+if (!defined('BASEPATH')) {
+    exit('No direct script access allowed');
+}
+
+/**
+ * @desc Admin Controller for Catalogs Categories modules
+ * @author Isht.Ae <ae.isht@gmail.com>
+ */
+class Admin_categories extends Admin_Controller {
+
+    public $_db, $parent;
+
+    public function __construct() {
+        parent::__construct();
+        //LOAD MODEL
+        $this->load->model('Catalogs_categories_m');
+        $this->_db = $this->Catalogs_categories_m;
+        //Main Nav IDs
+        $this->data['nav_active'] = 'catalog';
+        $this->data['subnav_active'] = 'catalog';
+        $this->breadcrumbs->push('Catalogs', 'admin/catalogs');
+        $this->breadcrumbs->push('Categories', 'admin/catalogs/categories');
+
+        //SLUG LIBRARY CONFIG
+        $config = array(
+            'field' => 'ct_slug',
+            'title' => 'ct_name',
+            'table' => 'md_product_cat',
+            'id' => 'id',
+        );
+        $this->load->library('slug', $config);
+
+        $this->parent = $this->_db->combo_box_list();
+    }
+
+    public function index() {
+        $this->set_title('Product Categories');
+        $param = array();
+        $param[] = array('field' => 'ct_parent', 'param' => '', 'operator' => '', 'value' => 0);
+        if ($this->input->post('catalogs_categories_search') != "") {
+            $param[] = array('field' => 'ct_name', 'param' => '', 'operator' => 'LIKE', 'value' => '%' . $this->input->post('catalogs_categories_search') . '%');
+            $this->data['search'] = $this->input->post('catalogs_categories_search');
+        }
+        //PAGING OPTION
+        $total_row = $this->_db->count_all(array_splice($param, 1));
+        $limit = 10;
+        $this->data['page'] = ($this->uri->segment(4)) ? $this->uri->segment(4) : 0;
+        $this->_paginate('admin/catalogs/categories', $total_row, $limit, 4);
+
+        $result = $this->_db->get_all($param, 'ASC', $limit, $this->data['page']);
+        if (!empty($result)) {
+            foreach ($result as $key => $value) {
+                $par[$key][] = array('field' => 'ct_parent', 'param' => '', 'operator' => '', 'value' => $value->id);
+                $result[$key]->child = $this->_db->get_all($par[$key], 'ASC', $limit, $this->data['page']);
+            }
+        }
+        $this->data['list'] = $result;
+        $this->data['count_data'] = $total_row;
+        $this->data['page_desc'] = 'Product Categories Management';
+        $this->data['msg'] = $this->session->flashdata('msg');
+
+        $this->template->build('categories/admin/index', $this->data);
+    }
+
+    public function add() {
+        $this->set_title('New Category');
+        $this->breadcrumbs->push('New', 'admin/catalogs/category/add');
+        $total_row = $this->_db->count_all(array());
+        $this->data['count_data'] = $total_row;
+        $this->data['page_desc'] = 'Add New Category';
+
+        //Validation Rules
+        $this->form_validation->set_rules('ct_name', 'Nama Kategori', 'required');
+
+        //Validation Process
+        if ($this->form_validation->run() == TRUE) {
+            $ins_data = array(
+                'ct_name' => $this->input->post('ct_name'),
+                'ct_parent' => $this->input->post('ct_parent'),
+                'ct_desc' => $this->input->post('ct_desc')
+            );
+
+            $ins_data['ct_slug'] = $this->slug->create_uri($ins_data);
+            $this->_db->create($ins_data);
+            $this->session->set_flashdata('msg', $this->show_msg('<b>Success</b> New category has been created'));
+            redirect("admin/catalogs/categories", 'refresh');
+        } else {
+            $this->data['msg'] = $this->show_msg(validation_errors(), 'danger');
+        }
+        //FORM FIELD
+        $this->data['ct_name'] = array(
+            'name' => 'ct_name',
+            'type' => 'text',
+            'placeholder' => 'Category Name',
+            'class' => 'form-control',
+            'required' => '',
+            'value' => $this->form_validation->set_value('ct_name'),
+        );
+        $this->data['parent_data'] = $this->parent;
+        $this->data['ct_parent'] = 'placeholder="Parent" class="form-control select"';
+        $this->data['ct_desc'] = array(
+            'name' => 'ct_desc',
+            'type' => 'text',
+            'placeholder' => 'Description',
+            'class' => 'summernote',
+            'value' => $this->form_validation->set_value('ct_desc'),
+        );
+
+
+        $this->template->build('categories/admin/add', $this->data);
+    }
+
+    public function edit($id) {
+        $this->set_title('Edit Category');
+        $this->breadcrumbs->push('Edit', 'admin/catalogs/category/edit/' . $id);
+        $total_row = $this->_db->count_all(array());
+        $this->data['count_data'] = $total_row;
+        $this->data['page_desc'] = 'Edit Selected Category';
+
+        $cat_detail = $this->_db->get_detail('id', $id);
+
+        //Validation Rules
+        $this->form_validation->set_rules('ct_name', 'Nama Kategori', 'required');
+
+        //Validation Process
+        if ($this->form_validation->run() == TRUE) {
+            $upd_data = array(
+                'ct_name' => $this->input->post('ct_name'),
+                'ct_parent' => $this->input->post('ct_parent'),
+                'ct_desc' => $this->input->post('ct_desc')
+            );
+
+            $upd_data['ct_slug'] = $this->slug->create_uri($upd_data, $id);
+            $this->_db->update($id, $upd_data);
+            $this->session->set_flashdata('msg', $this->show_msg('<b>Success</b> Category has been updated'));
+            redirect("admin/catalogs/categories", 'refresh');
+        } else {
+            $this->data['msg'] = $this->show_msg(validation_errors(), 'danger');
+        }
+
+        //FORM FIELD
+        $this->data['ct_name'] = array(
+            'name' => 'ct_name',
+            'type' => 'text',
+            'placeholder' => 'Category Name',
+            'class' => 'form-control',
+            'required' => '',
+            'value' => $this->form_validation->set_value('ct_name', $cat_detail->ct_name),
+        );
+        $this->data['parent_data'] = $this->parent;
+        $this->data['ct_parent'] = 'placeholder="Parent" class="form-control"';
+        $this->data['ct_parent_val'] = $cat_detail->ct_parent;
+        
+        $this->data['ct_desc'] = array(
+            'name' => 'ct_desc',
+            'type' => 'text',
+            'placeholder' => 'Description',
+            'class' => 'summernote',
+            'value' => $this->form_validation->set_value('ct_desc', $cat_detail->ct_desc),
+        );
+
+
+        $this->template->build('categories/admin/edit', $this->data);
+    }
+    
+    public function del($id) {
+        $this->_db->delete($id);
+        $this->session->set_flashdata('msg', $this->show_msg('<b>Success</b> Catalog\'s Category has been deleted !'));
+        redirect("admin/catalogs/categories", 'refresh');
+    }
+
+}
+
+/* End of file admin_categories.php */
+/* Location: ./application/modules/catalogs/controllers/admin_categories.php */
