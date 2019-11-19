@@ -1,52 +1,52 @@
-<!-- START PAGE SIDEBAR -->
-<div class="page-sidebar">
-    <!-- START X-NAVIGATION -->
-    <ul class="x-navigation">
-        <li class="xn-logo">
-            <a href="<?php echo base_url(); ?>"><img src="<?php echo $admin_assets . 'img/logo_header.png'; ?>" alt="Bisnis Balik Modal"/></a>
-            <a href="#" class="x-navigation-control"></a>
-        </li>
-        <li class="xn-profile">
-            <a href="#" class="profile-mini">
-                <img src="<?php echo base_url('assets/modules/users/no-image.jpg'); ?>" alt="User Photo"/>
-            </a>
-        </li>
-        <li class="xn-title"><strong>Navigation</strong></li>
-            <?php
-            foreach ($menu_list as $key => $value) {
-                $active = "";
-                if ($value['ids'] == $nav_active) {
-                    $active = 'active';
-                }
-                $tree_view = "";
-                if ($value['is_header']) {
-                    $tree_view = ' xn-openable';
-                }
-                echo '<li class="' . $active . $tree_view . '" id="' . $value['ids'] . '">';
-                echo '<a href="' . base_url($value['url']) . '">';
-                echo '<span class="' . $value['icon_class'] . '"></span> ';
-                echo '<span class="xn-text">' . $value['name'] . '</span>';
-                echo '</a>';
-                if ($value['is_header']) {
-                    echo '<ul>';
-                    if (!isset($subnav_active)) {
-                        $subnav_active = '';
+<div class="main-sidebar">
+    <aside id="sidebar-wrapper">
+        <div class="sidebar-brand">
+            <a href="<?php echo site_url() ?>"><?php echo $this->config->item('website_name');?></a>
+        </div>
+        <div class="sidebar-brand sidebar-brand-sm">
+            <a href="<?php echo site_url() ?>"><?php echo $this->config->item('website_shortname');?></a>
+        </div>
+        <ul class="sidebar-menu">
+        <!-- /.search form -->
+        <!-- sidebar menu: : style can be found in sidebar.less -->
+        <ul class="sidebar-menu">
+            <li class="menu-header">GENERAL</li>
+                <?php
+                foreach ($menu_list as $key => $value) {
+                    $active = "";
+                    if ($value['ids'] == $nav_active) {
+                        $active = 'active';
                     }
-                    if (!empty($value['child'])) {
-                        foreach ($value['child'] as $k => $v) {
-                            $sub_active = "";
-                            if ($v->menu_id == $subnav_active) {
-                                $sub_active = 'active';
-                            }
-                            echo '<li class="' . $sub_active . '" id="' . $v->menu_id . '"><a href="' . base_url($v->menu_link) . '"><span class="' . $v->menu_iclass . '"></span> ' . $v->menu_name . '</a></li>';
+                    $tree_view = "";
+                    $has_dropdown = "";
+                    if ($value['is_header']) {
+                        $tree_view = ' dropdown';
+                        $has_dropdown = ' has-dropdown';
+                    }
+                    echo '<li class="' . $active . $tree_view . '" id="' . $value['ids'] . '">';
+                    echo '<a href="' . base_url($value['url']) . '" class="nav-link' . $has_dropdown . '">';
+                    echo '<i class="' . $value['icon_class'] . '"></i> ';
+                    echo '<span>' . $value['name'] . '</span>';
+                    echo '</a>';
+                    if ($value['is_header']) {
+                        echo '<ul class="dropdown-menu">';
+                        if(!isset($subnav_active)) {
+                            $subnav_active = '';
                         }
+                        if (!empty($value['child'])) {
+                            foreach ($value['child'] as $k => $v) {
+                                $sub_active = "";
+                                if ($v->menu_id == $subnav_active) {
+                                    $sub_active = 'active';
+                                }
+                                echo '<li class="' . $sub_active .  '" id="' . $v->menu_id . '"><a class="nav-link" href="' . base_url($v->menu_link) . '">' . $v->menu_name . '</a></li>';
+                            }
+                        }
+                        echo '</ul>';
                     }
-                    echo '</ul>';
+                    echo '</li>';
                 }
-                echo '</li>';
-            }
-            ?>
-    </ul>
-    <!-- END X-NAVIGATION -->
+                ?>
+        </ul>
+    </aside>
 </div>
-<!-- END PAGE SIDEBAR

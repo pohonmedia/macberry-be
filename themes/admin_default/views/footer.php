@@ -1,6 +1,8 @@
 <footer class="main-footer">
-    <div class="pull-right hidden-xs">
-        <b>T</b>CMS <span class="label label-danger">beta</span> v 0.3.261115
+    <div class="footer-left">
+        <b>PM</b>CMS <span class="label label-danger">beta</span> v 0.9.8
     </div>
-    <strong>Copyright &copy; 2015 <a href="<?php echo base_url(); ?>"><?php echo $this->config->item('website_name'); ?></a>.</strong> All rights reserved.
+    <div class="footer-right">
+        <strong>Copyright &copy; <?php echo mdate("%Y", now())?> <a href="<?php echo base_url(); ?>"><?php echo $this->config->item('website_name'); ?></a>.</strong> All rights reserved.
+    </div>
 </footer>

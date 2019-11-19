@@ -1,14 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-    <!--<html>-->
     <head>
-        <title><?php echo $template['title']; ?></title>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <!-- Extra metadata -->
+        <?php // echo $metadata; ?>
+        <!-- / -->
 
-        <link rel="stylesheet" type="text/css" id="theme" href="<?php echo $admin_assets . 'css/theme-blue.css'; ?>">
-        <link rel="stylesheet" type="text/css" id="theme" href="<?php echo $admin_assets . 'css/tree-view.css'; ?>">
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
+        <title><?php echo $template['title']; ?></title>
+        <!--<meta name="description" content="<?php // echo $description;   ?>">-->
+        <!-- Tell the browser to be responsive to screen width -->
+
+        <!-- Bootstrap core CSS  and Font Awesome-->
+        <!-- Bootstrap Core CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+        <link rel="stylesheet" href="<?php echo $admin_assets . 'css/summernote-bs4.css'; ?>">
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="<?php echo $admin_assets . 'css/style.css'; ?>">
+        <link rel="stylesheet" href="<?php echo $admin_assets . 'css/components.css'; ?>">
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -17,87 +29,42 @@
             <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
         <link rel="shortcut icon" href="<?php echo base_url('assets/favicon.ico'); ?>">
-        <style>
-            ul.error-msg-item {
-                margin-left: 15px;
-                padding-left: 0px;
-            }
-        </style>
     </head>
-    <body>
-        <!-- START PAGE CONTAINER -->
-        <div class="page-container">
-            <?php echo $template['partials']['sidebar']; ?>
-            <!-- PAGE CONTENT -->
-            <div class="page-content">
+    <body<?php echo!empty($body_class) ? $body_class : ""; ?>>
+        <div id="app">
+            <div class="main-wrapper">
                 <?php echo $template['partials']['header']; ?>
-                <!-- PAGE CONTENT WRAPPER -->
-                <?php echo $template['body']; ?>
-                <!-- END PAGE CONTENT WRAPPER -->                                
-            </div>            
-            <!-- END PAGE CONTENT -->
-        </div>
-        <!-- END PAGE CONTAINER -->
-
-        <!-- MESSAGE BOX-->
-        <div class="message-box animated fadeIn" data-sound="alert" id="mb-signout">
-            <div class="mb-container">
-                <div class="mb-middle">
-                    <div class="mb-title"><span class="fa fa-sign-out"></span> Log <strong>Out</strong> ?</div>
-                    <div class="mb-content">
-                        <p>Are you sure you want to log out?</p>                    
-                        <p>Press No if youwant to continue work. Press Yes to logout current user.</p>
-                    </div>
-                    <div class="mb-footer">
-                        <div class="pull-right">
-                            <a href="<?php echo base_url('auth/logout'); ?>" class="btn btn-success btn-lg">Yes</a>
-                            <button class="btn btn-default btn-lg mb-control-close">No</button>
-                        </div>
-                    </div>
+                <?php echo $template['partials']['sidebar']; ?>
+                <div class="main-content">
+                    <section class="section">
+                        <!-- Content Header (Page header) -->
+                        <section class="section-header">
+                            <h1>
+                                <?php 
+                                    $string = str_replace($this->config->item('website_name'). ' | ', '', $template['title']);
+                                    echo $string; 
+                                ?>
+                                <span class="small"><?php echo !empty($page_desc) ? $page_desc : "" ;?></span>
+                            </h1>
+                            <?php echo $this->breadcrumbs->show(); ?>
+                        </section>
+                        <section class="section-body">
+                            <?php echo $template['body']; ?>
+                        </section>
+                    </section>
                 </div>
+                <?php echo $template['partials']['footer']; ?>
             </div>
         </div>
-        <!-- END MESSAGE BOX-->
-
-        <!-- START PRELOADS -->
-        <audio id="audio-alert" src="<?php echo $admin_assets . 'audio/alert.mp3'; ?>" preload="auto"></audio>
-        <audio id="audio-fail" src="<?php echo $admin_assets . 'audio/fail.mp3'; ?>" preload="auto"></audio>
-        <!-- END PRELOADS -->                  
-
-        <!-- START SCRIPTS -->
-        <!-- START PLUGINS -->
-        <script src="<?php echo $admin_assets . 'js/plugins/jquery/jquery.min.js'; ?>"></script>
-        <script src="<?php echo $admin_assets . 'js/plugins/jquery/jquery-ui.min.js'; ?>"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-route.min.js"></script>
-        <script src = "<?php echo $admin_assets . 'js/plugins/bootstrap/bootstrap.min.js'; ?>" ></script>
-        <!-- END PLUGINS -->
-
-        <!-- START THIS PAGE PLUGINS-->
-        <!--<script src="<?php echo $admin_assets . 'js/plugins/icheck/icheck.min.js'; ?>"></script>-->
-        <script src="<?php echo $admin_assets . 'js/plugins/mcustomscrollbar/jquery.mCustomScrollbar.min.js'; ?>"></script>
-        <script src="<?php echo $admin_assets . 'js/plugins/scrolltotop/scrolltopcontrol.js'; ?>"></script>
-        <!--<script src="<?php echo $admin_assets . 'js/plugins/morris/raphael-min.js'; ?>"></script>-->
-        <!--<script src="<?php echo $admin_assets . 'js/plugins/morris/morris.min.js'; ?>"></script>-->
-        <!--<script src="<?php echo $admin_assets . 'js/plugins/rickshaw/d3.v3.js'; ?>"></script>-->
-        <!--<script src="<?php echo $admin_assets . 'js/plugins/rickshaw/rickshaw.min.js'; ?>"></script>-->
-        <!--<script src="<?php echo $admin_assets . 'js/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js'; ?>"></script>-->
-        <script src="<?php echo $admin_assets . 'js/plugins/bootstrap/bootstrap-select.js'; ?>"></script>
-        <script src="<?php echo $admin_assets . 'js/plugins/bootstrap/bootstrap-datepicker.js'; ?>"></script>
-        <script src="<?php echo $admin_assets . 'js/plugins/owl/owl.carousel.min.js'; ?>"></script>
-        <script type="text/javascript" src="<?php echo $admin_assets . 'js/plugins/summernote/summernote.js'; ?>"></script>
-        <script src="<?php echo $admin_assets . 'js/plugins/daterangepicker/daterangepicker.js'; ?>"></script>
-        <!-- END THIS PAGE PLUGINS-->        
-
-        <!-- START DEFAULT TEMPLATE TEMPLATE -->
-        <script type="text/javascript" src="<?php echo $admin_assets . 'js/settings.js'; ?>"></script>
-        <script type="text/javascript" src="<?php echo $admin_assets . 'js/plugins.js'; ?>"></script>        
-        <script type="text/javascript" src="<?php echo $admin_assets . 'js/actions.js'; ?>"></script>
-        <!-- END TEMPLATE -->
-
-        <?php if (!empty($module_js)) { ?>
-            <script type="text/javascript" src="<?php echo $admin_assets . 'module/' . $module_js . '.js'; ?>"></script>
-        <?php } ?>
-        <!-- END SCRIPTS -->         
+            
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+        <script src="<?php echo $admin_assets . 'js/summernote-bs4.min.js'; ?>"></script>
+        <script src="<?php echo $admin_assets . 'js/stisla.js'; ?>"></script>
+        <script src="<?php echo $admin_assets . 'js/scripts.js'; ?>"></script>
+        <script src="<?php echo $admin_assets . 'js/custom.js'; ?>"></script>
     </body>
 </html>
