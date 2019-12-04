@@ -33,7 +33,7 @@
         </div>
         <div class="login-footer">
             <div class="text-center">
-                &copy; 2016 JualBeliPlus.com
+                &copy; 2019 macberry.com
             </div>
             <div class="pull-right">
             </div>

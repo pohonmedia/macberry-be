@@ -39,6 +39,13 @@
                     <section class="section">
                         <!-- Content Header (Page header) -->
                         <section class="section-header">
+                            <?php
+                                if(!empty($back_url)) {
+                                    echo '<div class="section-header-back">';
+                                    echo '<a href="' . base_url($back_url) . '" class="btn btn-icon"><i class="fas fa-arrow-left"></i></a>';
+                                    echo '</div>';
+                                }
+                            ?>
                             <h1>
                                 <?php 
                                     $string = str_replace($this->config->item('website_name'). ' | ', '', $template['title']);
@@ -65,6 +72,9 @@
         <script src="<?php echo $admin_assets . 'js/summernote-bs4.min.js'; ?>"></script>
         <script src="<?php echo $admin_assets . 'js/stisla.js'; ?>"></script>
         <script src="<?php echo $admin_assets . 'js/scripts.js'; ?>"></script>
+        <script>
+            var BASE_URL = '<?php echo base_url(); ?>';
+        </script>
         <script src="<?php echo $admin_assets . 'js/custom.js'; ?>"></script>
     </body>
 </html>

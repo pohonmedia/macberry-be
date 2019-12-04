@@ -1,0 +1,44 @@
+// import pages section
+@import "./pages/homepages";
+@import "./pages/product-list";
+@import "./pages/product-detail";
+@import "./pages/order-page";
+@import "./pages/login-register";
+@import "./pages/static-page";
+
+//import components 
+@import "./components/plugins";
+@import "./components/buttons";
+
+// import utilities
+@import "./util/variables";
+@import "./util/responsive";
+@import "./util/mixins";
+@import "./util/spacing";
+
+
+/*------------------------------------*\
+    Body Style
+\*------------------------------------*/
+
+body {
+    font-family: $font--primary;
+    font-weight: 400;
+    color: $font-color--primary;
+}
+
+/*------------------------------------*\
+    Footer
+\*------------------------------------*/
+
+.c-footer {
+    background-color: $color--primary;
+    color: $font-color--primary;
+
+    h5,
+    p,
+    a,
+    span {
+        color: $font-color--secondary !important;
+    }
+}
