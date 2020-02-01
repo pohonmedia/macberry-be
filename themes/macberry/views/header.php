@@ -1,29 +1,53 @@
-<!-- Navigation -->
-<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+<!-- Navigation start here -->
+<header class="header-area">
     <div class="container">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="<?php echo base_url(); ?>"><?php echo $this->config->item('website_name'); ?></a>
+        <div class="row">
+            <div class="col-lg-12">
+                <nav class="navbar navbar-expand-lg">
+                    <a class="navbar-brand" href="index.html">
+                        <img src="<?php echo $theme_assets . 'img/macberry.svg'; ?>" alt="Logo" style="height:40px;">
+                    </a>
+                    <!-- Logo -->
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="bar-icon"></span>
+                        <span class="bar-icon"></span>
+                        <span class="bar-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul id="nav" class="navbar-nav ml-auto">
+                            <li class="nav-item active">
+                                <a data-scroll-nav="0" href="/app">Homepage</a>
+                            </li>
+                            <li class="nav-item">
+                                <a data-scroll-nav="0" href="/app/product-list">Our Products</a>
+                            </li>
+                            <li class="nav-item">
+                                <a data-scroll-nav="0" href="">About Us</a>
+                            </li>
+                            <li class="nav-item">
+                                <a data-scroll-nav="0" href="">Contact</a>
+                            </li>
+                            <li class="nav-item">
+                                <a data-scroll-nav="0" href="">
+                                    <i class="fas fa-shopping-basket"></i>
+                                    &nbsp; Your Cart
+                                </a>
+                            </li>
+                        </ul>
+                        <!-- navbar nav -->
+                        <form class="form-inline my-2 my-lg-0 ml-4">
+                            <button class="c-btn-primary text-capitalize" type="submit" style="letter-spacing:0.5px;">
+                                Masuk / daftar
+                            </button>
+                        </form>
+                    </div>
+                </nav>
+                <!-- navbar -->
+            </div>
         </div>
-        <!-- Collect the nav links, forms, and other content for toggling -->
-            <?php
-            if (!empty($template['partials']['top_menu'])) {
-                echo $template['partials']['top_menu'];
-            } else {
-                echo '<div class="collapse navbar-collapse">';
-                echo '<ul class="nav navbar-nav">';
-                echo '<li><a href="' . base_url() . '">Home</a></li>';
-                echo '</ul>';
-                echo '</div>';
-            }
-            ?>
-        <!-- /.navbar-collapse -->
+        <!-- row -->
     </div>
-    <!-- /.container -->
-</nav>
+    <!-- container -->
+</header>
+<!-- Navigation end here -->
