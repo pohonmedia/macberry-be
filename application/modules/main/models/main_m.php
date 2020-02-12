@@ -22,53 +22,19 @@ class Main_m extends CI_Model {
         $this->user = $this->ion_auth->user()->row();
     }
 
-    public function set_upline($member_id, $sponsor_id, $refcode = NULL) {
-        $data = array(
-            'mm_user_id' => $member_id,
-            'mm_refcode' => $refcode,
-            'mm_parent_id' => $sponsor_id
-        );
 
-        $this->db->insert('md_member_parent', $data);
-        return $this->db->insert_id();
-    }
+    public function get_homepage() {
+        $sql = "SELECT DH.*";
+        $sql .= " FROM dt_homepage DH ";
+        $sql .= "WHERE id = ? ";
+        $sql .= "ORDER BY DH.id";
 
-    public function check_ref($param) {
-        $return = array(
-            'data' => TRUE,
-            'id' => 0
-        );
-        $sql = 'SELECT MMP.*';
-        $sql .= ' FROM md_member_parent MMP ';
-        $sql .= 'WHERE MMP.mm_refcode = "'.$param.'"';
-
-        $query = $this->db->query($sql);
+        $query = $this->db->query($sql, array(1));
         if ($query->num_rows() == 0) {
-            $return['data'] = FALSE;
-        } else {
-            $return['id'] = $query->row()->mm_user_id;
+            return false;
         }
 
-        return $return;
-    }
-
-    function get_null_refcode() {
-        $sql = 'SELECT MMP.*';
-        $sql .= ' FROM md_member_parent MMP ';
-        $sql .= 'WHERE MMP.mm_refcode = 0';
-        $query = $this->db->query($sql);
-
-        if ($query->num_rows() == 0) {
-            return FALSE;
-        }
-        
-        return $query->result();
-    }
-
-    function update_refcode($id, $data) {
-        $this->db->where('id', $id);
-        $this->db->update('md_member_parent', $data);
-        return TRUE;
+        return $query->row();
     }
 
 }

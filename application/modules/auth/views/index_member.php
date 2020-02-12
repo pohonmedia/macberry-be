@@ -1,53 +1,39 @@
-<div id="content">
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-6">
-              <div class="box">
-                <h2 class="text-uppercase">Login</h2>
-                <p class="lead">Already our customer?</p>
-                <p class="text-muted">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
-                <hr>
-                <form action="customer-orders.html" method="post">
-                  <div class="form-group">
-                    <label for="email">Email</label>
-                    <input id="email" type="text" class="form-control">
-                  </div>
-                  <div class="form-group">
-                    <label for="password">Password</label>
-                    <input id="password" type="password" class="form-control">
-                  </div>
-                  <div class="text-center">
-                    <button type="submit" class="btn btn-template-outlined"><i class="fa fa-sign-in"></i> Log in</button>
-                  </div>
-                </form>
-              </div>
-            </div>
-            <div class="col-lg-6">
-              <div class="box">
-                <h2 class="text-uppercase">New account</h2>
-                <p class="lead">Not our registered customer yet?</p>
-                <p>With registration with us new world of fashion, fantastic discounts and much more opens to you! The whole process will not take you more than a minute!</p>
-                <p class="text-muted">If you have any questions, please feel free to <a href="contact.html">contact us</a>, our customer service center is working for you 24/7.</p>
-                <hr>
-                <form action="customer-orders.html" method="post">
-                  <div class="form-group">
-                    <label for="name-login">Name</label>
-                    <input id="name-login" type="text" class="form-control">
-                  </div>
-                  <div class="form-group">
-                    <label for="email-login">Email</label>
-                    <input id="email-login" type="text" class="form-control">
-                  </div>
-                  <div class="form-group">
-                    <label for="password-login">Password</label>
-                    <input id="password-login" type="password" class="form-control">
-                  </div>
-                  <div class="text-center">
-                    <button type="submit" class="btn btn-template-outlined"><i class="fa fa-user-md"></i> Register</button>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
+<div class="login-box">
+    <div class="login-logo">
+        <a href="<?php echo site_url() ?>"><b>Login</b>Member</a>
+    </div><!-- /.login-logo -->
+    <div class="login-box-body">
+        <p class="login-box-msg">Login Member Dashboard</p>
+        <?php echo form_open("auth/login"); ?>
+        <?php if (!empty($message)) { ?>
+            <div id="infoMessage" class="alert alert-danger"><?php echo $message; ?></div>
+        <?php } ?>
+        <div class="form-group has-feedback">
+            <input type="text" name="identity" class="form-control" placeholder="Username" required="" />
+            <span class="glyphicon glyphicon-user form-control-feedback"></span>
         </div>
-      </div>
+        <div class="form-group has-feedback">
+            <input type="password" name="password" class="form-control" placeholder="Password" required="" />
+            <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+        </div>
+        <?php echo form_hidden('ref_form', 'member'); ?>
+        <div class="row">
+            <div class="col-xs-8">
+                <div class="checkbox icheck">
+                    <label>
+                        <input type="checkbox" name="remember"> Remember Me
+                    </label>
+                </div>
+            </div><!-- /.col -->
+            <div class="col-xs-4">
+                <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+            </div><!-- /.col -->
+        </div>
+        <?php echo form_close(); ?>
+        <div class="social-auth-links text-center">
+            <small><b>T</b>CMS <span class="label label-danger">beta</span> v 0.3.261115</small>
+
+            <p>&copy; 2015 <a href="<?php echo base_url(); ?>"><?php echo $this->config->item('website_name'); ?></a></p>
+        </div>
+    </div><!-- /.login-box-body -->
+</div><!-- /.login-box -->

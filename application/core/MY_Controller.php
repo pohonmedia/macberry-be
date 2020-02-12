@@ -7,18 +7,12 @@ require APPPATH . 'third_party/MX/Controller.php';
 
 class MY_Controller extends MX_Controller {
 
-    public $user, $user_info;
+    public $user;
 
     public function __construct() {
         parent::__construct();
         $this->config->database('app_conf_settings');
-        //LOAD ADMIN MODEL FOR LIST NAV
-        $this->load->model('admin/admin_m');
-
         $this->user = $this->ion_auth->user()->row();
-        if ($this->ion_auth->logged_in()) {
-            $this->user_info = $this->admin_m->user_info();
-        }
     }
 
     /**
@@ -81,12 +75,9 @@ class MY_Controller extends MX_Controller {
             $type = 'info';
         }
 
-        $alert .= '<div class="alert alert-' . $type . '"  role="alert">';
-        $alert .= '<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>';
-        $alert .= '<ul class="error-msg-item">';
+        $alert .= '<div class="alert alert-' . $type . ' alert-dismissable show fade"><div class="alert-body"><button class="close" data-dismiss="alert"><span>&times;</span></button>';
         $alert .= $msg;
-        $alert .= '</ul>';
-        $alert .= '</div>';
+        $alert .= '</div></div>';
 
         return $alert;
     }
@@ -126,16 +117,7 @@ class MY_Controller extends MX_Controller {
 
         $this->load->vars($dataX);
     }
-    
-    function generateRandomString($length = 8) {
-        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        $charactersLength = strlen($characters);
-        $randomString = '';
-        for ($i = 0; $i < $length; $i++) {
-            $randomString .= $characters[rand(0, $charactersLength - 1)];
-        }
-        return $randomString;
-    }
+
 }
 
 class Admin_Controller extends My_Controller {
@@ -148,29 +130,26 @@ class Admin_Controller extends My_Controller {
         if (!$this->ion_auth->logged_in()) {
             redirect(base_url('auth'), 'refresh');
         }
-
-        $group = array('admin', 'manager');
-        if (!$this->ion_auth->in_group($group)) {
+        if (!$this->ion_auth->is_admin()) {
             redirect(base_url('auth/no_access'), 'refresh');
         }
 
         $this->user = $this->ion_auth->user()->row();
+        //LOAD ADMIN MODEL FOR LIST NAV
+        $this->load->model('admin/admin_m');
 
         $this->template->set_theme($this->config->item('admin_theme_name'));
         $this->set_url_assets();
 
-        $this->data['menu_list'] = $this->admin_m->navigation_list('admin');
-        $this->data['ngApp'] = 'bbmAdmin';
+        // $this->data['body_class'] = ' class="hold-transition skin-red sidebar-mini"';
+        $this->data['menu_list'] = $this->admin_m->navigation_list();
 
-        $this->form_validation->set_error_delimiters('<li>', '</li>');
-        $this->ion_auth->set_message_delimiters('<li>', '</li>');
-        $this->ion_auth->set_error_delimiters('<li>', '</li>');
-
-        $this->template->set_partial('sidebar', 'sidebar', $this->data);
         $this->template->set_partial('header', 'header', $this->data);
+        $this->template->set_partial('sidebar', 'sidebar', $this->data);
+        $this->template->set_partial('footer', 'footer', $this->data);
         //LOAD BREADCRUMBS LIBRARY
         $this->load->library('breadcrumbs');
-        $this->breadcrumbs->push('Home', 'admin');
+        $this->breadcrumbs->push('<i class="fa fa-dashboard"></i> Home', 'admin');
     }
 
 }
@@ -181,13 +160,11 @@ class Member_Controller extends My_Controller {
 
     public function __construct() {
         parent::__construct();
-
+        
         if (!$this->ion_auth->logged_in()) {
             redirect(base_url('auth/member'), 'refresh');
         }
-
-        $this->user = $this->ion_auth->user()->row();
-
+        
         /* SET DEFAULT THEME */
         if ($this->config->item('theme_name') != "") {
             $this->template->set_theme($this->config->item('theme_name'));
@@ -196,21 +173,18 @@ class Member_Controller extends My_Controller {
         }
         $this->set_url_assets();
 
-        $this->data['menu_list'] = $this->admin_m->navigation_list('member');
-        $this->data['user_info'] = $this->admin_m->user_info();
-        $this->data['ngApp'] = ' ng-app="bbmMember"';
-        $this->data['ngBase'] = 'member/';
-        $this->data['ngAppName'] = 'member';
-
+        // SET TOP MENU
+        $this->template->inject_partial('top_menu', $this->menus->build_top_menu());
+        $this->template->set_partial('header', 'header');
+        $this->template->set_partial('footer', 'footer');
+        //LOAD BREADCRUMBS LIBRARY
+        $this->load->library('breadcrumbs');
         $this->template->set_partial('left_sidebar', 'widgets/left', $this->data);
         $this->template->set_partial('right_sidebar', 'widgets/right', $this->data);
 
-        $this->form_validation->set_error_delimiters('<li>', '</li>');
-        $this->ion_auth->set_message_delimiters('<li>', '</li>');
-        $this->ion_auth->set_error_delimiters('<li>', '</li>');
-        //LOAD BREADCRUMBS LIBRARY
-        $this->load->library('breadcrumbs');
         $this->breadcrumbs->push('Member Dashboards', 'member');
+
+//        $this->template->set_layout('member');
     }
 
 }
@@ -230,7 +204,6 @@ class Public_Controller extends MY_Controller {
         $this->set_url_assets();
 
         // SET TOP MENU
-        // $this->template->inject_partial('top_menu', $this->menus->build_top_menu('id="navbar-collapsible"', 'navbar-left'));
         $this->template->inject_partial('top_menu', $this->menus->build_top_menu());
         $this->template->set_partial('header', 'header');
         $this->template->set_partial('footer', 'footer');
