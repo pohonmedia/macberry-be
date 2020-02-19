@@ -67,6 +67,7 @@ class Admin_categories extends Admin_Controller {
         $total_row = $this->_db->count_all(array());
         $this->data['count_data'] = $total_row;
         $this->data['page_desc'] = 'Add New Category';
+        $this->data['back_url'] = 'admin/articles/categories';
 
         //Validation Rules
         $this->form_validation->set_rules('ct_name', 'Nama Kategori', 'required');
@@ -97,13 +98,14 @@ class Admin_categories extends Admin_Controller {
             'value' => $this->form_validation->set_value('ct_name'),
         );
         $this->data['parent_data'] = $this->parent;
-        $this->data['ct_parent'] = 'placeholder="Parent" class="form-control select"';
+        $this->data['ct_parent'] = 'placeholder="Parent" class="form-control"';
 
         $this->data['ct_desc'] = array(
             'name' => 'ct_desc',
+            'id' => 'ct_desc',
             'type' => 'text',
             'placeholder' => 'Description',
-            'class' => 'summernote',
+            'class' => 'form-control',
             'value' => $this->form_validation->set_value('ct_desc'),
         );
 
@@ -116,6 +118,7 @@ class Admin_categories extends Admin_Controller {
         $total_row = $this->_db->count_all(array());
         $this->data['count_data'] = $total_row;
         $this->data['page_desc'] = 'Edit Selected Category';
+        $this->data['back_url'] = 'admin/articles/categories';
 
         $cat_detail = $this->_db->get_detail('id', $id);
 
@@ -148,14 +151,15 @@ class Admin_categories extends Admin_Controller {
             'value' => $this->form_validation->set_value('ct_name', $cat_detail->ct_name),
         );
         $this->data['parent_data'] = $this->parent;
-        $this->data['ct_parent'] = 'placeholder="Parent" class="form-control select"';
+        $this->data['ct_parent'] = 'placeholder="Parent" class="form-control"';
         $this->data['ct_parent_val'] = $cat_detail->ct_parent;
 
         $this->data['ct_desc'] = array(
             'name' => 'ct_desc',
+            'id' => 'ct_desc',
             'type' => 'text',
             'placeholder' => 'Description',
-            'class' => 'summernote',
+            'class' => 'form-control',
             'value' => $this->form_validation->set_value('ct_desc', $cat_detail->ct_desc),
         );
 

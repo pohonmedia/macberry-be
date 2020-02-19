@@ -34,10 +34,9 @@ class Catalogs extends Public_Controller {
         }
         $this->data['catalogs'] = $data_post;
         $this->data['sliders'] = Modules::run('sliders/get_all');
-            $this->data['page_desc'] = "Semua Products";
 
         //SHOW LEFT WIDGETS
-        // $this->data['left_widgets'] = $this->widget->show_widget('left');
+        $this->data['left_widgets'] = $this->widget->show_widget('left');
 
         $this->template->build('index', $this->data);
     }
@@ -93,30 +92,20 @@ class Catalogs extends Public_Controller {
 
         $detail = $this->_db->get_detail('MP.id', $id);
         if ($detail === FALSE) {
-            $this->data['page_desc'] = "";
             $this->breadcrumbs->push('Not Found', 'catalogs/categories');
             $this->set_title('Product Not Found');
             $detail = array('prod_name' => 'Product not found', 'prod_desc' => "Sorry, Product you're looking for doesn't exist");
             $this->data['product'] = (object) $detail;
         } else {
-            $this->data['page_desc'] = $detail->prod_name;
             $this->breadcrumbs->push($detail->prod_name, 'catalogs/product/' . $id);
             $this->set_title($detail->prod_name);
             $detail->img = $this->_db->get_image($id);
             $this->data['product'] = $detail;
-            $this->data['prod_price'] = array(
-                'name' => 'prod_price',
-                'type' => 'text',
-                'placeholder' => 'Rp. 000.00',
-                'class' => 'form-control',
-                'required' => '',
-                'value' => 1,
-            );
         }
-        //SHOW LEFT WIDGETS
-        $this->load->library('widget');
-        $this->data['right_widgets'] = $this->widget->show_widget('right');
 
+        $this->data['product_tml'] = $this->_db->get_timeline($id);
+        $this->data['product_include'] = $this->_db->get_include($id);
+        $this->data['product_exclude'] = $this->_db->get_exclude($id);
         $this->template->build('index_detail', $this->data);
     }
 

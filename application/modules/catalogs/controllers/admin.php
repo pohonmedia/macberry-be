@@ -23,7 +23,7 @@ class Admin extends Admin_Controller {
         $this->_dbtype = $this->Catalogs_types_m;
         //Main Nav IDs
         $this->data['nav_active'] = 'catalogs';
-        $this->data['subnav_active'] = 'catalogs';
+        $this->data['subnav_active'] = 'listproducts';
         $this->breadcrumbs->push('Catalogs', 'admin/catalogs');
 
         $this->cat = $this->_dbcat->combo_box_public(null, false, false);
@@ -89,14 +89,11 @@ class Admin extends Admin_Controller {
         //Validation Process
         if ($this->form_validation->run() == TRUE) {
             $ins_data = array(
-                'prod_code' => $this->input->post('prod_code'),
                 'prod_name' => $this->input->post('prod_name'),
                 'prod_category' => $this->input->post('prod_category'),
                 'prod_subcategory' => $this->input->post('prod_subcategory'),
                 'prod_price' => $this->input->post('prod_price'),
                 'prod_location' => $this->input->post('prod_location'),
-                'prod_status' => $this->input->post('prod_status'),
-                'prod_type' => $this->input->post('prod_type'),
                 'prod_desc' => $this->input->post('prod_desc'),
                 'prod_tags' => $this->input->post('prod_tags'),
                 'meta_desc' => $this->input->post('meta_desc'),
@@ -142,14 +139,6 @@ class Admin extends Admin_Controller {
         }
 
         //FORM FIELD
-        $this->data['prod_code'] = array(
-            'name' => 'prod_code',
-            'type' => 'text',
-            'placeholder' => 'Product Code',
-            'class' => 'form-control',
-            'required' => '',
-            'value' => $this->form_validation->set_value('prod_code'),
-        );
         $this->data['prod_name'] = array(
             'name' => 'prod_name',
             'type' => 'text',
@@ -159,9 +148,9 @@ class Admin extends Admin_Controller {
             'value' => $this->form_validation->set_value('prod_name'),
         );
         $this->data['cat_data'] = $this->cat;
-        $this->data['prod_category'] = 'id="cats" placeholder="Category" class="form-control select"';
+        $this->data['prod_category'] = 'id="cats" placeholder="Category" class="form-control"';
         $this->data['subcat_data'] = $this->subcat;
-        $this->data['prod_subcategory'] = 'id="subCats" placeholder="Sub Category" class="form-control select"';
+        $this->data['prod_subcategory'] = 'id="subCats" placeholder="Sub Category" class="form-control"';
 
         $this->data['prod_price'] = array(
             'name' => 'prod_price',
@@ -180,23 +169,19 @@ class Admin extends Admin_Controller {
             'value' => $this->form_validation->set_value('prod_location'),
         );
 
-        $this->data['status_data'] = $this->kondisi;
-        $this->data['prod_status'] = 'placeholder="Product Status" class="form-control select"';
-        $this->data['type_data'] = $this->type;
-        $this->data['prod_type'] = 'placeholder="Product Type" class="form-control select"';
-
         $this->data['prod_desc'] = array(
             'name' => 'prod_desc',
             'id' => 'desc_area',
             'type' => 'text',
             'placeholder' => 'Product Desc',
-            'class' => 'summernote',
+            'class' => 'form-control',
             'value' => $this->form_validation->set_value('prod_desc'),
         );
         $this->data['product_img'] = array(
             'name' => 'product_img',
             'type' => 'file'
         );
+        // Create Product Type
 
         $this->data['prod_tags'] = array(
             'name' => 'prod_tags',
@@ -241,14 +226,11 @@ class Admin extends Admin_Controller {
         //Validation Process
         if ($this->form_validation->run() == TRUE) {
             $upd_data = array(
-                'prod_code' => $this->input->post('prod_code'),
                 'prod_name' => $this->input->post('prod_name'),
                 'prod_category' => $this->input->post('prod_category'),
                 'prod_subcategory' => $this->input->post('prod_subcategory'),
                 'prod_price' => $this->input->post('prod_price'),
                 'prod_location' => $this->input->post('prod_location'),
-                'prod_status' => $this->input->post('prod_status'),
-                'prod_type' => $this->input->post('prod_type'),
                 'prod_desc' => $this->input->post('prod_desc'),
                 'prod_tags' => $this->input->post('prod_tags'),
                 'meta_desc' => $this->input->post('meta_desc'),
@@ -294,14 +276,6 @@ class Admin extends Admin_Controller {
         }
 
         //FORM FIELD
-        $this->data['prod_code'] = array(
-            'name' => 'prod_code',
-            'type' => 'text',
-            'placeholder' => 'Product Code',
-            'class' => 'form-control',
-            'required' => '',
-            'value' => $this->form_validation->set_value('prod_code'),
-        );
         $this->data['prod_name'] = array(
             'name' => 'prod_name',
             'type' => 'text',
@@ -311,10 +285,10 @@ class Admin extends Admin_Controller {
             'value' => $this->form_validation->set_value('prod_name', $prod_detail->prod_name),
         );
         $this->data['cat_data'] = $this->cat;
-        $this->data['prod_category'] = 'id="cats" placeholder="Category" class="form-control select"';
+        $this->data['prod_category'] = 'id="cats" placeholder="Category" class="form-control"';
         $this->data['prod_category_val'] = $prod_detail->prod_category;
         $this->data['subcat_data'] = $this->subcat;
-        $this->data['prod_subcategory'] = 'id="subCats" placeholder="Sub Category" class="form-control select"';
+        $this->data['prod_subcategory'] = 'id="subCats" placeholder="Sub Category" class="form-control"';
         $this->data['prod_subcategory_val'] = $prod_detail->prod_subcategory;
 
         $this->data['prod_price'] = array(
@@ -334,19 +308,12 @@ class Admin extends Admin_Controller {
             'value' => $this->form_validation->set_value('prod_location', $prod_detail->prod_location),
         );
 
-        $this->data['status_data'] = $this->kondisi;
-        $this->data['prod_status'] = 'placeholder="Product Status" class="form-control select"';
-        $this->data['prod_status_val'] = $prod_detail->prod_status;
-        $this->data['type_data'] = $this->type;
-        $this->data['prod_type'] = 'placeholder="Product Type" class="form-control select"';
-        $this->data['prod_type_val'] = $prod_detail->prod_type;
-
         $this->data['prod_desc'] = array(
             'name' => 'prod_desc',
             'id' => 'desc_area',
             'type' => 'text',
             'placeholder' => 'Product Desc',
-            'class' => 'summernote',
+            'class' => 'form-control',
             'value' => $this->form_validation->set_value('prod_desc', $prod_detail->prod_desc),
         );
 
@@ -356,7 +323,6 @@ class Admin extends Admin_Controller {
         );
 
         $this->data['image_preview'] = $this->_db->get_image($id);
-        // $this->data['art_img_val'] = $art_detail->art_img == 'assets/modules/articles/default-image.jpg' ? '' : $art_detail->art_img . '?' . random_string('alnum', 6); //ADD RANDOM CHAR FOR REMOVE CACHE;
 
         $this->data['prod_tags'] = array(
             'name' => 'prod_tags',
@@ -422,7 +388,7 @@ class Admin extends Admin_Controller {
     public function create_thumbnail($url, $name) {
         $this->load->library('image_moo');
         $thumb_url = './assets/modules/catalogs/thumbs/thumb_' . $name;
-        $this->image_moo->load($url)->resize_crop(100, 100)->save($thumb_url, TRUE);
+        $this->image_moo->load($url)->resize_crop(290, 220)->save($thumb_url, TRUE);
         return true;
     }
 

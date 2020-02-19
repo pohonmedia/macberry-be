@@ -1,17 +1,18 @@
 <!-- Toolbars -->
-<section class="content-header">
-    <a class="btn btn-sm btn-default btn-flat" href="<?php echo base_url('admin/sliders'); ?>"><i class="fa fa-list"></i>&nbsp;&nbsp;Sliders&nbsp;&nbsp;&nbsp;<span class="label label-success"><?php echo!empty($count_data) ? $count_data : 0; ?></span></a>
-    <a class="btn btn-sm btn-default btn-flat" href="<?php echo base_url('admin/sliders/add'); ?>"><i class="fa fa-plus-square"></i>&nbsp;&nbsp;New Slide</a>
-</section>
+<h2 class="section-title">List All Sliders</h2>
+<div class="row">
+    <div class="col-12 col-md-12 col-lg-12">
+        <a class="btn btn-sm btn-info" href="<?php echo base_url('admin/sliders'); ?>"><i class="fa fa-list"></i>&nbsp;&nbsp;Sliders&nbsp;&nbsp;&nbsp;<span class="badge badge-primary"><?php echo!empty($count_data) ? $count_data : 0; ?></span></a>
+        <a class="btn btn-sm btn-info" href="<?php echo base_url('admin/sliders/add'); ?>"><i class="fa fa-plus-square"></i>&nbsp;&nbsp;New Slide</a>
+    </div>
+</div>
+</br>
 
 <!-- Main content -->
-<section class="content">
-    <!-- Default box -->
-    <div class="box box-danger">
-        <div class="box-header with-border">
-            <h3 class="box-title">List All Sliders</h3>
-        </div>
-        <div class="box-body table-responsive">
+<div class="row">
+    <div class="col-12 col-md-12 col-lg-12">
+        <div class="card">
+            <div class="card-body table-responsive">
             <?php
             if (!empty($msg)) {
                 echo $msg;
@@ -54,12 +55,12 @@
 
             </table>
         </div><!-- /.box-body -->
-        <div class="box-footer text-center">
+        <div class="card-footer text-center">
             <?php
                 if (!empty($template['partials']['pagination'])) {
                     echo $template['partials']['pagination'];
                 }
             ?>
         </div>
-    </div><!-- /.box -->
-</section><!-- /.content -->
+    </div>
+</div>

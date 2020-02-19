@@ -15,18 +15,14 @@ class Admin extends Admin_Controller {
         $this->data['nav_active'] = 'settings';
         $this->data['subnav_active'] = 'users';
         $this->breadcrumbs->push('Users Management', 'admin/users');
-        $this->form_validation->set_error_delimiters('<span>', '</span>');
-        $this->ion_auth->set_message_delimiters('<span>', '</span>');
-        $this->ion_auth->set_error_delimiters('<span>', '</span>');
     }
 
     public function index() {
         $this->set_title('Users Management');
 
-        $this->data['list'] = $this->ion_auth->users(array('admin', 'manager'))->result();
+        $this->data['list'] = $this->ion_auth->users()->result();
         $this->data['count_data'] = count($this->data['list']);
         $this->data['page_desc'] = 'User Management';
-        $this->data['msg'] = (validation_errors() ? validation_errors() : ($this->ion_auth->errors() ? $this->ion_auth->errors() : $this->session->flashdata('msg')));
         $this->template->build('admin/index', $this->data);
     }
 
@@ -46,13 +42,12 @@ class Admin extends Admin_Controller {
 
         // validate form input
         $this->form_validation->set_rules('first_name', 'Nama Lengkap', 'required');
-        $this->form_validation->set_rules('identity', 'Username', 'required|is_unique[' . $tables['users'] . '.' . $identity_column . ']|callback_username_check');
+        $this->form_validation->set_rules('identity', 'Username', 'required|is_unique[' . $tables['users'] . '.' . $identity_column . ']');
         $this->form_validation->set_rules('email', 'Email', 'required|valid_email');
         $this->form_validation->set_rules('password', 'Password', 'required|min_length[' . $this->config->item('min_password_length', 'ion_auth') . ']|max_length[' . $this->config->item('max_password_length', 'ion_auth') . ']|matches[password_confirm]');
         $this->form_validation->set_rules('password_confirm', 'Confirm Password', 'required');
 
-        if ($this->form_validation->run($this) == true) {
-            $this->_export_preferences('email');
+        if ($this->form_validation->run() == true) {
             $email = strtolower($this->input->post('email'));
             $identity = ($identity_column === 'email') ? $email : $this->input->post('identity');
             $password = $this->input->post('password');
@@ -63,21 +58,17 @@ class Admin extends Admin_Controller {
                 'company' => "",
                 'phone' => "",
             );
-            $group = array('2', '3');
         }
-        if ($this->form_validation->run() == true && $this->ion_auth->register($identity, $password, $email, $additional_data, $group)) {
+        if ($this->form_validation->run() == true && $this->ion_auth->register($identity, $password, $email, $additional_data)) {
             // check to see if we are creating the user
             // redirect them back to the admin page
-            $this->session->set_flashdata('msg', $this->show_msg('<b>Success!</b> ' . $this->ion_auth->messages()));
+            $this->session->set_flashdata('message', $this->ion_auth->messages());
             redirect("admin/users", 'refresh');
         } else {
             // display the create user form
             // set the flash data error message if there is one
-            $this->data['msg'] = (validation_errors() ? validation_errors() : ($this->ion_auth->errors() ? $this->ion_auth->errors() : $this->session->flashdata('msg')));
+            $this->data['message'] = (validation_errors() ? validation_errors() : ($this->ion_auth->errors() ? $this->ion_auth->errors() : $this->session->flashdata('message')));
 
-            if (!empty($this->data['msg'])) {
-                $this->data['msg'] = $this->show_msg('<b>Error!</b> ' . $this->data['msg'], 'danger');
-            }
             $this->data['first_name'] = array(
                 'name' => 'first_name',
                 'type' => 'text',
@@ -131,7 +122,7 @@ class Admin extends Admin_Controller {
         $this->data['page_desc'] = 'Edit Selected Users';
 
         if (!$this->ion_auth->logged_in() || (!$this->ion_auth->is_admin() && !($this->ion_auth->user()->row()->id == $id))) {
-            $this->session->set_flashdata('msg', 'Anda tidak mempunyai hak untuk akses menu ini');
+            $this->session->set_flashdata('message', 'Anda tidak mempunyai hak untuk akses menu ini');
             redirect('admin/users', 'refresh');
         }
 
@@ -183,7 +174,7 @@ class Admin extends Admin_Controller {
                 // check to see if we are updating the user
                 if ($this->ion_auth->update($user->id, $this->data)) {
                     // redirect them back to the admin page if admin, or to the base url if non admin
-                    $this->session->set_flashdata('msg', $this->show_msg('<b>Success!</b> ' . $this->ion_auth->messages()));
+                    $this->session->set_flashdata('message', $this->ion_auth->messages());
                     if ($this->ion_auth->is_admin()) {
                         redirect('admin/users', 'refresh');
                     } else {
@@ -191,7 +182,7 @@ class Admin extends Admin_Controller {
                     }
                 } else {
                     // redirect them back to the admin page if admin, or to the base url if non admin
-                    $this->session->set_flashdata('msg', $this->show_msg('<b>Error!</b> ' . $this->ion_auth->errors(), 'danger'));
+                    $this->session->set_flashdata('message', $this->ion_auth->errors());
                     if ($this->ion_auth->is_admin()) {
                         redirect('admin/users', 'refresh');
                     } else {
@@ -205,11 +196,7 @@ class Admin extends Admin_Controller {
         $this->data['csrf'] = $this->_get_csrf_nonce();
 
         // set the flash data error message if there is one
-        $this->data['msg'] = (validation_errors() ? validation_errors() : ($this->ion_auth->errors() ? $this->ion_auth->errors() : $this->session->flashdata('msg')));
-
-        if (!empty($this->data['msg'])) {
-            $this->data['msg'] = $this->show_msg('<b>Error!</b> ' . $this->data['msg'], 'danger');
-        }
+        $this->data['message'] = (validation_errors() ? validation_errors() : ($this->ion_auth->errors() ? $this->ion_auth->errors() : $this->session->flashdata('message')));
 
         // pass the user to the view
         $this->data['user'] = $user;
@@ -249,23 +236,9 @@ class Admin extends Admin_Controller {
     }
 
     public function del($id) {
-        if ($this->ion_auth->delete_user($id)) {
-            // redirect them back to the admin page if admin, or to the base url if non admin
-            $this->session->set_flashdata('msg', $this->show_msg('<b>Success!</b> ' . $this->ion_auth->messages()));
-        } else {
-            // redirect them back to the admin page if admin, or to the base url if non admin
-            $this->session->set_flashdata('msg', $this->show_msg('<b>Error!</b> ' . $this->ion_auth->errors(), 'danger'));
-        }
+//        $this->_db->delete($id);
+        $this->session->set_flashdata('msg', $this->show_msg('<b>Success</b> Users has been deleted !'));
         redirect("admin/users", 'refresh');
-    }
-
-    public function username_check($str) {
-        if (!preg_match('/^[a-z0-9_.]+$/i', $str)) {
-            $this->form_validation->set_message('username_check', 'The %s field only letters (a-z), numbers(0-9), underscore(_) and period (.)');
-            return false;
-        } else {
-            return true;
-        }
     }
 
 }

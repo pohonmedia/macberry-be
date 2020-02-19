@@ -25,13 +25,6 @@ class Contacts extends Public_Controller {
         $this->template->build('index', $this->data);
     }
 
-    public function contact() {
-        $this->data['page_desc'] = "Contact Us";
-        $this->breadcrumbs->push('Contact Us', 'contacts');
-
-        $this->template->build('contactus', $this->data);
-    }
-
 }
 
 /* End of file admin.php */

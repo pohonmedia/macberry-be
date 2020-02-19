@@ -27,7 +27,7 @@ class Admin_types extends Admin_Controller {
         $this->load->library('slug', $config);
         //Main Nav IDs
         $this->data['nav_active'] = 'catalogs';
-        $this->data['subnav_active'] = 'catalogs';
+        $this->data['subnav_active'] = 'listproducts';
         $this->breadcrumbs->push('Catalogs', 'admin/catalogs');
         $this->breadcrumbs->push('Types', 'admin/catalogs/types');
     }

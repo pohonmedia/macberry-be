@@ -103,6 +103,48 @@ class Catalogs_m extends CI_Model {
         return $query->row();
     }
 
+    public function get_timeline($value) {
+        $sql = "SELECT MPT.*";
+        $sql .= " FROM md_product_tml MPT ";
+        $sql .= "WHERE intproductid = ? ";
+        $sql .= "ORDER BY MPT.id";
+
+        $query = $this->db->query($sql, array($value));
+        if ($query->num_rows() == 0) {
+            return false;
+        }
+
+        return $query->result();
+    }
+
+    public function get_include($value) {
+        $sql = "SELECT MPI.*";
+        $sql .= " FROM md_product_incl MPI ";
+        $sql .= "WHERE intproductid = ? ";
+        $sql .= "ORDER BY MPI.id";
+
+        $query = $this->db->query($sql, array($value));
+        if ($query->num_rows() == 0) {
+            return false;
+        }
+
+        return $query->result();
+    }
+
+    public function get_exclude($value) {
+        $sql = "SELECT MPE.*";
+        $sql .= " FROM md_product_excl MPE ";
+        $sql .= "WHERE intproductid = ? ";
+        $sql .= "ORDER BY MPE.id";
+
+        $query = $this->db->query($sql, array($value));
+        if ($query->num_rows() == 0) {
+            return false;
+        }
+
+        return $query->result();
+    }
+
     public function create($data) {
         $data['user_create'] = $this->user->id;
         $data['date_create'] = mdate('%Y-%m-%d %H:%i:%s', now());

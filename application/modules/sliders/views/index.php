@@ -16,23 +16,21 @@
     <!-- Wrapper for slides -->
     <div class="carousel-inner" role="listbox">
         <?php
-            if(!empty($sliders)) {
-                foreach ($sliders as $key => $value) {
-                    if ($key == 0) {
-                        echo '<div class="item active">';
-                    } else {
-                        echo '<div class="item">';
-                    }
-        //            if ($key == 0) {
-        //                echo '<div class="item active" style="background-image: url(' . $value->sld_url . ')">';
-        //            } else {
-        //                echo '<div class="item" style="background-image: url(' . $value->sld_url . ')">';
-        //            }
-                    echo '<img class="img-responsive" src="'.  base_url($value->sld_url).'" data-src="holder.js/815x330/auto/#999:#666/text:Slider 01" alt="Generic placeholder image">';
-        //            echo '<h1 class="animation animated-item-1">' . $value->sld_text1 . '</h1>';
-                    echo '</div>';
-                }
+        foreach ($sliders as $key => $value) {
+            if ($key == 0) {
+                echo '<div class="item active">';
+            } else {
+                echo '<div class="item">';
             }
+//            if ($key == 0) {
+//                echo '<div class="item active" style="background-image: url(' . $value->sld_url . ')">';
+//            } else {
+//                echo '<div class="item" style="background-image: url(' . $value->sld_url . ')">';
+//            }
+            echo '<img class="img-responsive" src="'.  base_url($value->sld_url).'" data-src="holder.js/815x330/auto/#999:#666/text:Slider 01" alt="Generic placeholder image">';
+//            echo '<h1 class="animation animated-item-1">' . $value->sld_text1 . '</h1>';
+            echo '</div>';
+        }
         ?>
     </div>
 

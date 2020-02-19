@@ -19,7 +19,7 @@ class Admin_categories extends Admin_Controller {
         $this->_db = $this->Catalogs_categories_m;
         //Main Nav IDs
         $this->data['nav_active'] = 'catalogs';
-        $this->data['subnav_active'] = 'catalogs';
+        $this->data['subnav_active'] = 'listproducts';
         $this->breadcrumbs->push('Catalogs', 'admin/catalogs');
         $this->breadcrumbs->push('Categories', 'admin/catalogs/categories');
 
@@ -99,12 +99,12 @@ class Admin_categories extends Admin_Controller {
             'value' => $this->form_validation->set_value('ct_name'),
         );
         $this->data['parent_data'] = $this->parent;
-        $this->data['ct_parent'] = 'placeholder="Parent" class="form-control select"';
+        $this->data['ct_parent'] = 'placeholder="Parent" class="form-control"';
         $this->data['ct_desc'] = array(
             'name' => 'ct_desc',
             'type' => 'text',
             'placeholder' => 'Description',
-            'class' => 'summernote',
+            'class' => 'form-control',
             'value' => $this->form_validation->set_value('ct_desc'),
         );
 
@@ -157,7 +157,7 @@ class Admin_categories extends Admin_Controller {
             'name' => 'ct_desc',
             'type' => 'text',
             'placeholder' => 'Description',
-            'class' => 'summernote',
+            'class' => 'form-control',
             'value' => $this->form_validation->set_value('ct_desc', $cat_detail->ct_desc),
         );
 

@@ -37,6 +37,17 @@ class Admin extends Admin_Controller {
             '1' => 'Publish',
             '2' => 'Pending'
         );
+
+        // CKEDITOR CONFIG
+        // $this->load->library('ckeditor');
+        // $this->load->library('ckfinder');
+        // $this->ckeditor->basePath = base_url() . 'assets/admin_default/js/ckeditor/';
+        // $this->ckeditor->config['language'] = 'en';
+        // $this->ckeditor->config['width'] = '700px';
+        // $this->ckeditor->config['height'] = '300px'; 
+        // $this->ckeditor->config['filebrowserBrowseUrl'] = '/admin/ckfinder/ckfinder.html';
+        // //Add Ckfinder to Ckeditor
+        // $this->ckfinder->SetupCKEditor($this->ckeditor,'../assets/admin_default/js/ckfinder/');
     }
 
     public function index() {
@@ -66,6 +77,7 @@ class Admin extends Admin_Controller {
         $total_row = $this->_db->count_all(array());
         $this->data['count_data'] = $total_row;
         $this->data['page_desc'] = 'Add New Article';
+        $this->data['back_url'] = 'admin/articles';
 
         //Validation Rules
         $this->form_validation->set_rules('art_title', 'Article Title', 'required');
@@ -80,7 +92,6 @@ class Admin extends Admin_Controller {
                 'art_img_source' => $this->input->post('art_img_source'),
                 'art_content' => $this->input->post('art_content'),
                 'art_is_feature' => $this->input->post('art_is_feature'),
-                'art_style' => $this->input->post('art_style'),
                 'art_is_publish' => $this->input->post('art_is_publish'),
                 'art_tags' => $this->input->post('art_tags'),
                 'art_meta_desc' => $this->input->post('art_meta_desc'),
@@ -137,17 +148,18 @@ class Admin extends Admin_Controller {
             'value' => $this->form_validation->set_value('art_title'),
         );
         $this->data['cat_data'] = $this->cat;
-        $this->data['art_cat_id'] = 'placeholder="Kategori" class="form-control select"';
+        $this->data['art_cat_id'] = 'placeholder="Kategori" class="form-control"';
 
         $this->data['art_content'] = array(
             'name' => 'art_content',
             'id' => 'desc_area',
             'type' => 'text',
             'placeholder' => 'Content',
-            'class' => 'summernote',
+            'class' => 'form-control',
             'value' => $this->form_validation->set_value('art_content'),
         );
 
+        // $this->data['art_content_value'] = $this->form_validation->set_value('art_content');
         $this->data['art_img'] = array(
             'name' => 'art_img',
             'type' => 'file'
@@ -168,15 +180,8 @@ class Admin extends Admin_Controller {
         );
 
         $this->data['publish_data'] = $this->publish;
-        $this->data['art_is_publish'] = 'placeholder="Status Publish" class="form-control select"';
+        $this->data['art_is_publish'] = 'placeholder="Status Publish" class="form-control"';
 
-        $this->data['art_style'] = array(
-            'name' => 'art_style',
-            'type' => 'text',
-            'placeholder' => 'Custom CSS',
-            'class' => 'form-control',
-            'value' => $this->form_validation->set_value('art_style'),
-        );
         $this->data['art_tags'] = array(
             'name' => 'art_tags',
             'type' => 'text',
@@ -210,8 +215,9 @@ class Admin extends Admin_Controller {
         $total_row = $this->_db->count_all(array());
         $this->data['count_data'] = $total_row;
         $this->data['page_desc'] = 'Edit Selected Article';
+        $this->data['back_url'] = 'admin/articles';
 
-        $art_detail = $this->_db->get_detail('id', $id);
+        $art_detail = $this->_db->get_detail('MA.id', $id);
 
         //Validation Rules
         $this->form_validation->set_rules('art_title', 'Article Title', 'required');
@@ -226,7 +232,6 @@ class Admin extends Admin_Controller {
                 'art_img_source' => $this->input->post('art_img_source'),
                 'art_content' => $this->input->post('art_content'),
                 'art_is_feature' => $this->input->post('art_is_feature'),
-                'art_style' => $this->input->post('art_style'),
                 'art_is_publish' => $this->input->post('art_is_publish'),
                 'art_tags' => $this->input->post('art_tags'),
                 'art_meta_desc' => $this->input->post('art_meta_desc'),
@@ -292,15 +297,16 @@ class Admin extends Admin_Controller {
             'value' => $this->form_validation->set_value('art_title', $art_detail->art_title),
         );
         $this->data['cat_data'] = $this->cat;
-        $this->data['art_cat_id'] = 'placeholder="Kategori" class="form-control select"';
+        $this->data['art_cat_id'] = 'placeholder="Kategori" class="form-control"';
         $this->data['art_cat_id_val'] = $art_detail->art_cat_id;
 
+        // $this->data['art_content_value'] = $art_detail->art_content;
         $this->data['art_content'] = array(
             'name' => 'art_content',
             'id' => 'desc_area',
             'type' => 'text',
             'placeholder' => 'Content',
-            'class' => 'summernote',
+            'class' => 'form-control',
             'value' => $this->form_validation->set_value('art_content', $art_detail->art_content),
         );
 
@@ -325,17 +331,10 @@ class Admin extends Admin_Controller {
         );
 
         $this->data['publish_data'] = $this->publish;
-        $this->data['art_is_publish'] = 'placeholder="Status Publish" class="form-control select"';
+        $this->data['art_is_publish'] = 'placeholder="Status Publish" class="form-control"';
         $this->data['art_is_publish_val'] = $art_detail->art_is_publish;
         $this->data['art_is_feature_val'] = $art_detail->art_is_feature;
 
-        $this->data['art_style'] = array(
-            'name' => 'art_style',
-            'type' => 'text',
-            'placeholder' => 'Custom CSS',
-            'class' => 'form-control',
-            'value' => $this->form_validation->set_value('art_style', $art_detail->art_style),
-        );
         $this->data['art_tags'] = array(
             'name' => 'art_tags',
             'type' => 'text',

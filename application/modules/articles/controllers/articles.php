@@ -72,9 +72,9 @@ class Articles extends Public_Controller {
         $this->template->build('index_read', $this->data);
     }
 
-    public function get_featured() {
+    public function get_featured($category = NULL) {
         // RETURN ALL FEATURED CONTENT
-        return $this->_db->get_featured();
+        return $this->_db->get_featured($category);
     }
     
     public function list_all() {

@@ -91,10 +91,10 @@ class Admin extends Admin_Controller {
         );
 
         $this->data['parent_data'] = $this->parent;
-        $this->data['menu_parent_id'] = 'placeholder="Parent" class="form-control select"';
+        $this->data['menu_parent_id'] = 'placeholder="Parent" class="form-control"';
 
         $this->data['type_data'] = $this->type;
-        $this->data['menu_type'] = 'placeholder="Type Menu" class="form-control select" id="option-type"';
+        $this->data['menu_type'] = 'placeholder="Type Menu" class="form-control" id="option-type"';
 
         $this->data['menu_url'] = array(
             'name' => 'menu_url',
@@ -147,11 +147,11 @@ class Admin extends Admin_Controller {
         );
 
         $this->data['parent_data'] = $this->parent;
-        $this->data['menu_parent_id'] = 'placeholder="Parent" class="form-control select"';
+        $this->data['menu_parent_id'] = 'placeholder="Parent" class="form-control"';
         $this->data['menu_parent_id_val'] = $det_menu->menu_parent_id;
 
         $this->data['type_data'] = $this->type;
-        $this->data['menu_type'] = 'placeholder="Type Menu" class="form-control select" id="option-type"';
+        $this->data['menu_type'] = 'placeholder="Type Menu" class="form-control" id="option-type"';
         $this->data['menu_type_val'] = $det_menu->menu_cat;
 
         $this->data['menu_url'] = array(

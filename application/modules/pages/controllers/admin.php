@@ -60,9 +60,11 @@ class Admin extends Admin_Controller {
         $total_row = $this->_db->count_all(array());
         $this->data['count_data'] = $total_row;
         $this->data['page_desc'] = 'Add New Page';
+        $this->data['back_url'] = 'admin/pages';
 
         //Validation Rules
         $this->form_validation->set_rules('hal_title', 'Judul Halaman', 'required');
+        $this->form_validation->set_rules('hal_desc', 'Content', 'required');
 
         //Validation Process
         if ($this->form_validation->run() == TRUE) {
@@ -97,7 +99,7 @@ class Admin extends Admin_Controller {
             'id' => 'desc_area',
             'type' => 'text',
             'placeholder' => 'Content',
-            'class' => 'summernote',
+            'class' => 'form-control',
             'value' => $this->form_validation->set_value('hal_desc'),
         );
 
@@ -136,6 +138,7 @@ class Admin extends Admin_Controller {
         $total_row = $this->_db->count_all(array());
         $this->data['count_data'] = $total_row;
         $this->data['page_desc'] = 'Edit Selected Pages';
+        $this->data['back_url'] = 'admin/pages';
         
         $page_detail = $this->_db->get_detail('id', $id);
         //Validation Rules
@@ -174,7 +177,7 @@ class Admin extends Admin_Controller {
             'id' => 'desc_area',
             'type' => 'text',
             'placeholder' => 'Content',
-            'class' => 'summernote',
+            'class' => 'form-control',
             'value' => $this->form_validation->set_value('hal_desc', $page_detail->hal_desc),
         );
 
