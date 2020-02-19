@@ -1,45 +1,44 @@
 <!-- Toolbars -->
-<section class="content-header">
-    <a class="btn btn-sm btn-default btn-flat" href="<?php echo base_url('admin/catalogs'); ?>"><i class="fa fa-list"></i>&nbsp;&nbsp;Products&nbsp;&nbsp;&nbsp;<span class="label label-success"><?php echo!empty($count_data) ? $count_data : 0; ?></span></a>
-    <a class="btn btn-sm btn-default btn-flat" href="<?php echo base_url('admin/catalogs/add'); ?>"><i class="fa fa-plus-square"></i>&nbsp;&nbsp;New Product</a>
-    <a class="btn btn-sm btn-default btn-flat" href="<?php echo base_url('admin/catalogs/categories'); ?>"><i class="fa fa-folder"></i>&nbsp;&nbsp;Categories</a>
-    <a class="btn btn-sm btn-default btn-flat" href="<?php echo base_url('admin/catalogs/types'); ?>"><i class="fa fa-clone"></i>&nbsp;&nbsp;Types</a>
-</section>
-
-<!-- Main content -->
-<section class="content">
-    <!-- Default box -->
-    <div class="box box-danger">
-        <div class="box-header with-border">
-            <h3 class="box-title">List All Products</h3>
-        </div>
-        <div class="box-body table-responsive">
-            <?php
-            if (!empty($msg)) {
-                echo $msg;
-            }
-            ?>
-
-            <div>
-                <?php echo form_open(uri_string()); ?>
-                <div class="input-group">
-                    <input type="text" name="products_search" class="form-control input-sm pull-right" placeholder="Search by Product Name">
-                    <div class="input-group-btn">
-                        <button type="submit" class="btn btn-sm btn-default btn-flat"><i class="fa fa-search"></i></button>
-                    </div>
-                </div>
+<h2 class="section-title">List All Products</h2>
+<div class="row">
+    <div class="col-12 col-md-12 col-lg-12">
+        <a class="btn btn-sm btn-info" href="<?php echo base_url('admin/catalogs'); ?>"><i class="fa fa-list"></i>&nbsp;&nbsp;Products&nbsp;&nbsp;&nbsp;<span class="badge badge-primary"><?php echo!empty($count_data) ? $count_data : 0; ?></span></a>
+        <a class="btn btn-sm btn-info" href="<?php echo base_url('admin/catalogs/add'); ?>"><i class="fa fa-plus-square"></i>&nbsp;&nbsp;New Product</a>
+        <a class="btn btn-sm btn-info" href="<?php echo base_url('admin/catalogs/categories'); ?>"><i class="fa fa-folder"></i>&nbsp;&nbsp;Categories</a>
+        <a class="btn btn-sm btn-info d-none" href="<?php echo base_url('admin/catalogs/types'); ?>"><i class="fa fa-clone"></i>&nbsp;&nbsp;Types</a>
+    </div>
+</div>
+</br>
+<div class="row">
+    <div class="col-12 col-md-12 col-lg-12">
+        <div class="card">
+            <div class="card-body table-responsive">
                 <?php
-                if (!empty($search)) {
+                if (!empty($msg)) {
+                    echo $msg;
+                }
+                ?>
+
+                <div>
+                    <?php echo form_open(uri_string()); ?>
+                        <div class="input-group">
+                            <input type="text" name="products_search" class="form-control" placeholder="Search by Product Name">
+                            <div class="input-group-append">
+                                <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
+                            </div>
+                        </div>
+                    <?php
+                        if (!empty($search)) {
                     ?>
                     <div class="input-group">
                         <p class="help-block">Search query : <strong>"<?php echo $search; ?>"</strong></p>
                     </div>
-                <?php } ?>
-                </form>
-            </div>
-            <br />
+                    <?php } ?>
+                    </form>
+                </div>
+                <br />
 
-            <table class="table table-hover table-striped table-condensed">
+                <table class="table table-hover table-striped table-condensed">
                 <thead>
                     <tr>
                         <th class="text-center" width="50">#</th>
@@ -78,15 +77,12 @@
                     }
                     ?>
                 </tbody>
+                </table>
+            </div>
+            <div class="card-footer text-center">
+            <?php echo $template['partials']['pagination'] ?>
+            </div>
 
-            </table>
-        </div><!-- /.box-body -->
-        <div class="box-footer text-center">
-            <?php
-                if (!empty($template['partials']['pagination'])) {
-                    echo $template['partials']['pagination'];
-                }
-            ?>
         </div>
-    </div><!-- /.box -->
-</section><!-- /.content -->
+    </div>
+</div>

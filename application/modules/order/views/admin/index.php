@@ -1,42 +1,39 @@
-<div class="page-title">                    
-    <h2><span class="fa fa-shopping-cart"></span> List All Orders</h2>
+<!-- Toolbars -->
+<h2 class="section-title">List All Orders</h2>
+<div class="row">
+    <div class="col-12 col-md-12 col-lg-12">
+        <a class="btn btn-sm btn-info" href="<?php echo base_url('admin/order'); ?>"><i class="fa fa-list"></i>&nbsp;&nbsp;All Orders&nbsp;&nbsp;&nbsp;<span class="badge badge-primary"><?php echo $count_data; ?></span></a>
+    </div>
 </div>
+</br>
+<div class="row">
+    <div class="col-12 col-md-12 col-lg-12">
+        <div class="card">
+            <div class="card-body table-responsive">
+                <?php
+                if (!empty($msg)) {
+                    echo $msg;
+                }
+                ?>
 
-<div class="page-content-wrap">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <a class="btn btn-sm btn-default btn-flat" href="<?php echo base_url('admin/order'); ?>">
-                        <i class="fa fa-list"></i>&nbsp;&nbsp;All Orders&nbsp;&nbsp;&nbsp;</a>
-                    <!-- <a class="btn btn-sm btn-default btn-flat" href="<?php // echo base_url('admin/order/add'); ?>"><i class="fa fa-plus-square"></i>&nbsp;&nbsp;New Orders</a> -->
-                </div>
-                <div class="panel-body">
-                    <div>
-                        <?php echo form_open(uri_string()); ?>
+                <div>
+                    <?php echo form_open(uri_string()); ?>
                         <div class="input-group">
-                            <input type="text" name="order_search" class="form-control input-sm pull-right" placeholder="Search by Order Code">
-                            <div class="input-group-btn">
-                                <button type="submit" class="btn btn-md btn-default btn-flat"><i class="fa fa-search"></i></button>
+                            <input type="text" name="order_search" class="form-control" placeholder="Search by Order Code">
+                            <div class="input-group-append">
+                                <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
                             </div>
                         </div>
-                        <?php
+                    <?php
                         if (!empty($search)) {
-                            ?>
-                            <div class="input-group">
-                                <p class="help-block">Search query : <strong>"<?php echo $search; ?>"</strong></p>
-                            </div>
-                        <?php } ?>
-                        </form>
+                    ?>
+                    <div class="input-group">
+                        <p class="help-block">Search query : <strong>"<?php echo $search; ?>"</strong></p>
                     </div>
-                    <br />
-
-                    <div class="box-body table-responsive">
-                        <?php
-                        if (!empty($msg)) {
-                            echo $msg;
-                        }
-                        ?>
+                    <?php } ?>
+                    </form>
+                </div>
+                <br />
 
                          <table class="table table-hover table-striped table-bordered">
                             <thead>
@@ -103,19 +100,13 @@
                                     echo '</tr>';
                                 }
                                 ?>
-                            </tbody>
-
-                        </table>
-                    </div><!-- /.box-body -->
-                    <div class="box-footer text-center">
-                        <?php
-                        if (!empty($template['partials']['pagination'])) {
-                            echo $template['partials']['pagination'];
-                        }
-                        ?>
-                    </div>
-                </div>
+                        </tbody>
+                </table>
             </div>
+            <div class="card-footer text-center">
+            <?php echo $template['partials']['pagination'] ?>
+            </div>
+
         </div>
     </div>
 </div>
