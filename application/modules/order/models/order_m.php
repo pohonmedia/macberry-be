@@ -146,8 +146,13 @@ class Order_m extends CI_Model {
     }
 
     public function delete($id) {
+        // Order Detail
+        $this->db->where('intorderid', $id);
+        $this->db->delete('md_order_detail');
+
+        // Order
         $this->db->where('id', $id);
-        $this->db->delete('md_product');
+        $this->db->delete('md_order');
         return $this->db->affected_rows();
     }
 

@@ -1,17 +1,16 @@
 <!-- Toolbars -->
-<section class="content-header">
-    <a class="btn btn-sm btn-default btn-flat" href="<?php echo base_url('admin/catalogs'); ?>"><i class="fa fa-list"></i>&nbsp;&nbsp;Products&nbsp;&nbsp;&nbsp;<span class="label label-success"><?php echo $count_data; ?></span></a>
-    <a class="btn btn-sm btn-default btn-flat" href="<?php echo base_url('admin/catalogs/categories'); ?>"><i class="fa fa-folder"></i>&nbsp;&nbsp;Categories</a>
-</section>
-
-<!-- Main content -->
-<section class="content">
-    <!-- Default box -->
-    <div class="box box-warning">
-        <div class="box-header with-border">
-            <h3 class="box-title">Edit Product</h3>
-        </div>
-        <div class="box-body">
+<h2 class="section-title">Edit Product</h2>
+<div class="row">
+    <div class="col-12 col-md-12 col-lg-12">
+        <a class="btn btn-sm btn-info btn-flat" href="<?php echo base_url('admin/catalogs'); ?>"><i class="fa fa-list"></i>&nbsp;&nbsp;Products&nbsp;&nbsp;&nbsp;<span class="badge badge-primary"><?php echo $count_data; ?></span></a>
+        <a class="btn btn-sm btn-info btn-flat" href="<?php echo base_url('admin/catalogs/categories'); ?>"><i class="fa fa-folder"></i>&nbsp;&nbsp;Categories</a>
+    </div>
+</div>
+</br>
+<div class="row">
+    <div class="col-12 col-md-12 col-lg-12">
+        <div class="card">
+            <div class="card-body">
             <?php
             if (!empty($msg)) {
                 echo $msg;
@@ -86,12 +85,11 @@
                 </div>
             </div>
         </div><!-- /.box-body -->
-        <div class="box-footer">
-            <div class="box-tools">
-                <button type="submit" class="btn btn-sm btn-flat btn-primary"><i class="fa fa-save"></i> Update</button>
-                <a class="btn btn-sm btn-flat btn-warning" style="margin-left: 5px;" href="<?php echo base_url('admin/catalogs'); ?>"><i class="fa fa-rotate-left"></i> Batal</a>
-            </div>
+        <div class="card-footer">
+            <button type="submit" class="btn btn-sm btn-flat btn-primary"><i class="fa fa-save"></i> Create</button>
+            <a class="btn btn-sm btn-flat btn-warning" style="margin-left: 5px;" href="<?php echo base_url('admin/catalogs'); ?>"><i class="fa fa-undo"></i> Batal</a>
         </div> <!--/.box-footer-->
         <?php echo form_close(); ?>
+        </div><!-- /.box -->
     </div><!-- /.box -->
-</section><!-- /.content -->
+</div><!-- /.content -->

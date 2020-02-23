@@ -2,7 +2,7 @@
 <h2 class="section-title">List All Payment</h2>
 <div class="row">
     <div class="col-12 col-md-12 col-lg-12">
-        <a class="btn btn-sm btn-info" href="<?php echo base_url('admin/payent'); ?>"><i class="fa fa-list"></i>&nbsp;&nbsp;All Payment&nbsp;&nbsp;&nbsp;</a>
+        <a class="btn btn-sm btn-info" href="<?php echo base_url('admin/payment'); ?>"><i class="fa fa-list"></i>&nbsp;&nbsp;All Payment&nbsp;&nbsp;&nbsp;</a>
     </div>
 </div>
 </br>

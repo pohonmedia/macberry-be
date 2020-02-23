@@ -31,11 +31,11 @@
                 <label for="ct_desc" class="control-label">Description</label>
                 <?php echo form_textarea($ct_desc); ?>
             </div>
-            <div class="card-footer">
+        </div><!-- /.box -->
+        <div class="card-footer">
                 <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Create</button>
                 <a class="btn btn-warning" style="margin-left: 5px;" href="<?php echo base_url('admin/catalogs/categories'); ?>"><i class="fa fa-undo"></i> Batal</a>
             </div> <!--/.box-footer-->
         <?php echo form_close(); ?>
-        </div><!-- /.box -->
     </div><!-- /.box -->
 </div><!-- /.content -->

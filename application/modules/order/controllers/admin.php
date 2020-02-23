@@ -368,15 +368,9 @@ class Admin extends Admin_Controller {
     }
 
     public function del($id) {
-        $data_image = $this->_db->get_image($id);
-        if (!empty($data_image)) {
-            foreach ($data_image as $value) {
-                $this->del_image($value->id, false);
-            }
-        }
         $this->_db->delete($id);
-        $this->session->set_flashdata('msg', $this->show_msg('<b>Success</b> Product has been deleted !'));
-        redirect("admin/catalogs", 'refresh');
+        $this->session->set_flashdata('msg', $this->show_msg('<b>Success</b> Order has been deleted !'));
+        redirect("admin/order", 'refresh');
     }
 
     public function detail($id) {
