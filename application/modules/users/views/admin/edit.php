@@ -1,52 +1,41 @@
-<!-- Toolbars -->
-<section class="content-header">
-    <a class="btn btn-sm btn-default btn-flat" style="margin-right: 5px;" href="<?php echo base_url('admin/users'); ?>"><i class="fa fa-list"></i>&nbsp;&nbsp;List Users&nbsp;&nbsp;&nbsp;<span class="label label-success"><?php echo $count_data; ?></span></a>
-</section>
-
-<!-- Main content -->
-<section class="content">
-    <!-- Default box -->
-    <div class="box box-warning">
-        <div class="box-header with-border">
-            <h3 class="box-title">Edit Users</h3>
-        </div>
-        <div class="box-body">
+<h2 class="section-title">Edit Users</h2>
+<div class="row">
+    <div class="col-12 col-md-12 col-lg-12">
+        <a class="btn btn-sm btn-info" style="margin-right: 5px;" href="<?php echo base_url('admin/users'); ?>"><i class="fa fa-list"></i>&nbsp;&nbsp;List Users&nbsp;&nbsp;&nbsp;<span class="badge badge-primary"><?php echo $count_data; ?></span></a>
+    </div>
+</div>
+</br>
+<div class="row">
+    <div class="col-12 col-md-12 col-lg-12">
+        <div class="card">
+            <div class="card-body">
             <?php
             if (!empty($msg)) {
                 echo $msg;
             }
             ?>
-            <?php echo form_open(uri_string(), 'class="form-horizontal"'); ?>
+            <?php echo form_open(uri_string()); ?>
             <div class="row">
-                <!--<div class="col-md-8">-->
+                <div class="col-md-6">
                 <div class="form-group">
-                    <label for="art_title" class="col-sm-2 control-label">Nama Lengkap</label>
-                    <div class="col-sm-5">
-                        <?php echo form_input($first_name); ?>
-                    </div>
+                    <label for="art_title" class="control-label">Nama Lengkap</label>
+                    <?php echo form_input($first_name); ?>
                 </div>
                 <div class="form-group">
-                    <label for="art_content" class="col-sm-2 control-label">Email</label>
-                    <div class="col-sm-5">
-                        <?php echo form_input($email); ?>
-                    </div>
+                    <label for="art_content" class="control-label">Email</label>
+                    <?php echo form_input($email); ?>
                 </div>
                 <div class="form-group">
-                    <label for="art_img" class="col-sm-2 control-label">Password (Jika Ganti)</label>
-                    <div class="col-sm-5">
-                        <?php echo form_input($password); ?>
-                    </div>
+                    <label for="art_img" class="control-label">Password (Jika Ganti)</label>
+                    <?php echo form_input($password); ?>
                 </div>
                 <div class="form-group">
-                    <label for="art_img_caption" class="col-sm-2 control-label">Password Confirm</label>
-                    <div class="col-sm-5">
-                        <?php echo form_input($password_confirm); ?>
-                    </div>
+                    <label for="art_img_caption" class="control-label">Password Confirm</label>
+                    <?php echo form_input($password_confirm); ?>
                 </div>
                 <?php if ($this->ion_auth->is_admin()): ?>
                     <div class="form-group">
-                        <label for="groups" class="col-sm-2 control-label">Group Pengguna</label>
-                        <div class="col-sm-5">
+                        <label for="groups" class="control-label">Group Pengguna</label>
                             <?php foreach ($groups as $group): ?>
                                 <div class="checkbox">
                                     <label>
@@ -66,20 +55,19 @@
                                     </label>
                                 </div>
                             <?php endforeach ?>
-                        </div>
                     </div>
                 <?php endif ?>
 
                 <?php echo form_hidden('id', $user->id); ?>
                 <?php echo form_hidden($csrf); ?>
-                <!--</div>-->
+                </div>
             </div>
         </div><!-- /.box-body -->
-        <div class="box-footer">
-            <div class="box-tools">
-                <button type="submit" class="btn btn-sm btn-flat btn-primary"><i class="fa fa-save"></i> Update</button>
-                <a class="btn btn-sm btn-flat btn-warning" style="margin-left: 5px;" href="<?php echo base_url('admin/users'); ?>"><i class="fa fa-rotate-left"></i> Batal</a>
-            </div>
-        </div> <!--/.box-footer-->
-        <?php echo form_close(); ?>    </div><!-- /.box -->
-</section><!-- /.content -->
+            <div class="card-footer">
+                <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Update</button>
+                <a class="btn btn-warning" style="margin-left: 5px;" href="<?php echo base_url('admin/users'); ?>"><i class="fa fa-undo"></i> Batal</a>
+            </div> <!--/.box-footer-->
+        <?php echo form_close(); ?>
+        </div><!-- /.box -->
+    </div><!-- /.box -->
+</div><!-- /.content -->

@@ -1,19 +1,29 @@
-<div class="col-md-12">
-
-    <div class="error-container">
-        <div class="error-code">404</div>
-        <div class="error-text">page not found</div>
-        <div class="error-subtext">Unfortunately we're having trouble loading the page you are looking for. Please wait a moment and try again or use action below.</div>
-        <div class="error-actions">                                
-            <div class="row">
-                <div class="col-md-6">
-                    <button class="btn btn-info btn-block btn-lg" onClick="document.location.href = 'admin';">Back to dashboard</button>
+<div id="app">
+    <section class="section">
+      <div class="container mt-5">
+        <div class="page-error">
+            <div class="page-inner">
+                <h1>404</h1>
+                <div class="page-description">The page you were looking for could not be found.</div>
+                <br />
+                <div>                                
+                    <div class="row">
+                        <div class="col-md-3">
+                            &nbsp;
+                        </div>
+                        <div class="col-md-3">
+                            <a class="btn btn-info btn-block btn-lg" href="<?php echo base_url();?>">Back to main page</a>
+                        </div>
+                        <div class="col-md-3">
+                            <button class="btn btn-primary btn-block btn-lg" onClick="history.back();">Previous page</button>
+                        </div>
+                        <div class="col-md-3">
+                            &nbsp;
+                        </div>
+                    </div>                                
                 </div>
-                <div class="col-md-6">
-                    <button class="btn btn-primary btn-block btn-lg" onClick="history.back();">Previous page</button>
-                </div>
-            </div>                                
+            </div>
         </div>
     </div>
-
-</div>
+    </section>
+    </div>

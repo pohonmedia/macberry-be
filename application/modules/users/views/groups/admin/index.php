@@ -1,23 +1,23 @@
-<!-- Toolbars -->
-<section class="content-header">
-    <a class="btn btn-sm btn-default btn-flat" href="<?php echo base_url('admin/users'); ?>"><i class="fa fa-list"></i>&nbsp;&nbsp;List Users&nbsp;&nbsp;&nbsp;</span></a>
-    <a class="btn btn-sm btn-default btn-flat" href="<?php echo base_url('admin/users/groups'); ?>"><i class="fa fa-list"></i>&nbsp;&nbsp;Groups&nbsp;&nbsp;&nbsp;<span class="label label-success"><?php echo!empty($count_data) ? $count_data : 0; ?></span></a>
-    <a class="btn btn-sm btn-default btn-flat" href="<?php echo base_url('admin/users/groups/add'); ?>"><i class="fa fa-plus-square"></i>&nbsp;&nbsp;New Group</a>
-</section>
+<h2 class="section-title">List All Groups</h2>
+<div class="row">
+    <div class="col-12 col-md-12 col-lg-12">
+        <a class="btn btn-sm btn-info" href="<?php echo base_url('admin/users'); ?>"><i class="fa fa-list"></i>&nbsp;&nbsp;List Users&nbsp;&nbsp;&nbsp;</span></a>
+        <a class="btn btn-sm btn-info" href="<?php echo base_url('admin/users/groups'); ?>"><i class="fa fa-list"></i>&nbsp;&nbsp;Groups&nbsp;&nbsp;&nbsp;<span class="badge badge-primary"><?php echo!empty($count_data) ? $count_data : 0; ?></span></a>
+        <a class="btn btn-sm btn-info" href="<?php echo base_url('admin/users/groups/add'); ?>"><i class="fa fa-plus-square"></i>&nbsp;&nbsp;New Group</a>
+    </div>
+</div>
+</br>
+<div class="row">
+    <div class="col-12 col-md-12 col-lg-12">
+        <div class="card">
+            <div class="card-body table-responsive">
+                <?php
+                if (!empty($msg)) {
+                    echo $msg;
+                }
+                ?>
 
-<!-- Main content -->
-<section class="content">
-    <!-- Default box -->
-    <div class="box box-danger">
-        <div class="box-header with-border">
-            <h3 class="box-title">List All Users</h3>
-        </div>
-        <div class="box-body table-responsive">
-            <?php
-            if (!empty($msg)) {
-                echo $msg;
-            }
-            ?>
+                <br />
 
             <table class="table table-hover table-striped table-condensed">
                 <thead>
@@ -51,13 +51,11 @@
                 </tbody>
 
             </table>
-        </div><!-- /.box-body -->
-        <div class="box-footer text-center">
-            <?php
-            if (!empty($template['partials']['pagination'])) {
-                echo $template['partials']['pagination'];
-            }
-            ?>
+            </div>
+            <div class="card-footer text-center">
+            <?php echo $template['partials']['pagination'] ?>
+            </div>
+
         </div>
-    </div><!-- /.box -->
-</section><!-- /.content -->
+    </div>
+</div>

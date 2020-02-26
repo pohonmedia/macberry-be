@@ -19,10 +19,16 @@ class Admin extends Admin_Controller {
 
     public function index() {
         $this->set_title('Users Management');
-
         $this->data['list'] = $this->ion_auth->users()->result();
         $this->data['count_data'] = count($this->data['list']);
+
+        $total_row = count($this->data['list']);
+        $limit = 10;
+        $this->data['page'] = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+        $this->_paginate('admin/users', $total_row, $limit);
+
         $this->data['page_desc'] = 'User Management';
+
         $this->template->build('admin/index', $this->data);
     }
 

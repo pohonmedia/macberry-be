@@ -19,10 +19,15 @@ class Admin_groups extends Admin_Controller {
 
     public function index() {
         $this->set_title('User Groups');
-
         $this->data['list'] = $this->ion_auth->groups()->result();
+
+        $total_row = count($this->data['list']);
+        $limit = 10;
+        $this->data['page'] = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+        $this->_paginate('admin/users/groups', $total_row, $limit);
+
         $this->data['count_data'] = count($this->data['list']);
-        $this->data['page_desc'] = 'User Management';
+        $this->data['page_desc'] = 'User Groups Management';
         $this->template->build('groups/admin/index', $this->data);
     }
 

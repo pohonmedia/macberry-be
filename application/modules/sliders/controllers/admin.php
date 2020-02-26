@@ -18,8 +18,9 @@ class Admin extends Admin_Controller {
         $this->load->model('Sliders_m');
         $this->_db = $this->Sliders_m;
         //Main Nav IDs
-        $this->data['nav_active'] = 'plugins';
-        $this->data['subnav_active'] = 'sliders';
+        // $this->data['nav_active'] = 'plugins';
+        $this->data['nav_active'] = 'sliders';
+        // $this->data['subnav_active'] = 'sliders';
         $this->breadcrumbs->push('Sliders', 'admin/sliders');
     }
 
