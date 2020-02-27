@@ -36,7 +36,7 @@ class Catalogs extends Public_Controller {
         $this->data['sliders'] = Modules::run('sliders/get_all');
 
         //SHOW LEFT WIDGETS
-        $this->data['left_widgets'] = $this->widget->show_widget('left');
+        // $this->data['left_widgets'] = $this->widget->show_widget('left');
 
         $this->template->build('index', $this->data);
     }

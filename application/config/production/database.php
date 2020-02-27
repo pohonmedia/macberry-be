@@ -4,9 +4,9 @@ $active_group = 'default';
 $active_record = TRUE;
 
 $db['default']['hostname'] = 'localhost';
-$db['default']['username'] = 'root';
-$db['default']['password'] = '';
-$db['default']['database'] = 'webdb_macberry';
+$db['default']['username'] = 'u6066502_macberryuser';
+$db['default']['password'] = '!Q2w3e4r5t6y';
+$db['default']['database'] = 'u6066502_macberrydb';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;

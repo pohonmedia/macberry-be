@@ -40,13 +40,15 @@
                         ?>
                         <div class="form-group">
                             <label for="art_img_caption" class="control-label">Image Preview</label>
-                            <div>
+                            <div class="col-md-12">
+                            <div class="row">
                                 <?php foreach ($image_preview as $value) { ?>
                                     <div class="col-md-2" style="border: 1px solid #DDD;margin-right: 10px;padding:5px 5px 3px 5px;border-radius: 3px;">
+                                        <a href="<?php echo base_url('admin/catalogs/del_image/' . $value->id); ?>" class="close">&times;</a>
                                         <img src="<?php echo base_url($value->prod_thumb_url); ?>" class="img-thumbnail"/>
-                                        <a href="<?php echo base_url('admin/catalogs/del_image/' . $value->id); ?>" class="close" data-dismiss="img-thumbnail" aria-hidden="true">&times;</a>
                                     </div>
                                 <?php } ?>
+                            </div>
                             </div>
                         </div>
                         <div class="clearfix" style="margin-bottom: 10px;"></div>

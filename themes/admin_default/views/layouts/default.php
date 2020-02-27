@@ -77,6 +77,7 @@
         <script src="<?php echo $admin_assets . 'js/ckeditor/ckeditor.js'; ?>"></script>
         <script src="<?php echo $admin_assets . 'js/ckfinder/ckfinder.js'; ?>"></script>
         <script src="<?php echo $admin_assets . 'js/stisla.js'; ?>"></script>
+        <script src="<?php echo $admin_assets . 'js/jquery.chained.min.js'; ?>"></script>
         <script src="<?php echo $admin_assets . 'js/scripts.js'; ?>"></script>
         <script src="<?php echo $admin_assets . 'js/custom.js'; ?>"></script>
         
