@@ -14,7 +14,7 @@ $config['t_container_close'] = '</div>';
 // $config['t_container_open_end'] = '';
 // $config['t_container_close'] = '';
 
-$config['t_menu_open_start'] = '<ul class="navbar-nav mr-auto ';
+$config['t_menu_open_start'] = '<ul id="nav" class="navbar-nav ml-auto ';
 $config['t_menu_open_end'] = '">';
 $config['t_menu_close'] = '</ul>';
 

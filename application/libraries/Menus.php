@@ -46,6 +46,7 @@ class Menus {
         $this->t_item_open_start = $this->ci->config->item('t_menu_item_open_start');
         $this->t_item_open_end = $this->ci->config->item('t_menu_item_open_end');
         $this->t_item_close = $this->ci->config->item('t_menu_item_close');
+        $this->user = $this->ci->ion_auth->user()->row();
 
         log_message('debug', "Menus Class Initialized");
     }
@@ -97,11 +98,24 @@ class Menus {
         } else {
             $output .= $this->t_item_open_start;
             $output .= $this->t_item_open_end;
-            $output .= '<a href="' . base_url() . '">Home</a>';
+            $output .= '<a data-scroll-nav="0"  href="' . base_url() . '">Home</a>';
             $output .= $this->t_item_close;
         }
+        $output .= '<li class="nav-item">';
+        $output .= '<a data-scroll-nav="0" href="' . base_url('order/detail') . '">';
+        $output .= '<i class="fas fa-shopping-basket"></i>';
+        $output .= '&nbsp; Your Cart';
+        $output .= '</a></li>';
 
-        return $output . $this->t_tag_close . $this->t_menu_close . PHP_EOL;
+        $formext = '<form class="form-inline my-2 my-lg-0 ml-4">';
+        if($this->ci->ion_auth->logged_in()) {
+            $formext .= '<a class="c-btn-primary text-capitalize" href="' . base_url('member') . '" style="letter-spacing:0.5px;color:white;">' . $this->user->username . '</a>';
+        } else {
+            $formext .= '<a class="c-btn-primary text-capitalize" href="' . base_url('member') . '" style="letter-spacing:0.5px;color:white;">Masuk / daftar</a>';
+        }
+        $formext .= '</form>';
+
+        return $output . $this->t_tag_close . $formext . $this->t_menu_close . PHP_EOL;
     }
 
     function build_bottom_menu() {
@@ -119,7 +133,7 @@ class Menus {
         } else {
             $output .= $this->t_item_open_start;
             $output .= $this->t_item_open_end;
-            $output .= '<a href="' . base_url() . '">Home</a>';
+            $output .= '<a data-scroll-nav="0"  href="' . base_url() . '">Home</a>';
             $output .= $this->t_item_close;
         }
 
@@ -137,7 +151,7 @@ class Menus {
                 $output .= $this->t_item_open_start . ' class="dropdown"';
             }
             $output .= $this->t_item_open_end;
-            $output .= '<a href="' . base_url($data->menu_url) . '" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">' . $data->menu_name . ' <span class="caret"></span></a>';
+            $output .= '<a data-scroll-nav="0" href="' . base_url($data->menu_url) . '" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">' . $data->menu_name . ' <span class="caret"></span></a>';
             $output .= '<ul class="dropdown-menu">';
             foreach ($dropdown_item as $value) {
                 $output .= $this->_arrange_menu($value);
@@ -151,7 +165,7 @@ class Menus {
                 $output .= $this->t_item_open_start;
             }
             $output .= $this->t_item_open_end;
-            $output .= '<a href="' . base_url($data->menu_url) . '" id="' . $data->menu_id . '">' . $data->menu_name . '</a>';
+            $output .= '<a data-scroll-nav="0" href="' . base_url($data->menu_url) . '" id="' . $data->menu_id . '">' . $data->menu_name . '</a>';
             $output .= $this->t_item_close;
         }
         return $output;
