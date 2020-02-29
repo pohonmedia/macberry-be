@@ -29,117 +29,84 @@
     <!-- Content block start here -->
         
 
-    <!-- slider start here -->
-    <section id="home" class="slider-area pt-100 c-slider-homepage">
-        <div class="container-fluid position-relative">
-            <div class="slider-active">
-                <div class="single-slider">
-                    <div class="slider-bg">
-                        <div class="row no-gutters align-items-center ">
-                            <div class="col-lg-4 col-md-5">
-                                <div class="slider-product-image d-none d-md-block">
-                                    <img src="./assets/img/macbook-1.jpg" alt="Slider">
-                                    <div class="slider-discount-tag">
-                                        <p>gratis
-                                            <br>
-                                            pengiriman</p>
-                                    </div>
-                                </div>
-                                <!-- slider product image -->
-                            </div>
-                            <div class="col-lg-8 col-md-7">
-                                <div class="slider-product-content">
-                                    <h1 class="slider-title mb-10" data-animation="fadeInUp" data-delay="0.3s">
-                                        Secondhand Macbook 12 inch MLHA2 Early 2016 Promo.
-                                    </h1>
-                                    <p class="mb-30 mt-30 mr-50" data-animation="fadeInUp" data-delay="0.9s" style="letter-spacing:1px; line-height:1.5em;">
-                                        Dunia design, fotografi dan grafis identik dengan mantengin layar berjam-jam bahkan mungkin lembur semalam suntuk, karena pertimbangan itulah di perlukan mac yang memiliki kualitas layar yang jernih dan lincah untuk di bawa beraktivitas, seperti bertemu serta presentasi ke klien.
-                                    </p>
-                                    <a class="c-btn-primary" href="#" data-animation="fadeInUp" data-delay="1.5s">
-                                        info lebih lanjut
-                                    </a>
-                                </div>
-                                <!-- slider product content -->
-                            </div>
-                        </div>
-                        <!-- row -->
-                    </div>
-                    <!-- container -->
-                </div>
-                <!-- single slider -->
+<?php
+    // $sliders = Modules::run('sliders/controller/get_all');
+		if ($this->uri->uri_string() == "" && !empty($sliders)) {
+?>
+            <!-- Header Carousel -->
+            <section id="home" class="slider-area pt-100 c-slider-homepage">
+            <div class="container-fluid position-relative">
+                <div  class="slider-active">
+                <!-- Indicators -->
+                <!-- <ol class="carousel-indicators"> -->
+                    <?php
+                    // $i = 0;
+                    // for ($i = 0; $i < count($sliders); $i++) {
+                    //     if ($i == 0) {
+                    //         echo '<li data-target="#carouselHome" data-slide-to="' . $i . '" class="active"></li>';
+                    //     } else {
+                    //         echo '<li data-target="#carouselHome" data-slide-to="' . $i . '"></li>';
+                    //     }
+                    // }
+                    ?>
+                <!-- </ol> -->
 
-                <div class="single-slider">
-                    <div class="slider-bg">
-                        <div class="row no-gutters align-items-center ">
-                            <div class="col-lg-4 col-md-5">
-                                <div class="slider-product-image d-none d-md-block">
-                                    <img src="./assets/img/iphone-1.jpg" alt="Slider">
-                                    <div class="slider-discount-tag">
-                                        <p>50% disc</p>
-                                    </div>
-                                </div>
-                                <!-- slider product image -->
-                            </div>
-                            <div class="col-lg-8 col-md-7">
-                                <div class="slider-product-content">
-                                    <h1 class="slider-title mb-10" data-animation="fadeInUp" data-delay="0.3s">
-                                        iPhone 6s Plus - Disc 50%
-                                    </h1>
-                                    <p class="mb-30 mt-30 mr-50" data-animation="fadeInUp" data-delay="0.9s" style="letter-spacing:1px; line-height:1.5em;">
-                                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sit optio pariatur, vitae vero cum dolorem omnis. Rerum, voluptatem eaque velit quam sapiente natus obcaecati, vel praesentium minima ducimus veniam debitis.
-                                    </p>
-                                    <a class="c-btn-primary" href="#" data-animation="fadeInUp" data-delay="1.5s">
-                                        lihat produk
-                                    </a>
-                                </div>
-                                <!-- slider product content -->
-                            </div>
-                        </div>
-                        <!-- row -->
-                    </div>
-                    <!-- container -->
-                </div>
-                <!-- single slider -->
+                <!-- Wrapper for slides -->
+                    <?php
+                    foreach ($sliders as $key => $value) {
+                        echo '<div class="single-slider">';
+                        echo '<div class="slider-bg">';
+                        echo '<div class="row no-gutters align-items-center">';
+                        // item-start
+                        echo '<div class="col-lg-4 col-md-5">';
+                        echo '<div class="slider-product-image d-none d-md-block">';
+                        echo '<img src="' . $value->sld_url . '" alt="Slider">';
+                        // echo '<div class="slider-discount-tag">';
+                        // echo '<p>80% disc</p>';
+                        // echo '</div>';
+                        echo '</div>';
+                        echo '</div>';
+                        echo '<div class="col-lg-8 col-md-7">';
+                        echo '<div class="slider-product-content">';
+                        echo '<h1 class="slider-title mb-10" data-animation="fadeInUp" data-delay="0.3s">';
+                        echo $value->sld_title;
+                        echo '</h1>';
+                        echo '<p class="mb-30 mt-30 mr-50" data-animation="fadeInUp" data-delay="0.9s" style="letter-spacing:1px; line-height:1.5em;">';
+                        echo $value->sld_text1;
+                        echo '</p>';
+                        echo '<a class="c-btn-primary" href="' . $value->sld_link . '" data-animation="fadeInUp" data-delay="1.5s">';
+                        echo $value->sld_linktext;
+                        echo '</a>';
+                        echo '</div>';
+                        echo '</div>';
 
-                <div class="single-slider">
-                    <div class="slider-bg">
-                        <div class="row no-gutters align-items-center ">
-                            <div class="col-lg-4 col-md-5">
-                                <div class="slider-product-image d-none d-md-block">
-                                    <img src="./assets/img/iphone-2.jpg" alt="Slider">
-                                    <div class="slider-discount-tag">
-                                        <p>80% disc</p>
-                                    </div>
-                                </div>
-                                <!-- slider product image -->
-                            </div>
-                            <div class="col-lg-8 col-md-7">
-                                <div class="slider-product-content">
-                                    <h1 class="slider-title mb-10" data-animation="fadeInUp" data-delay="0.3s">
-                                        iPhone SE - Disc 80%
-                                    </h1>
-                                    <p class="mb-30 mt-30 mr-50" data-animation="fadeInUp" data-delay="0.9s" style="letter-spacing:1px; line-height:1.5em;">
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut laboriosam commodi obcaecati molestiae amet nam rerum mollitia beatae praesentium nemo eaque corrupti voluptatem iure, laudantium ducimus quae quam facilis explicabo!
-                                    </p>
-                                    <a class="c-btn-primary" href="#" data-animation="fadeInUp" data-delay="1.5s">
-                                        lihat produk
-                                    </a>
-                                </div>
-                                <!-- slider product content -->
-                            </div>
-                        </div>
-                        <!-- row -->
-                    </div>
-                    <!-- container -->
-                </div>
-                <!-- single slider -->
+                        // echo '<img src="' . $value->sld_url . '" class="d-block w-100" alt="' . $value->sld_title . '">';
+                        // echo '<div class="overlay"></div>';
+                        // echo '<div class="carousel-caption d-none d-md-block">';
+                        // echo '<h5>' . $value->sld_title . '</h5>';
+                        // echo '<p>' . $value->sld_text1 . '</p>';
+                        // echo '<a href="' . $value->sld_link . '" class="btn btn-outline-success my-2 my-sm-0 btn--primary" style="letter-spacing:2px;">' . $value->sld_linktext . '</a>';
+                        // echo '</div>';
+                        // item-end
+                        echo '</div>';
+                        echo '</div>';
+                        echo '</div>';
+                    }
+                    ?>
+
+                <!-- Controls -->
+                <a class="carousel-control-prev" href="#carouselHome" role="button" data-slide="prev">
+									<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+									<span class="sr-only">Previous</span>
+								</a>
+								<a class="carousel-control-next" href="#carouselHome" role="button" data-slide="next">
+									<span class="carousel-control-next-icon" aria-hidden="true"></span>
+									<span class="sr-only">Next</span>
+								</a>
             </div>
-
-        </div>
-        <!-- container fluid -->
-    </section>
-    <!-- slider end here -->
-
+            </div>
+        </section>
+<?php } ?>
     <!-- about macberry start here -->
     <section id="service" class="about-us pb-30">
         <div class="container">

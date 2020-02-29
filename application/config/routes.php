@@ -3,7 +3,7 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-$route['default_controller'] = "catalogs";
+$route['default_controller'] = "main";
 //$route['404_override'] = '';
 $route['404_override'] = 'Set404';
 
