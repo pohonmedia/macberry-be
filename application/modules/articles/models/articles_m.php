@@ -124,13 +124,22 @@ class Articles_m extends CI_Model {
         return $this->db->affected_rows();
     }
 
-    public function get_featured($category_id) {
+    public function get_featured($category_id, $limit) {
         $sql = "SELECT MA.*";
         $sql .= " FROM md_articles MA ";
-        $sql .= "WHERE MA.art_is_feature = 1 AND MA.art_cat_id = " . $category_id . " ";
-        $sql .= "ORDER BY MA.id";
+        $sql .= "WHERE MA.art_is_feature = 1 ";
+        
+        if($category_id != 0) {
+            $sql .= "AND MA.art_cat_id = ? ";
+        }
 
-        $query = $this->db->query($sql);
+        $sql .= "ORDER BY MA.id LIMIT ?";
+
+        if($category_id != 0) {
+            $query = $this->db->query($sql, array($category_id, $limit));
+        } else {
+            $query = $this->db->query($sql, array($limit));
+        }
         if ($query->num_rows() == 0) {
             return false;
         }

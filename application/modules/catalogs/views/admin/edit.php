@@ -86,9 +86,54 @@
                     </div>
                 </div>
             </div>
+            
+            <div class="row">
+                <!--Spec-->
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="spec_processor" class="control-label">Processor</label>
+                        <?php echo form_input($spec_processor); ?>
+                    </div>
+                    <div class="form-group">
+                        <label for="spec_ram" class="control-label">Memory</label>
+                        <?php echo form_input($spec_ram); ?>
+                    </div>
+                    <div class="form-group">
+                        <label for="spec_storage" class="control-label">Storage</label>
+                        <?php echo form_input($spec_storage); ?>
+                    </div>
+                    <div class="form-group">
+                        <label for="spec_dimension" class="control-label">Screen</label>
+                        <?php echo form_input($spec_dimension); ?>
+                    </div>
+                    <div class="form-group">
+                        <label for="spec_color" class="control-label">Color</label>
+                        <?php echo form_input($spec_color); ?>
+                    </div>
+                </div>
+                <!--Desc-->
+                <div class="col-md-6">
+                <div class="form-group">
+                        <label for="desc_screen" class="control-label">Screen Desc.</label>
+                        <?php echo form_textarea($desc_screen); ?>
+                    </div>
+                    <div class="form-group">
+                        <label for="desc_processor" class="control-label">Processor Desc.</label>
+                        <?php echo form_textarea($desc_processor); ?>
+                    </div>
+                    <div class="form-group">
+                        <label for="desc_storage" class="control-label">Storage Desc.</label>
+                        <?php echo form_textarea($desc_storage); ?>
+                    </div>
+                    <div class="form-group">
+                        <label for="desc_ram" class="control-label">Memory Desc.</label>
+                        <?php echo form_textarea($desc_ram); ?>
+                    </div>
+                </div>
+            </div>
         </div><!-- /.box-body -->
         <div class="card-footer">
-            <button type="submit" class="btn btn-sm btn-flat btn-primary"><i class="fa fa-save"></i> Create</button>
+            <button type="submit" class="btn btn-sm btn-flat btn-primary"><i class="fa fa-save"></i> Update</button>
             <a class="btn btn-sm btn-flat btn-warning" style="margin-left: 5px;" href="<?php echo base_url('admin/catalogs'); ?>"><i class="fa fa-undo"></i> Batal</a>
         </div> <!--/.box-footer-->
         <?php echo form_close(); ?>

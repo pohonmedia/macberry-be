@@ -17,8 +17,8 @@ class Main extends Public_Controller {
 
         $this->data['app_home'] = $this->_db->get_homepage();
         $this->data['sliders'] = Modules::run('sliders/get_all');
-        $this->data['our_services'] = Modules::run('articles/get_featured', 1);
-        $this->data['tour_packages'] = Modules::run('catalogs/get_featured');
+        $this->data['prod_featured'] = Modules::run('catalogs/get_featured', 3);
+        $this->data['art_featured'] = Modules::run('articles/get_featured', 0, 3);
 
         $this->template->build('index', $this->data);
     }

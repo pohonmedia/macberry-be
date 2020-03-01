@@ -236,15 +236,16 @@ class Catalogs_m extends CI_Model {
         return $query->num_rows();
     }
 
-    public function get_featured() {
-        $sql = "SELECT MP.*, MPC.ct_name, MPT.type_name, AU.username";
+    public function get_featured($limit) {
+        $sql = "SELECT MP.*, MPC.ct_name, MPT.type_name, AU.username, MPI.prod_img_url";
         $sql .= " FROM md_product MP ";
         $sql .= "LEFT JOIN md_product_cat MPC ON MP.prod_category = MPC.id ";
         $sql .= "LEFT JOIN md_product_type MPT ON MP.prod_type = MPT.id ";
+        $sql .= "JOIN md_product_img MPI ON MP.id = MPI.prod_id ";
         $sql .= "LEFT JOIN app_users AU ON MP.user_create = AU.id ";
-        $sql .= "ORDER BY MP.id DESC LIMIT 5";
+        $sql .= "ORDER BY MP.id DESC LIMIT ?";
 
-        $query = $this->db->query($sql);
+        $query = $this->db->query($sql, array($limit));
         if ($query->num_rows() == 0) {
             return false;
         }

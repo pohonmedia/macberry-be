@@ -33,7 +33,7 @@ class Order extends Public_Controller {
             }
         }
         $this->data['catalogs'] = $data_post;
-        $this->data['sliders'] = Modules::run('sliders/get_all');
+        // $this->data['sliders'] = Modules::run('sliders/get_all');
 
         //SHOW LEFT WIDGETS
         // $this->data['left_widgets'] = $this->widget->show_widget('left');

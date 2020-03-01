@@ -33,7 +33,7 @@ class Catalogs extends Public_Controller {
             }
         }
         $this->data['catalogs'] = $data_post;
-        $this->data['sliders'] = Modules::run('sliders/get_all');
+        // $this->data['sliders'] = Modules::run('sliders/get_all');
 
         //SHOW LEFT WIDGETS
         // $this->data['left_widgets'] = $this->widget->show_widget('left');
@@ -103,15 +103,15 @@ class Catalogs extends Public_Controller {
             $this->data['product'] = $detail;
         }
 
-        $this->data['product_tml'] = $this->_db->get_timeline($id);
-        $this->data['product_include'] = $this->_db->get_include($id);
-        $this->data['product_exclude'] = $this->_db->get_exclude($id);
+        // $this->data['product_tml'] = $this->_db->get_timeline($id);
+        // $this->data['product_include'] = $this->_db->get_include($id);
+        // $this->data['product_exclude'] = $this->_db->get_exclude($id);
         $this->template->build('index_detail', $this->data);
     }
 
-    public function get_featured() {
+    public function get_featured($limit = 5) {
         // RETURN ALL FEATURED PRODUCTS
-        $result = $this->_db->get_featured();
+        $result = $this->_db->get_featured($limit);
         if (!empty($result)) {
             foreach ($result as $key => $value) {
                 $get_img = $this->_db->get_thumb($value->id);

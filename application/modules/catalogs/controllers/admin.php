@@ -97,7 +97,16 @@ class Admin extends Admin_Controller {
                 'prod_desc' => $this->input->post('prod_desc'),
                 'prod_tags' => $this->input->post('prod_tags'),
                 'meta_desc' => $this->input->post('meta_desc'),
-                'meta_keywords' => $this->input->post('meta_keywords')
+                'meta_keywords' => $this->input->post('meta_keywords'),
+                'spec_processor' => $this->input->post('spec_processor'),
+                'spec_ram' => $this->input->post('spec_ram'),
+                'spec_storage' => $this->input->post('spec_storage'),
+                'spec_dimension' => $this->input->post('spec_dimension'),
+                'spec_color' => $this->input->post('spec_color'),
+                'desc_screen' => $this->input->post('desc_screen'),
+                'desc_processor' => $this->input->post('desc_processor'),
+                'desc_storage' => $this->input->post('desc_storage'),
+                'desc_ram' => $this->input->post('desc_ram')
             );
 
             $ins_data['prod_slug'] = $this->slug->create_uri($ins_data);
@@ -207,6 +216,80 @@ class Admin extends Admin_Controller {
             'value' => $this->form_validation->set_value('meta_keywords'),
         );
 
+        $this->data['spec_processor'] = array(
+            'name' => 'spec_processor',
+            'type' => 'text',
+            'placeholder' => 'Processor',
+            'class' => 'form-control',
+            'required' => '',
+            'value' => $this->form_validation->set_value('spec_processor'),
+        );
+        $this->data['spec_ram'] = array(
+            'name' => 'spec_ram',
+            'type' => 'text',
+            'placeholder' => 'RAM/ Memory',
+            'class' => 'form-control',
+            'required' => '',
+            'value' => $this->form_validation->set_value('spec_ram'),
+        );
+        $this->data['spec_color'] = array(
+            'name' => 'spec_color',
+            'type' => 'text',
+            'placeholder' => 'Warna',
+            'class' => 'form-control',
+            'required' => '',
+            'value' => $this->form_validation->set_value('spec_color'),
+        );
+        $this->data['spec_storage'] = array(
+            'name' => 'spec_storage',
+            'type' => 'text',
+            'placeholder' => 'Storage',
+            'class' => 'form-control',
+            'required' => '',
+            'value' => $this->form_validation->set_value('spec_storage'),
+        );
+        $this->data['spec_dimension'] = array(
+            'name' => 'spec_dimension',
+            'type' => 'text',
+            'placeholder' => 'Ukuran Dimensi',
+            'class' => 'form-control',
+            'required' => '',
+            'value' => $this->form_validation->set_value('spec_dimension'),
+        );
+
+        $this->data['desc_screen'] = array(
+            'name' => 'desc_screen',
+            'type' => 'text',
+            'placeholder' => 'Deskripsi Layar',
+            'class' => 'form-control',
+            'rows' => '5',
+            'value' => $this->form_validation->set_value('desc_screen'),
+        );
+        $this->data['desc_processor'] = array(
+            'name' => 'desc_processor',
+            'type' => 'text',
+            'placeholder' => 'Deskripsi Processor',
+            'class' => 'form-control',
+            'rows' => '5',
+            'value' => $this->form_validation->set_value('desc_processor'),
+        );
+        $this->data['desc_storage'] = array(
+            'name' => 'desc_storage',
+            'type' => 'text',
+            'placeholder' => 'Deskripsi Penyimpanan / Storage',
+            'class' => 'form-control',
+            'rows' => '5',
+            'value' => $this->form_validation->set_value('desc_storage'),
+        );
+        $this->data['desc_ram'] = array(
+            'name' => 'desc_ram',
+            'type' => 'text',
+            'placeholder' => 'Deskripsi RAM/ Memory',
+            'class' => 'form-control',
+            'rows' => '5',
+            'value' => $this->form_validation->set_value('desc_ram'),
+        );
+
         $this->template->build('admin/add', $this->data);
     }
 
@@ -234,7 +317,16 @@ class Admin extends Admin_Controller {
                 'prod_desc' => $this->input->post('prod_desc'),
                 'prod_tags' => $this->input->post('prod_tags'),
                 'meta_desc' => $this->input->post('meta_desc'),
-                'meta_keywords' => $this->input->post('meta_keywords')
+                'meta_keywords' => $this->input->post('meta_keywords'),
+                'spec_processor' => $this->input->post('spec_processor'),
+                'spec_ram' => $this->input->post('spec_ram'),
+                'spec_storage' => $this->input->post('spec_storage'),
+                'spec_dimension' => $this->input->post('spec_dimension'),
+                'spec_color' => $this->input->post('spec_color'),
+                'desc_screen' => $this->input->post('desc_screen'),
+                'desc_processor' => $this->input->post('desc_processor'),
+                'desc_storage' => $this->input->post('desc_storage'),
+                'desc_ram' => $this->input->post('desc_ram')
             );
 
             $upd_data['prod_slug'] = $this->slug->create_uri($upd_data, $id);
@@ -346,6 +438,80 @@ class Admin extends Admin_Controller {
             'class' => 'form-control',
             'rows' => '3',
             'value' => $this->form_validation->set_value('meta_keywords', $prod_detail->meta_keywords),
+        );
+
+        $this->data['spec_processor'] = array(
+            'name' => 'spec_processor',
+            'type' => 'textarea',
+            'placeholder' => 'Processor',
+            'class' => 'form-control',
+            'required' => '',
+            'value' => $this->form_validation->set_value('spec_processor', $prod_detail->spec_processor),
+        );
+        $this->data['spec_ram'] = array(
+            'name' => 'spec_ram',
+            'type' => 'text',
+            'placeholder' => 'RAM/ Memory',
+            'class' => 'form-control',
+            'required' => '',
+            'value' => $this->form_validation->set_value('spec_ram', $prod_detail->spec_ram),
+        );
+        $this->data['spec_color'] = array(
+            'name' => 'spec_color',
+            'type' => 'text',
+            'placeholder' => 'Warna',
+            'class' => 'form-control',
+            'required' => '',
+            'value' => $this->form_validation->set_value('spec_color', $prod_detail->spec_color),
+        );
+        $this->data['spec_storage'] = array(
+            'name' => 'spec_storage',
+            'type' => 'text',
+            'placeholder' => 'Storage',
+            'class' => 'form-control',
+            'required' => '',
+            'value' => $this->form_validation->set_value('spec_storage', $prod_detail->spec_storage),
+        );
+        $this->data['spec_dimension'] = array(
+            'name' => 'spec_dimension',
+            'type' => 'text',
+            'placeholder' => 'Ukuran Dimensi',
+            'class' => 'form-control',
+            'required' => '',
+            'value' => $this->form_validation->set_value('spec_dimension', $prod_detail->spec_dimension),
+        );
+
+        $this->data['desc_screen'] = array(
+            'name' => 'desc_screen',
+            'type' => 'text',
+            'placeholder' => 'Deskripsi Layar',
+            'class' => 'form-control',
+            'rows' => '5',
+            'value' => $this->form_validation->set_value('desc_screen', $prod_detail->desc_screen),
+        );
+        $this->data['desc_processor'] = array(
+            'name' => 'desc_processor',
+            'type' => 'text',
+            'placeholder' => 'Deskripsi Processor',
+            'class' => 'form-control',
+            'rows' => '5',
+            'value' => $this->form_validation->set_value('desc_processor', $prod_detail->desc_processor),
+        );
+        $this->data['desc_storage'] = array(
+            'name' => 'desc_storage',
+            'type' => 'text',
+            'placeholder' => 'Deskripsi Penyimpanan / Storage',
+            'class' => 'form-control',
+            'rows' => '5',
+            'value' => $this->form_validation->set_value('desc_storage', $prod_detail->desc_storage),
+        );
+        $this->data['desc_ram'] = array(
+            'name' => 'desc_ram',
+            'type' => 'text',
+            'placeholder' => 'Deskripsi RAM/ Memory',
+            'class' => 'form-control',
+            'rows' => '5',
+            'value' => $this->form_validation->set_value('desc_ram', $prod_detail->desc_ram),
         );
 
         $this->template->build('admin/edit', $this->data);
