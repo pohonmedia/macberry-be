@@ -96,13 +96,23 @@ class Order extends Public_Controller {
     }
 
     public function payment() {
+        if (!$this->ion_auth->logged_in()) {
+            redirect(base_url('auth/member'), 'refresh');
+        }
         $props = array();
         $prop_arr = array(
             'province_id' => 0,
             'province' => 'Pilih Propinsi'
         );
         $this->data['page_desc'] = "Payment";
-        $this->data['cart'] = $this->cart->contents();
+        $cart = $this->cart->contents();
+        if(!empty($cart)) {
+            foreach($cart as $key => $val) {
+                $cart[$key]['img'] = $this->_db->get_thumb($val['id']);
+                $cart[$key]['detail'] = $this->_db->get_detail_product($val['id']);
+            }
+        }
+        $this->data['cart'] = $cart;
         $this->data['city'] =  json_decode($this->rajaongkir->city(), true);
         $province = json_decode($this->rajaongkir->province(), true);
         array_push($props, $prop_arr);
@@ -285,9 +295,21 @@ class Order extends Public_Controller {
     }
 
     public function getongkir($kotatujuan) {
-        $ongkir = $this->rajaongkir->cost(444, $kotatujuan, 1000, "jne");
-        $ongkir = json_decode($ongkir, true);
+        $ongkir1 = $this->rajaongkir->cost(501, $kotatujuan, 1000, 'jne');
+        $ongkir1 = json_decode($ongkir1, true);
+        $ongkir2 = $this->rajaongkir->cost(501, $kotatujuan, 1000, 'tiki');
+        $ongkir2 = json_decode($ongkir2, true);
+        $ongkir3 = $this->rajaongkir->cost(501, $kotatujuan, 1000, 'pos');
+        $ongkir3 = json_decode($ongkir3, true);
 
+        $ongkir = array();
+        $ongkira = $ongkir1['rajaongkir']['results'][0];
+        $ongkirb = $ongkir2['rajaongkir']['results'][0];
+        $ongkirc = $ongkir3['rajaongkir']['results'][0];
+        // $ongkir = $ongkira;
+        array_push($ongkir, $ongkira);
+        array_push($ongkir, $ongkirb);
+        array_push($ongkir, $ongkirc);
         // var_dump($ongkir);
         echo json_encode($ongkir);
     }
