@@ -171,7 +171,7 @@ class Order_m extends CI_Model {
         $sql = "SELECT MPI.*";
         $sql .= " FROM md_product_img MPI ";
         $sql .= "WHERE prod_id = ? ";
-        $sql .= "ORDER BY MPI.id";
+        $sql .= "ORDER BY MPI.id LIMIT 1";
 
         $query = $this->db->query($sql, array($id));
         if ($query->num_rows() == 0) {
@@ -186,6 +186,20 @@ class Order_m extends CI_Model {
         $sql .= " FROM md_product_img MPI ";
         $sql .= "WHERE id = ? ";
         $sql .= "ORDER BY MPI.id";
+
+        $query = $this->db->query($sql, array($id));
+        if ($query->num_rows() == 0) {
+            return false;
+        }
+
+        return $query->row();
+    }
+
+    public function get_detail_product($id) {
+        $sql = "SELECT MP.*";
+        $sql .= " FROM md_product MP ";
+        $sql .= "WHERE id = ? ";
+        $sql .= "ORDER BY MP.id";
 
         $query = $this->db->query($sql, array($id));
         if ($query->num_rows() == 0) {

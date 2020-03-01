@@ -71,6 +71,7 @@ class Menus {
      */
 //    function build_menu($menunyah = NULL) {
     function build_top_menu($div_ext = "", $ul_ext = "", $li_ext = "") {
+        $count_cart = $this->ci->cart->contents();
         $root_menu = $this->_get_menu_data();
 
         // set output variable
@@ -104,7 +105,7 @@ class Menus {
         $output .= '<li class="nav-item">';
         $output .= '<a data-scroll-nav="0" href="' . base_url('order/detail') . '">';
         $output .= '<i class="fas fa-shopping-basket"></i>';
-        $output .= '&nbsp; Your Cart';
+        $output .= '&nbsp; Your Cart (' . count($count_cart). ')';
         $output .= '</a></li>';
 
         $formext = '<form class="form-inline my-2 my-lg-0 ml-4">';

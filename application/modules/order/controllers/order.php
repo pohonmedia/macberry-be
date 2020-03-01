@@ -50,8 +50,10 @@ class Order extends Public_Controller {
             'qty' => $this->input->post('intqty')
         );
 
-        $this->cart->insert($insert_data);
-        $this->template->build('index', $this->data);
+        if(($this->input->post('intqty') < $this->input->post('intstock')) && $this->input->post('intstock') > 0 && $this->input->post('intqty') > 0) {
+            $this->cart->insert($insert_data);
+        }
+        redirect('order/detail');
     }
 
     public function checkout() {
@@ -80,7 +82,16 @@ class Order extends Public_Controller {
 
     public function detail() {
         $this->data['page_desc'] = "My Cart";
-        $this->data['cart'] = $this->cart->contents();
+        $cart = $this->cart->contents();
+        if(!empty($cart)) {
+            foreach($cart as $key => $val) {
+                $cart[$key]['img'] = $this->_db->get_thumb($val['id']);
+                $cart[$key]['detail'] = $this->_db->get_detail_product($val['id']);
+            }
+        }
+        
+        $this->data['cart'] = $cart;
+        // var_dump($this->data['cart']);
         $this->template->build('index_cart', $this->data);
     }
 
