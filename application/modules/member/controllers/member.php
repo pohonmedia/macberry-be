@@ -9,12 +9,14 @@ class Member extends Member_Controller {
     function __construct() {
         parent::__construct();
         //SHOW LEFT WIDGETS
-        $this->data['left_widgets'] = $this->widget->show_widget('left');
+        // $this->data['left_widgets'] = $this->widget->show_widget('left');
     }
 
     public function index() {
         $this->set_title('Member Dashboard');
-
+        $this->data['member_css'] = 'style_member.css';
+        $this->breadcrumbs->push('Dashboard', 'member');
+        $this->data['nav_active'] = 'my-dashboard';
 
         $this->template->build('index', $this->data);
     }

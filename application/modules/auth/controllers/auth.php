@@ -42,7 +42,7 @@ class Auth extends Public_Controller {
 
         if ($this->ion_auth->logged_in()) {
             // redirect them to the admin page
-            redirect('admin');
+            redirect('member');
         } else {
             // set the flash data error message if there is one
             $data['message'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
@@ -104,7 +104,11 @@ class Auth extends Public_Controller {
                 'type' => 'password',
             );
 
-            $this->template->build('index', $data);
+            if($ref_page == 'admin') {
+                $this->template->build('index', $data);
+            } else {
+                $this->template->build('index_member', $data);                
+            }
         }
     }
 
@@ -127,13 +131,13 @@ class Auth extends Public_Controller {
     //FOR USER REGISTRATION
     public function register() {
         /* SET THEME */
-        if ($this->config->item('theme_name') != "") {
-            $this->template->set_theme($this->config->item('theme_name'));
-        } else {
-            $this->template->set_theme('default');
-        }
-        $this->set_url_assets();
-        $this->template->set_layout('default');
+        // if ($this->config->item('theme_name') != "") {
+        //     $this->template->set_theme($this->config->item('theme_name'));
+        // } else {
+        //     $this->template->set_theme('default');
+        // }
+        // $this->set_url_assets();
+        // $this->template->set_layout('default');
         /* SET THEME END*/
         $this->set_title('Member Registration Form');
         $this->breadcrumbs->push('Register New Member', 'member/register');

@@ -18,19 +18,23 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="art_title" class="control-label">Nama Lengkap</label>
+                        <label for="first_name" class="control-label">Nama Lengkap</label>
                         <?php echo form_input($first_name); ?>
                     </div>
                     <div class="form-group">
-                        <label for="art_content" class="control-label">Email</label>
+                        <label for="identity" class="control-label">Username</label>
+                        <?php echo form_input($identity); ?>
+                    </div>
+                    <div class="form-group">
+                        <label for="email" class="control-label">Email</label>
                         <?php echo form_input($email); ?>
                     </div>
                     <div class="form-group">
-                        <label for="art_img" class="control-label">Password</label>
+                        <label for="password" class="control-label">Password</label>
                         <?php echo form_input($password); ?>
                     </div>
                     <div class="form-group">
-                        <label for="art_img_caption" class="control-label">Password Confirm</label>
+                        <label for="password_confirm" class="control-label">Password Confirm</label>
                         <?php echo form_input($password_confirm); ?>
                     </div>
                 </div>

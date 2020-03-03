@@ -165,26 +165,23 @@ class Member_Controller extends My_Controller {
             redirect(base_url('auth/member'), 'refresh');
         }
         
-        /* SET DEFAULT THEME */
-        if ($this->config->item('theme_name') != "") {
-            $this->template->set_theme($this->config->item('theme_name'));
-        } else {
-            $this->template->set_theme('default');
-        }
+
+        $this->user = $this->ion_auth->user()->row();
+        //LOAD ADMIN MODEL FOR LIST NAV
+        $this->load->model('member/member_m');
+
+        $this->template->set_theme($this->config->item('admin_theme_name'));
         $this->set_url_assets();
 
-        // SET TOP MENU
-        $this->template->inject_partial('top_menu', $this->menus->build_top_menu());
-        $this->template->set_partial('header', 'header');
-        $this->template->set_partial('footer', 'footer');
+        // $this->data['body_class'] = ' class="hold-transition skin-red sidebar-mini"';
+        $this->data['menu_list'] = $this->member_m->navigation_list();
+
+        $this->template->set_partial('header', 'header', $this->data);
+        $this->template->set_partial('sidebar', 'sidebar', $this->data);
+        $this->template->set_partial('footer', 'footer', $this->data);
         //LOAD BREADCRUMBS LIBRARY
         $this->load->library('breadcrumbs');
-        $this->template->set_partial('left_sidebar', 'widgets/left', $this->data);
-        $this->template->set_partial('right_sidebar', 'widgets/right', $this->data);
-
-        $this->breadcrumbs->push('Member Dashboards', 'member');
-
-//        $this->template->set_layout('member');
+        $this->breadcrumbs->push('<i class="fa fa-dashboard"></i> Home', 'member');
     }
 
 }

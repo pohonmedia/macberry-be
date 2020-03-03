@@ -1,8 +1,6 @@
 <!-- Toolbars -->
-<div id="content">
-        <div class="container">
           <div class="row bar mb-0">
-            <div id="customer-orders" class="col-md-9">
+            <div id="customer-orders" class="col-md-12">
               <p class="text-muted lead">If you have any questions, please feel free to <a href="contact.html">contact us</a>, our customer service center is working for you 24/7.</p>
               <div class="box mt-0 mb-lg-12">
                 <div class="table-responsive">
@@ -65,21 +63,4 @@
                 </div>
               </div>
             </div>
-            <div class="col-md-3 mt-4 mt-md-0">
-              <!-- CUSTOMER MENU -->
-              <div class="panel panel-default sidebar-menu">
-                <div class="panel-heading">
-                  <h3 class="h4 panel-title">Customer section</h3>
-                </div>
-                <div class="panel-body">
-                  <ul class="nav nav-pills flex-column text-sm">
-                    <li class="nav-item"><a href="<?php echo base_url('member/order');?>" class="nav-link active"><i class="fa fa-list"></i> My Orders</a></li>
-                    <li class="nav-item"><a href="<?php echo base_url('member/myaccount');?>" class="nav-link"><i class="fa fa-user"></i> My Account</a></li>
-                    <li class="nav-item"><a href="<?php echo base_url('auth/logout');?>" class="nav-link"><i class="fa fa-sign-out"></i> Logout</a></li>
-                  </ul>
-                </div>
-              </div>
-            </div>
           </div>
-        </div>
-      </div>

@@ -19,7 +19,11 @@
         <link rel="stylesheet" href="<?php echo $admin_assets . 'css/summernote-bs4.css'; ?>">
 
         <!-- Custom CSS -->
-        <link rel="stylesheet" href="<?php echo $admin_assets . 'css/style.css'; ?>">
+        <?php if(isset($member_css)) { ?>
+            <link rel="stylesheet" href="<?php echo $admin_assets . 'css/style_member.css'; ?>">
+        <?php } else { ?>
+            <link rel="stylesheet" href="<?php echo $admin_assets . 'css/style.css'; ?>">
+        <?php } ?>
         <link rel="stylesheet" href="<?php echo $admin_assets . 'css/components.css'; ?>">
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->

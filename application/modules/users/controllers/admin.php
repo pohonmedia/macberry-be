@@ -63,17 +63,20 @@ class Admin extends Admin_Controller {
                 'address' => "",
                 'company' => "",
                 'phone' => "",
+                'phone' => "",
+                'active' => 1
             );
         }
         if ($this->form_validation->run() == true && $this->ion_auth->register($identity, $password, $email, $additional_data)) {
             // check to see if we are creating the user
             // redirect them back to the admin page
+            // $this->ion_auth->activate();
             $this->session->set_flashdata('message', $this->ion_auth->messages());
             redirect("admin/users", 'refresh');
         } else {
             // display the create user form
             // set the flash data error message if there is one
-            $this->data['message'] = (validation_errors() ? validation_errors() : ($this->ion_auth->errors() ? $this->ion_auth->errors() : $this->session->flashdata('message')));
+            $this->data['msg'] = (validation_errors() ? validation_errors() : ($this->ion_auth->errors() ? $this->ion_auth->errors() : $this->session->flashdata('message')));
 
             $this->data['first_name'] = array(
                 'name' => 'first_name',
@@ -202,7 +205,7 @@ class Admin extends Admin_Controller {
         $this->data['csrf'] = $this->_get_csrf_nonce();
 
         // set the flash data error message if there is one
-        $this->data['message'] = (validation_errors() ? validation_errors() : ($this->ion_auth->errors() ? $this->ion_auth->errors() : $this->session->flashdata('message')));
+        $this->data['msg'] = (validation_errors() ? validation_errors() : ($this->ion_auth->errors() ? $this->ion_auth->errors() : $this->session->flashdata('message')));
 
         // pass the user to the view
         $this->data['user'] = $user;
@@ -242,7 +245,7 @@ class Admin extends Admin_Controller {
     }
 
     public function del($id) {
-//        $this->_db->delete($id);
+        $this->ion_auth->delete_user($id);
         $this->session->set_flashdata('msg', $this->show_msg('<b>Success</b> Users has been deleted !'));
         redirect("admin/users", 'refresh');
     }

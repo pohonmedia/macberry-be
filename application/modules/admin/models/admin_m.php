@@ -42,8 +42,9 @@ class Admin_m extends CI_Model {
     public function get_navigation($id) {
         $sql = "SELECT AM.*";
         $sql .= " FROM app_menu AM ";
+        $sql .= " LEFT JOIN app_menu_grouping AMG ON AM.id = AMG.menu_id ";
 
-        $sql .= "WHERE parent_id = ? AND is_active = 1 ";
+        $sql .= "WHERE parent_id = ? AND is_active = 1 AND AMG.group_name = 'admin' ";
         $sql .= "ORDER BY AM.sorter ASC";
 
         $query = $this->db->query($sql, array($id));
