@@ -8,8 +8,8 @@ class Member extends Member_Controller {
 
     function __construct() {
         parent::__construct();
-        //SHOW LEFT WIDGETS
-        // $this->data['left_widgets'] = $this->widget->show_widget('left');
+        $this->data['nav_active'] = 'my-profile';
+        $this->data['member_css'] = 'style_member.css';
     }
 
     public function index() {

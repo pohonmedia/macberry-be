@@ -12,58 +12,42 @@
                 echo $msg;
             }
             ?>
-            <?php echo form_open(uri_string(), 'class="form-horizontal"'); ?>
+            <?php echo form_open(uri_string()); ?>
             <div class="row">
-                <!--<div class="col-md-8">-->
+                <div class="col-lg-8 col-12">
                     <div class="form-group">
-                        <label for="first_name" class="col-sm-3 control-label">Nama Lengkap</label>
-                        <div class="col-sm-7">
-                            <?php echo form_input($first_name); ?>
-                        </div>
+                        <label for="first_name" class="control-label">Nama Lengkap</label>
+                        <?php echo form_input($first_name); ?>
                     </div>
                     <div class="form-group">
-                        <label for="email" class="col-sm-3 control-label">Email</label>
-                        <div class="col-sm-7">
-                            <?php echo form_input($email); ?>
-                        </div>
+                        <label for="email" class="control-label">Email</label>
+                        <?php echo form_input($email); ?>
                     </div>
                     <div class="form-group">
-                        <label for="password" class="col-sm-3 control-label">Password</label>
-                        <div class="col-sm-7">
-                            <?php echo form_input($password); ?>
-                        </div>
+                        <label for="password" class="control-label">Password</label>
+                        <?php echo form_input($password); ?>
                     </div>
                     <div class="form-group">
-                        <label for="password_confirm" class="col-sm-3 control-label">Password Confirm</label>
-                        <div class="col-sm-7">
-                            <?php echo form_input($password_confirm); ?>
-                        </div>
+                        <label for="password_confirm" class="control-label">Password Confirm</label>
+                        <?php echo form_input($password_confirm); ?>
                     </div>
                     <div class="form-group">
-                        <label for="address" class="col-sm-3 control-label">Alamat</label>
-                        <div class="col-sm-7">
-                            <?php echo form_input($address); ?>
-                        </div>
+                        <label for="address" class="control-label">Alamat</label>
+                        <?php echo form_input($address); ?>
                     </div>
                     <div class="form-group">
-                        <label for="phone" class="col-sm-3 control-label">Telepon</label>
-                        <div class="col-sm-7">
-                            <?php echo form_input($phone); ?>
-                        </div>
+                        <label for="phone" class="control-label">Telepon</label>
+                        <?php echo form_input($phone); ?>
                     </div>
                     <div class="form-group">
-                        <label for="art_img_caption" class="col-sm-3 control-label">Nama Perusahaan</label>
-                        <div class="col-sm-7">
-                            <?php echo form_input($company); ?>
-                        </div>
+                        <label for="art_img_caption" class="control-label">Nama Perusahaan</label>
+                        <?php echo form_input($company); ?>
                     </div>
                     <div class="form-group">
-                        <label for="art_img_caption" class="col-sm-3 control-label">Tentang Perusahaan</label>
-                        <div class="col-sm-7">
-                            <?php echo form_textarea($company_desc); ?>
-                        </div>
+                        <label for="art_img_caption" class="control-label">Tentang Perusahaan</label>
+                        <?php echo form_textarea($company_desc); ?>
                     </div>
-                <!--</div>-->
+                </div>
             </div>
         </div><!-- /.box-body -->
         <div class="box-footer">
