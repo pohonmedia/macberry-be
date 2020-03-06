@@ -22,23 +22,24 @@ class Order extends Public_Controller {
     }
 
     public function index() {
-        $str = 'List All ' . $this->uri->segment(1);
-        $this->set_title(ucwords($str));
+        redirect(base_url('order/detail'), 'refresh');
+        // $str = 'List All ' . $this->uri->segment(1);
+        // $this->set_title(ucwords($str));
 
-        $data_post = $this->_db->get_all(NULL, 'DESC');
-        if (!empty($data_post)) {
-            foreach ($data_post as $key => $value) {
-                $get_img = $this->_db->get_thumb($value->id);
-                $data_post[$key]->img_thumb = $get_img == null ? 'assets/modules/catalogs/default-image.jpg' : $get_img->prod_thumb_url;
-            }
-        }
-        $this->data['catalogs'] = $data_post;
-        // $this->data['sliders'] = Modules::run('sliders/get_all');
+        // $data_post = $this->_db->get_all(NULL, 'DESC');
+        // if (!empty($data_post)) {
+        //     foreach ($data_post as $key => $value) {
+        //         $get_img = $this->_db->get_thumb($value->id);
+        //         $data_post[$key]->img_thumb = $get_img == null ? 'assets/modules/catalogs/default-image.jpg' : $get_img->prod_thumb_url;
+        //     }
+        // }
+        // $this->data['catalogs'] = $data_post;
+        // // $this->data['sliders'] = Modules::run('sliders/get_all');
 
-        //SHOW LEFT WIDGETS
-        // $this->data['left_widgets'] = $this->widget->show_widget('left');
+        // //SHOW LEFT WIDGETS
+        // // $this->data['left_widgets'] = $this->widget->show_widget('left');
 
-        $this->template->build('index', $this->data);
+        // $this->template->build('index', $this->data);
     }
 
     public function add() {
@@ -50,7 +51,7 @@ class Order extends Public_Controller {
             'qty' => $this->input->post('intqty')
         );
 
-        if(($this->input->post('intqty') < $this->input->post('intstock')) && $this->input->post('intstock') > 0 && $this->input->post('intqty') > 0) {
+        if(($this->input->post('intqty') <= $this->input->post('intstock')) && $this->input->post('intstock') > 0 && $this->input->post('intqty') > 0) {
             $this->cart->insert($insert_data);
         }
         redirect('order/detail');

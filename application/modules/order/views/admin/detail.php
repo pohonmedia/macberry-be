@@ -101,7 +101,7 @@
                 <div class="col-lg-4 text-right">
                 <div class="invoice-detail-item">
                     <div class="invoice-detail-name">Subtotal</div>
-                    <div class="invoice-detail-value"><?php echo number_format($order->dectotal - $order->decshipping, 2); ?></div>
+                    <div class="invoice-detail-value"><?php echo number_format($order->dectotal, 2); ?></div>
                 </div>
                 <div class="invoice-detail-item">
                     <div class="invoice-detail-name">Shipping</div>
@@ -110,7 +110,7 @@
                 <hr class="mt-2 mb-2">
                 <div class="invoice-detail-item">
                     <div class="invoice-detail-name">Total</div>
-                    <div class="invoice-detail-value invoice-detail-value-lg"><?php echo number_format($order->dectotal, 2); ?></div>
+                    <div class="invoice-detail-value invoice-detail-value-lg"><?php echo number_format($order->dectotal + $order->decshipping, 2); ?></div>
                 </div>
                 </div>
             </div>

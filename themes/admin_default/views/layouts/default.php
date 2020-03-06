@@ -47,7 +47,7 @@
                         <div class="col-lg-12 col-md-12 col-sm-12">
                         <div class="card card-statistic-2 mt-2" style="min-height:150px;">
                             <div class="card-stats">
-                            <div class="card-stats-title mb-2">Riwayat Order Terbaru Anda
+                            <div class="card-stats-title mb-2"><?php echo $isdashboard;?>
                             </div>
                             <div class="card-stats-items">
                                 <div class="card-stats-item">
@@ -59,7 +59,7 @@
                                     <h4>Total Pesanan</h4>
                                     </div>
                                     <div class="card-body text-left">
-                                    10 Pesanan
+                                    <?php echo $allOrder;?> Pesanan
                                     </div>
                                 </div>
                                 </div>
@@ -72,7 +72,7 @@
                                     <h4>Total Pesanan Sukses</h4>
                                     </div>
                                     <div class="card-body text-left">
-                                    10 Pesanan
+                                    <?php echo $successOrder;?> Pesanan
                                     </div>
                                 </div>
                                 </div>
@@ -82,10 +82,10 @@
                                 </div>
                                 <div class="card-wrap">
                                     <div class="card-header text-left">
-                                    <h4>Total Pesanan Gagal</h4>
+                                    <h4>Total Pesanan Pending</h4>
                                     </div>
                                     <div class="card-body text-left">
-                                    0 Pesanan
+                                    <?php echo $pendingOrder;?> Pesanan
                                     </div>
                                 </div>
                                 </div>
@@ -106,12 +106,12 @@
                                     echo '</div>';
                                 }
 
-                                    $string = str_replace($this->config->item('website_name'). ' | ', '', $template['title']);
-                                    echo '<h1>';
-                                    echo $string; 
-                                    echo '<span class="small"><?php echo !empty($page_desc) ? $page_desc : "" ;?></span>';
-                                    echo '</h1>';
-                                    echo $this->breadcrumbs->show(); 
+                                $string = str_replace($this->config->item('website_name'). ' | ', '', $template['title']);
+                                echo '<h1>';
+                                echo $string; 
+                                echo '<span class="small"><?php echo !empty($page_desc) ? $page_desc : "" ;?></span>';
+                                echo '</h1>';
+                                echo $this->breadcrumbs->show(); 
         
                             ?>
                         </section>

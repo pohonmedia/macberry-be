@@ -56,4 +56,34 @@ class Admin_m extends CI_Model {
         return $query->result();
     }
 
+    public function count_order($params) {
+        $sql = "SELECT MO.*";
+        $sql .= " FROM md_order MO ";
+
+        $dt_binding = array();
+        if ($params != null) {
+            foreach ($params as $key => $val) {
+                if ($key == 0) {
+                    $sql .= "WHERE " . $val['field'] . " " . ($val['operator'] != "" ? trim($val['operator']) : "=") . " ? ";
+                } else {
+                    $sql .= "AND " . $val['field'] . " " . ($val['operator'] != "" ? trim($val['operator']) : "=") . " ? ";
+                }
+
+                array_push($dt_binding, $val['value']);
+            }
+        }
+        $sql .= "ORDER BY MO.id ASC";
+
+        if ($params != null) {
+            $query = $this->db->query($sql, $dt_binding);
+        } else {
+            $query = $this->db->query($sql);
+        }
+        if ($query->num_rows() == 0) {
+            return 0;
+        }
+
+        return $query->num_rows();
+    }
+
 }

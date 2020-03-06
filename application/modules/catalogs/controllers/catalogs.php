@@ -78,8 +78,10 @@ class Catalogs extends Public_Controller {
             $data_post = $data_barang;
             $this->data['result'] = $data_post;
         }
+        $this->data['category'] = $detail;
+
         //SHOW LEFT WIDGETS
-        $this->data['left_widgets'] = $this->widget->show_widget('left');
+        // $this->data['left_widgets'] = $this->widget->show_widget('left');
 
         $this->template->build('index_category', $this->data);
     }

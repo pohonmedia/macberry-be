@@ -6,18 +6,30 @@ if (!defined('BASEPATH')) {
 
 class Member extends Member_Controller {
 
+    public $_db;
+
     function __construct() {
         parent::__construct();
+        $this->load->model('Member_m');
+        $this->_db = $this->Member_m;
         $this->data['nav_active'] = 'my-profile';
         $this->data['member_css'] = 'style_member.css';
     }
 
     public function index() {
         $this->set_title('Member Dashboard');
-        $this->data['isdashboard'] = true;
+        $this->data['isdashboard'] = "Riwayat Order Saya";
         $this->data['member_css'] = 'style_member.css';
         $this->breadcrumbs->push('Dashboard', 'member');
         $this->data['nav_active'] = 'my-dashboard';
+        $par0[] = array('field' => 'intinsertid', 'param' => 'where', 'operator' => '', 'value' => $this->user->id);
+        $this->data['allOrder'] = $this->_db->count_order($par0);
+        $par1[] = array('field' => 'intinsertid', 'param' => 'where', 'operator' => '', 'value' => $this->user->id);
+        $par1[] = array('field' => 'intstatusbayar', 'param' => 'where', 'operator' => '', 'value' => 2);
+        $this->data['successOrder'] = $this->_db->count_order($par1);
+        $par2[] = array('field' => 'intinsertid', 'param' => 'where', 'operator' => '', 'value' => $this->user->id);
+        $par2[] = array('field' => 'intstatusbayar', 'param' => 'where', 'operator' => ' !=', 'value' => 2);
+        $this->data['pendingOrder'] = $this->_db->count_order($par2);
 
         $this->template->build('index', $this->data);
     }

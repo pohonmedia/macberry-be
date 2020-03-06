@@ -152,7 +152,7 @@ class Menus {
                 $output .= $this->t_item_open_start . ' class="dropdown"';
             }
             $output .= $this->t_item_open_end;
-            $output .= '<a data-scroll-nav="0" href="' . base_url($data->menu_url) . '" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">' . $data->menu_name . ' <span class="caret"></span></a>';
+            $output .= '<a data-scroll-nav="0" href="' . base_url(($data->menu_url == '/' ? '' : $data->menu_url)) . '" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">' . $data->menu_name . ' <span class="caret"></span></a>';
             $output .= '<ul class="dropdown-menu">';
             foreach ($dropdown_item as $value) {
                 $output .= $this->_arrange_menu($value);
@@ -166,7 +166,7 @@ class Menus {
                 $output .= $this->t_item_open_start;
             }
             $output .= $this->t_item_open_end;
-            $output .= '<a data-scroll-nav="0" href="' . base_url($data->menu_url) . '" id="' . $data->menu_id . '">' . $data->menu_name . '</a>';
+            $output .= '<a data-scroll-nav="0" href="' . base_url(($data->menu_url == '/' ? '' : $data->menu_url)) . '" id="' . $data->menu_id . '">' . $data->menu_name . '</a>';
             $output .= $this->t_item_close;
         }
         return $output;

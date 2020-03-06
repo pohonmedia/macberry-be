@@ -13,61 +13,6 @@
     </div>
 </section>
 <!-- promo start here -->
-<section id="discount-product" class="discount-product pt-50 c-product-promo">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="single-discount-product mt-0">
-                    <div class="product-image">
-                        <img src="<?php echo $theme_assets . 'img/showcase-1.png'; ?>" alt="Product" style="object-fit:cover;">
-                    </div>
-                    <!-- product image -->
-                    <div class="product-content">
-                        <h4 class="content-title mb-15">our brand new promo</h4>
-                        <a href="#">View Collection
-                        </a>
-                    </div>
-                    <!-- product content -->
-                </div>
-                <!-- single discount product -->
-            </div>
-            <div class="col-lg-6">
-                <div class="single-discount-product mt-30">
-                    <div class="product-image">
-                        <img src="<?php echo $theme_assets . 'img/iphone-3.jpg'; ?>" alt="Product">
-                    </div>
-                    <!-- product image -->
-                    <div class="product-content">
-                        <h4 class="content-title mb-15">High-quality accessories</h4>
-                        <a href="#">View Collection
-                        </a>
-                    </div>
-                    <!-- product content -->
-                </div>
-                <!-- single discount product -->
-            </div>
-            <div class="col-lg-6">
-                <div class="single-discount-product mt-30">
-                    <div class="product-image">
-                        <img src="<?php echo $theme_assets . 'img/macbook-1.jpg'; ?>" alt="Product">
-                    </div>
-                    <!-- product image -->
-                    <div class="product-content">
-                        <h4 class="content-title mb-15">Hot Offer
-                            <br>
-                            Discount up to 80%</h4>
-                        <a href="#">View Collection
-                        </a>
-                    </div>
-                    <!-- product content -->
-                </div>
-                <!-- single discount product -->
-            </div>
-        </div>
-        <!-- row -->
-    </div>
-    <!-- container -->
-</section>
 <!-- promo end here -->
 
 <section id="product-header" class="mt-50">
@@ -81,7 +26,7 @@
                 </p>
             </div>
             <div class="col-lg-6">
-                <form>
+                <!-- <form>
                     <div class="row">
                         <div class="col-lg-7">
                             <input type="text" class="form-control" placeholder="Cari produk..."></div>
@@ -94,7 +39,7 @@
                         </div>
                     </div>
 
-                </form>
+                </form> -->
             </div>
         </div>
     </div>

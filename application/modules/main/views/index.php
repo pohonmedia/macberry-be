@@ -169,22 +169,22 @@
                 </div>
 
                 <div class="col-lg-4">
-                    <img src="<?php echo $theme_assets . 'img/product-1.png'; ?>" alt="product img">
+                    <a href="<?php echo base_url('catalogs/category/iphone');?>" alt="Iphone"><img src="<?php echo $theme_assets . 'img/product-1.png'; ?>" alt="product img"></a>
                 </div>
                 <div class="col-lg-4">
-                    <img src="<?php echo $theme_assets . 'img/product-2.png'; ?>" alt="product img">
+                    <a href="<?php echo base_url('catalogs/category/imac');?>" alt="Iphone"><img src="<?php echo $theme_assets . 'img/product-2.png'; ?>" alt="product img"></a>
                 </div>
                 <div class="col-lg-4">
-                    <img src="<?php echo $theme_assets . 'img/product-3.png'; ?>" alt="product img">
+                    <a href="<?php echo base_url('catalogs/category/macbook');?>" alt="Iphone"><img src="<?php echo $theme_assets . 'img/product-3.png'; ?>" alt="product img"></a>
                 </div>
                 <div class="col-lg-4">
-                    <img src="<?php echo $theme_assets . 'img/product-4.png'; ?>" alt="product img">
+                    <a href="<?php echo base_url('catalogs/category/ipad');?>" alt="Iphone"><img src="<?php echo $theme_assets . 'img/product-4.png'; ?>" alt="product img"></a>
                 </div>
                 <div class="col-lg-4">
-                    <img src="<?php echo $theme_assets . 'img/product-5.png'; ?>" alt="product img">
+                    <a href="<?php echo base_url('catalogs/category/apple-watch');?>" alt="Iphone"><img src="<?php echo $theme_assets . 'img/product-5.png'; ?>" alt="product img"></a>
                 </div>
                 <div class="col-lg-4">
-                    <img src="<?php echo $theme_assets . 'img/product-6.png'; ?>" alt="product img">
+                    <a href="<?php echo base_url('catalogs/category/earpods');?>" alt="Iphone"><img src="<?php echo $theme_assets . 'img/product-6.png'; ?>" alt="product img"></a>
                 </div>
 
             </div>
