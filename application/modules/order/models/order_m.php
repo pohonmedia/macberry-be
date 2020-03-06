@@ -256,7 +256,7 @@ class Order_m extends CI_Model {
 
     public function get_order($userid) {
         $sql = "SELECT MO.*,";
-        $sql .= "CASE WHEN MO.intstatusbayar = 0 THEN 'Tunggu Pembayaran' WHEN MO.intstatusbayar = 1 THEN 'Konfirmasi'  WHEN MO.intstatusbayar = 2 THEN 'Pembayaran Diterima' ELSE 'Tidak ada status' END as vcstatusbayar, ";
+        $sql .= "CASE WHEN MO.intstatusbayar = 0 THEN 'Unpaid' WHEN MO.intstatusbayar = 1 THEN 'Confirm'  WHEN MO.intstatusbayar = 2 THEN 'Paid' ELSE 'Tidak ada status' END as vcstatusbayar, ";
         $sql .= "CASE WHEN MO.intstatusorder = 0 THEN 'Tunggu Pembayaran' WHEN MO.intstatusorder = 1 THEN 'Proses Order' WHEN MO.intstatusorder = 2 THEN 'Pengiriman'  WHEN MO.intstatusorder = 3 THEN 'Selesai' ELSE 'Tidak ada status' END as vcstatusorder";
         $sql .= " FROM md_order MO ";
         $sql .= "WHERE user_create = ? ";

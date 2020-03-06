@@ -68,9 +68,9 @@ class Order extends Public_Controller {
             'inttelephone' => $this->input->post('inttelephone'),
             'vcemail' => $this->input->post('vcemail'),
             'vcpayment' => $this->input->post('vcpayment'),
-             'nama_state' => $this->input->post('nama_state'),
-             'nama_city' => $this->input->post('nama_city'),
-             'ongkir' => $this->input->post('ongk')
+            'nama_state' => $this->input->post('nama_state'),
+            'nama_city' => $this->input->post('nama_city'),
+            'ongkir' => $this->input->post('ongk')
 
         );
         $this->data['cart'] = $this->cart->contents();
@@ -150,7 +150,14 @@ class Order extends Public_Controller {
                 'dectotal' => 0,
                 'intstatusbayar' => 0,
                 'intstatusorder' => 0,
-                'intinsertid' => $this->user->id
+                'intinsertid' => $this->user->id,
+                'decshipping' => $this->input->post('decshipping'),
+                'curdescshipping' => $this->input->post('curdescshipping'),
+                'vcnama_shipping' => $this->input->post('vcnama_shipping'),
+                'vcalamat_shipping' => $this->input->post('vcalamat_shipping'),
+                'vchp_shipping' => $this->input->post('vchp_shipping'),
+                'intpropinsiid_shipping' => $this->input->post('intpropinsiid_shipping'),
+                'intkotaid_shipping' => $this->input->post('intkotaid_shipping')
             );
 
             $order_id = $this->_db->create($order);
@@ -175,7 +182,7 @@ class Order extends Public_Controller {
             $this->data['msg'] = 'Order Telah Berhasil';
         }
 
-        $this->template->build('index_success', $this->data);
+        redirect(base_url('member/order'), 'refresh');
     }
 
     public function delete($id) {

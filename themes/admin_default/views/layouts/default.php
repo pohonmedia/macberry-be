@@ -41,24 +41,81 @@
                 <?php echo $template['partials']['sidebar']; ?>
                 <div class="main-content">
                     <section class="section">
+                    <?php if(isset($isdashboard)) { ?>
+                    <!-- If Dashboard -->
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                        <div class="card card-statistic-2 mt-2" style="min-height:150px;">
+                            <div class="card-stats">
+                            <div class="card-stats-title mb-2">Riwayat Order Terbaru Anda
+                            </div>
+                            <div class="card-stats-items">
+                                <div class="card-stats-item">
+                                <div class="card-icon shadow-primary bg-primary ml-2">
+                                    <i class="fas fa-archive"></i>
+                                </div>
+                                <div class="card-wrap">
+                                    <div class="card-header text-left">
+                                    <h4>Total Pesanan</h4>
+                                    </div>
+                                    <div class="card-body text-left">
+                                    10 Pesanan
+                                    </div>
+                                </div>
+                                </div>
+                                <div class="card-stats-item">
+                                <div class="card-icon shadow-primary bg-success ml-2">
+                                    <i class="fas fa-check-circle"></i>
+                                </div>
+                                <div class="card-wrap">
+                                    <div class="card-header text-left">
+                                    <h4>Total Pesanan Sukses</h4>
+                                    </div>
+                                    <div class="card-body text-left">
+                                    10 Pesanan
+                                    </div>
+                                </div>
+                                </div>
+                                <div class="card-stats-item">
+                                <div class="card-icon shadow-primary bg-danger ml-2">
+                                    <i class="fas fa-window-close"></i>
+                                </div>
+                                <div class="card-wrap">
+                                    <div class="card-header text-left">
+                                    <h4>Total Pesanan Gagal</h4>
+                                    </div>
+                                    <div class="card-body text-left">
+                                    0 Pesanan
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                            </div>
+
+                        </div>
+                        </div>
+                    </div>
+                    <?php } else { ?>
                         <!-- Content Header (Page header) -->
                         <section class="section-header">
+
                             <?php
                                 if(!empty($back_url)) {
                                     echo '<div class="section-header-back">';
                                     echo '<a href="' . base_url($back_url) . '" class="btn btn-icon"><i class="fas fa-arrow-left"></i></a>';
                                     echo '</div>';
                                 }
-                            ?>
-                            <h1>
-                                <?php 
+
                                     $string = str_replace($this->config->item('website_name'). ' | ', '', $template['title']);
+                                    echo '<h1>';
                                     echo $string; 
-                                ?>
-                                <span class="small"><?php echo !empty($page_desc) ? $page_desc : "" ;?></span>
-                            </h1>
-                            <?php echo $this->breadcrumbs->show(); ?>
+                                    echo '<span class="small"><?php echo !empty($page_desc) ? $page_desc : "" ;?></span>';
+                                    echo '</h1>';
+                                    echo $this->breadcrumbs->show(); 
+        
+                            ?>
                         </section>
+                        <? }?>
                         <section class="section-body">
                             <?php echo $template['body']; ?>
                         </section>

@@ -26,8 +26,8 @@
                 <div class="col-md-6 text-md-right">
                 <address>
                     <strong>Shipped To:</strong><br>
-                    {vcnama_shipped}<br>
-                    {vcalamat_shipped}<br>
+                    <?php echo $order->vcnama_shipping . ' (' . $order->vchp_shipping . ')'; ?><br>
+                    <?php echo $order->vcalamat_shipping; ?><br>
                     {vckota_shipped}
                 </address>
                 </div>
@@ -119,10 +119,10 @@
         </div>
         <hr>
         <div class="text-md-right">
-        <div class="float-lg-left mb-lg-0 mb-3">
+        <!-- <div class="float-lg-left mb-lg-0 mb-3">
             <button class="btn btn-primary btn-icon icon-left" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-credit-card"></i> Konfirmasi Pembayaran </button>
-        </div>
-        <button class="btn btn-warning btn-icon icon-left"><i class="fas fa-print"></i> Print</button>
+        </div> -->
+        <!-- <button class="btn btn-warning btn-icon icon-left"><i class="fas fa-print"></i> Print</button> -->
         </div>
     </div>
 </div>

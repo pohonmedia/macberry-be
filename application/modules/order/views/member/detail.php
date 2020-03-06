@@ -1,78 +1,151 @@
-<div id="content">
-        <div class="container">
-          <div class="row bar">
-            <div id="customer-order" class="col-lg-9">
-              <p class="lead">Order<strong> <?php echo $order->vcordercode; ?></strong> was placed on <strong><?php echo mdate('%d-%m-%Y %H:%i:%s', strtotime($order->dtorderdate)); ?></strong> and is currently <strong><?php echo $order->vcstatusbayar; ?></strong>.</p>
-              <p class="lead text-muted">If you have any questions, please feel free to <a href="contact.html">contact us</a>, our customer service center is working for you 24/7.</p>
-              <div class="box">
-                <div class="table-responsive">
-                  <table class="table">
-                    <thead>
-                      <tr>
-                        <th class="border-top-0">Product</th>
-                        <th class="border-top-0">Quantity</th>
-                        <th class="border-top-0">Unit price</th>
-                        <th class="border-top-0">Total</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <?php
-                        // var_dump($detail);
-                        if(!empty($detail)) { 
-                        foreach($detail as $val) { ?>
-                      <tr>
-                      <?php
-                      echo '<td>' . $val->vcnamaproduct. '</td>';
-                      echo '<td>' . intval($val->intqty) . '</td>';
-                      echo '<td>Rp.' . number_format($val->decprice, 2) . '</td>';
-                      echo '<td>Rp.' . number_format($val->dectotalprice, 2) .'</td>';
-                      ?>
-                      </tr>
-                    <?php }} ?>
-                    </tbody>
-                    <tfoot>
-                      <tr>
-                        <th colspan="3" class="text-right">Order subtotal</th>
-                        <?php echo '<th>Rp.' . number_format ($order->dectotal, 2) . '</th>';?>
-                      </tr>
-                      <tr>
-                        <th colspan="3" class="text-right">Shipping and handling</th>
-                        <?php echo '<th>Rp.' . number_format (0, 2) . '</th>';?>
-                      </tr>
-                      <tr>
-                        <th colspan="3" class="text-right"><b>Total</b></th>
-                       <?php echo '<th>Rp.' . number_format (0, 2) . '</th>';?>
-                      </tr>
-                    </tfoot>
-                  </table>
-                </div>
-                <div class="row addresses">
-                  <div class="col-md-6 text-right">
-                    <h3 class="text-uppercase">Invoice address</h3>
-                    <p>John Brown<br>                       13/25 New Avenue<br>                        New Heaven<br>                      45Y 73J<br>                     England<br>                     Great Britain</p>
-                  </div>
-                  <div class="col-md-6 text-right">
-                    <h3 class="text-uppercase">Shipping address</h3>
-                    <p>John Brown<br>                       13/25 New Avenue<br>                        New Heaven<br>                      45Y 73J<br>                     England<br>                     Great Britain</p>
-                  </div>
-                </div>
-              </div>
+<h2 class="section-title"><span class="fa fa-shopping-cart"></span> Detail Order <?php echo $order->vcordercode; ?></h2>
+<div class="invoice">
+        <div class="invoice-print">
+        <div class="row">
+            <div class="col-lg-12">
+            <div class="invoice-title">
+                <h2>Invoice</h2>
+                <div class="invoice-number">Order #<?php echo $order->vcordercode; ?></div>
             </div>
-            <div class="col-lg-3 mt-4 mt-lg-0">
-              <!-- CUSTOMER MENU -->
-              <div class="panel panel-default sidebar-menu">
-                <div class="panel-heading">
-                  <h3 class="h4 panel-title">Customer section</h3>
+            <hr>
+            <div class="row">
+                <div class="col-md-6">
+                <address>
+                    <strong>Billed To:</strong><br>
+                    <?php echo $order->vcmembername; ?><br>
+                    <?php echo $order->vcmemberalamat; ?><br>
+                    {vckota_member}
+                </address>
                 </div>
-                <div class="panel-body">
-                  <ul class="nav nav-pills flex-column text-sm">
-                    <li class="nav-item"><a href="<?php echo base_url('member/order');?>" class="nav-link active"><i class="fa fa-list"></i> My orders</a></li>
-                    <li class="nav-item"><a href="<?php echo base_url('member/myaccount');?>" class="nav-link"><i class="fa fa-user"></i> My account</a></li>
-                    <li class="nav-item"><a href="<?php echo base_url('auth/logout');?>" class="nav-link"><i class="fa fa-sign-out"></i> Logout</a></li>
-                  </ul>
+                <div class="col-md-6 text-md-right">
+                <address>
+                    <strong>Shipped To:</strong><br>
+                    <?php echo $order->vcnama_shipping . ' (' . $order->vchp_shipping . ')'; ?><br>
+                    <?php echo $order->vcalamat_shipping; ?><br>
+                    {vckota_shipped}
+                </address>
                 </div>
-              </div>
             </div>
-          </div>
+            <div class="row">
+                <div class="col-md-6 text-md-left">
+                <address>
+                    <strong>Order Date:</strong><br>
+                    <?php echo mdate("%d %F %Y", strtotime($order->dtorderdate)); ?><br>
+                </address>
+                </div>
+            </div>
+            </div>
         </div>
+
+        <div class="row mt-4">
+            <div class="col-md-12">
+            <div class="section-title">Order Summary</div>
+            <p class="section-lead">All items here cannot be deleted.</p>
+            <div class="table-responsive">
+                <table class="table table-striped table-hover table-md">
+                <tr>
+                    <th data-width="40">#</th>
+                    <th>Item</th>
+                    <th class="text-right">Price (IDR)</th>
+                    <th class="text-center">Quantity</th>
+                    <th class="text-right">Totals (IDR)</th>
+                </tr>
+                <?php
+                    if (!empty($order_detail)) {
+                        foreach ($order_detail as $key => $value) {
+                            echo '<tr>';
+                            echo '<td class="text-center">' . ($key + 1) . '</td>';
+                            echo '<td>';
+                            echo '<strong>' . $value->vcnamaproduct . '</strong>';
+                            echo '</td>';
+                            echo '<td class="text-right">' . number_format($value->decprice, 2) . '</td>';
+                            echo '<td class="text-center">' . number_format($value->intqty, 2) . '</td>';
+                            echo '<td class="text-right">' . number_format($value->dectotalprice, 2) . '</td>';
+                            echo '</tr>';
+                        }
+                    } else {
+                        echo '<tr>';
+                        echo '<td colspan="5"><span class="text-danger">Tidak ada data</span></td>';
+                        echo '</tr>';
+                    }
+                ?>
+                </table>
+            </div>
+            <div class="row mt-4">
+                <div class="col-lg-8">
+                <div class="section-title">Payment Method</div>
+                <p class="section-lead">The payment method that we provide is to make it easier for you to pay invoices.</p>
+                <p class="section-lead">
+                    <strong> BCA 456.071.2893 </strong>
+                    <br>
+                    <strong> MANDIRI 137.000.624.9631 </strong>
+                    <br>
+                    Atas Nama : RB Ide Winarswasepta
+                </p>
+                
+                <!-- 
+                <div class="d-flex">
+                    <div class="mr-2 bg-visa" data-width="61" data-height="38"></div>
+                    <div class="mr-2 bg-jcb" data-width="61" data-height="38"></div>
+                    <div class="mr-2 bg-mastercard" data-width="61" data-height="38"></div>
+                    <div class="bg-paypal" data-width="61" data-height="38"></div>
+                </div>
+                -->
+                </div>
+                <div class="col-lg-4 text-right">
+                <div class="invoice-detail-item">
+                    <div class="invoice-detail-name">Subtotal</div>
+                    <div class="invoice-detail-value"><?php echo number_format($order->dectotal, 2); ?></div>
+                </div>
+                <div class="invoice-detail-item">
+                    <div class="invoice-detail-name">Shipping</div>
+                    <div class="invoice-detail-value"><?php echo number_format($order->decshipping, 2);?></div>
+                </div>
+                <hr class="mt-2 mb-2">
+                <div class="invoice-detail-item">
+                    <div class="invoice-detail-name">Total</div>
+                    <div class="invoice-detail-value invoice-detail-value-lg"><?php echo number_format($order->dectotal + $order->decshipping, 2); ?></div>
+                </div>
+                </div>
+            </div>
+            </div>
+        </div>
+        </div>
+        <hr>
+        <div class="text-md-right">
+        <div class="float-lg-left mb-lg-0 mb-3">
+          <?php if($order->intstatusbayar == 0) { ?>
+              <button class="btn btn-primary btn-icon icon-left" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-credit-card"></i> Konfirmasi Pembayaran </button>
+          <?php } ?>
+        </div>
+        &nbsp;
+         <!-- <button class="btn btn-warning btn-icon icon-left"><i class="fas fa-print"></i> Print</button> -->
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Upload Bukti Transfer</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
+      <div class="modal-body">
+        <form>
+  <div class="form-group">
+    <label for="fileUploadKonfirmasi">Upload Konfirmasi</label>
+    <input type="file" class="form-control-file" id="fileUploadKonfirmasi">
+  </div>
+</form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary btn-icon icon-left" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-file-upload"></i> Upload Konfirmasi Pembayaran </button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

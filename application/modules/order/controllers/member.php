@@ -207,7 +207,7 @@ class Member extends Member_Controller {
         $this->breadcrumbs->push('Detail', 'member/order/detail/' . $id);
         $this->data['page_desc'] = 'Detail Selected Orders';
         $this->data['order'] = $this->_db->get_detail('MO.id', $id);
-        $this->data['detail'] = $this->_db->get_detail_order('intorderid', $id);
+        $this->data['order_detail'] = $this->_db->get_detail_order('intorderid', $id);
 
         $this->template->build('member/detail', $this->data);
     }

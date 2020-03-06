@@ -78,26 +78,31 @@
 						<li class="pt-5">
 							<h5>alamat pengiriman</h5>
 							<div class="content">
-								<form>
+							<?php echo form_open("order/save"); ?>
 									<div class="row">
+										<div class="col-12 pt-3">
+											<label for="vcalamat_shipping">hidden</label>
+											<input type="text" class="form-control" id="curDesc" name="curdescshipping" placeholder="Courie Desc">
+											<input type="text" class="form-control" id="curPrice" name="decshipping" placeholder="Courie Desc">
+										</div>
 										<div class="col-6">
 											<div class="form-group">
-												<label for="inputNama">nama penerima</label>
-												<input type="text" class="form-control" id="inputNama" placeholder="Masukan nama lengkap">
+												<label for="vcnama_shipping">nama penerima</label>
+												<input type="text" class="form-control" name="vcnama_shipping" placeholder="Masukan nama lengkap">
 											</div>
 										</div>
 										<div class="col-6">
-											<label for="inputNama">nomor telefon/ hp</label>
-											<input type="text" class="form-control" id="inputNama" placeholder="Masukan Nomor Telp">
+											<label for="vchp_shipping">nomor telefon/ hp</label>
+											<input type="text" class="form-control" name="vchp_shipping" placeholder="Masukan Nomor Telp">
 										</div>
 										<div class="col-12 pt-3">
-											<label for="inputNama">alamat</label>
-											<textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Masukan alamat"></textarea>
+											<label for="vcalamat_shipping">alamat</label>
+											<textarea class="form-control" name="vcalamat_shipping" rows="3" placeholder="Masukan alamat"></textarea>
 										</div>
 										<div class="col-6">
 											<div class="form-group">
-												<label for="vcstate">Propinsi</label>
-												<select name="vcstate" class="form-control" id="selectprop">
+												<label for="intpropinsiid_shipping">Propinsi</label>
+												<select name="intpropinsiid_shipping" class="form-control" id="selectprop">
 													<?php
 														foreach($province as $val) {
 															echo '<option name='.$val['province'].' value="'. $val['province_id'].'">'.$val['province'].'</option>';
@@ -107,14 +112,13 @@
 											</div>
 										</div>
 										<div class="col-6">
-											<label for="vccity">Kota</label>
-											<select name="vccity" class="form-control" id="selectcity">
+											<label for="intkotaid_shipping">Kota</label>
+											<select name="intkotaid_shipping" class="form-control" id="selectcity">
 												<?php
 												?>
 											</select>
 										</div>
 									</div>	
-								</form>
 							</div>
 						</li>
 
@@ -181,10 +185,12 @@
                         <div class="p-1">IDR <span id="total-value">0</span></div>
                     </div>
 
-                    <button type="submit" class="c-btn-primary w-100 mt-4">bayar sekarang</button>
+                    <button type="submit" class="c-btn-primary w-100 mt-4">Checkout</button>
                     <a href="<?php echo base_url('order/detail'); ?>" class="c-btn-secondary btn-danger w-100 mt-4">Detail Order</a>
                 </div>
             </div>
+			</form>
+
         </section>
         <!-- order pricing end here -->
 

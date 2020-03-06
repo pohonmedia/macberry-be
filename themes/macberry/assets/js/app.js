@@ -82,7 +82,7 @@ $(function () {
                         let costs = res[j].costs;  
                         for(var i = 0; i < costs.length; i++) {
                             html += '<div class="form-group">';
-                            html += '<label style="margin-right: 10px"><input type="radio" name="optradio" value="' + costs[i].cost[0].value + '"/> ';
+                            html += '<label style="margin-right: 10px"><input type="radio" name="optradio" value="' + costs[i].cost[0].value + '" data="' + res[j].code.toUpperCase() + ' - ' + costs[i].service + '"/> ';
                             html += '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + res[j].code.toUpperCase() + ' - ' + costs[i].service + ' (' + costs[i].cost[0].etd + ' hari) ' + '<strong style="font-size:18px">IDR. ' + costs[i].cost[0].value.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&,") + '</strong>';
                             html += '</label></div>';
                         }
@@ -104,9 +104,12 @@ $(function () {
      $("#jnetype").on("change", 'input[type="radio"]', function(){
          var subtotal = parseInt($('#subtotal').attr('data'));
          var ongkir = parseInt($(this).val());
+         var dataCur = $(this).attr('data');
          var total = parseInt(subtotal) + parseInt(ongkir);
 
          $('#ongkir').html('IDR ' + ongkir.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&,"));
          $('#total-value').html(total.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&,"));
+         $('#curDesc').val(dataCur);
+         $('#curPrice').val(ongkir);
      });
 });

@@ -16,6 +16,7 @@ class Admin extends Admin_Controller {
     public function index() {
         $this->set_title('Administration Dashboard');
         $this->breadcrumbs->push('Dashboard', 'admin');
+        $this->data['isdashboard'] = true;
         $this->data['nav_active'] = 'dashboard';
 
         $this->template->build('index', $this->data);

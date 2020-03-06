@@ -14,6 +14,7 @@ class Member extends Member_Controller {
 
     public function index() {
         $this->set_title('Member Dashboard');
+        $this->data['isdashboard'] = true;
         $this->data['member_css'] = 'style_member.css';
         $this->breadcrumbs->push('Dashboard', 'member');
         $this->data['nav_active'] = 'my-dashboard';
@@ -54,8 +55,8 @@ class Member extends Member_Controller {
 
                 $this->data['address'] = $this->input->post('address');
                 $this->data['phone'] = $this->input->post('phone');
-                $this->data['company'] = $this->input->post('company');
-                $this->data['company_desc'] = $this->input->post('company_desc');
+                // $this->data['company'] = $this->input->post('company');
+                // $this->data['company_desc'] = $this->input->post('company_desc');
                 // check to see if we are updating the user
                 if ($this->ion_auth->update($user->id, $this->data)) {
                     // redirect them back to the admin page if admin, or to the base url if non admin
@@ -114,24 +115,24 @@ class Member extends Member_Controller {
         );
         $this->data['phone'] = array(
             'name' => 'phone',
-            'placeholder' => 'No Telp',
+            'placeholder' => 'No Telp/ HP',
             'class' => 'form-control',
             'value' => $this->form_validation->set_value('phone', $user->phone)
         );
-        $this->data['company'] = array(
-            'name' => 'company',
-            'placeholder' => 'Nama Perusahaan',
-            'class' => 'form-control',
-            'value' => $this->form_validation->set_value('company', $user->company)
-        );
-        $this->data['company_desc'] = array(
-            'name' => 'company_desc',
-            'placeholder' => 'Deskripsi Perusahaan',
-            'class' => 'form-control',
-            'type' => 'text',
-            'rows' => '4',
-            'value' => $this->form_validation->set_value('company_desc', $user->company_desc)
-        );
+        // $this->data['company'] = array(
+        //     'name' => 'company',
+        //     'placeholder' => 'Nama Perusahaan',
+        //     'class' => 'form-control',
+        //     'value' => $this->form_validation->set_value('company', $user->company)
+        // );
+        // $this->data['company_desc'] = array(
+        //     'name' => 'company_desc',
+        //     'placeholder' => 'Deskripsi Perusahaan',
+        //     'class' => 'form-control',
+        //     'type' => 'text',
+        //     'rows' => '4',
+        //     'value' => $this->form_validation->set_value('company_desc', $user->company_desc)
+        // );
         $this->template->build('profile', $this->data);
     }
 
