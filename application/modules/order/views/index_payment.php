@@ -82,8 +82,8 @@
 									<div class="row">
 										<div class="col-12 pt-3">
 											<label for="vcalamat_shipping">hidden</label>
-											<input type="text" class="form-control" id="curDesc" name="curdescshipping" placeholder="Courie Desc">
-											<input type="text" class="form-control" id="curPrice" name="decshipping" placeholder="Courie Desc">
+											<input type="hidden" class="form-control" id="curDesc" name="curdescshipping" placeholder="Courie Desc">
+											<input type="hidden" class="form-control" id="curPrice" name="decshipping" placeholder="Courie Desc">
 										</div>
 										<div class="col-6">
 											<div class="form-group">

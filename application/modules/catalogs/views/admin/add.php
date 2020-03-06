@@ -46,9 +46,9 @@
                         <label for="prod_price" class="control-label">Price</label>
                         <?php echo form_input($prod_price); ?>
                     </div>
-                    <div class="form-group d-none">
-                        <label for="prod_location" class="control-label">Location</label>
-                        <?php echo form_input($prod_location); ?>
+                    <div class="form-group">
+                        <label for="prod_stock" class="control-label">Stock</label>
+                        <?php echo form_input($prod_stock); ?>
                     </div>
                     <div class="form-group">
                         <label for="prod_tags" class="control-label">Tags</label>

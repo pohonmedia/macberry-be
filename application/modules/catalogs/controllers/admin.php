@@ -170,12 +170,12 @@ class Admin extends Admin_Controller {
             'value' => $this->form_validation->set_value('prod_price'),
         );
 
-        $this->data['prod_location'] = array(
-            'name' => 'prod_location',
+        $this->data['prod_stock'] = array(
+            'name' => 'prod_stock',
             'type' => 'text',
-            'placeholder' => 'Product Location',
+            'placeholder' => 'Jumlah Stock',
             'class' => 'form-control',
-            'value' => $this->form_validation->set_value('prod_location'),
+            'value' => $this->form_validation->set_value('prod_stock'),
         );
 
         $this->data['prod_desc'] = array(
@@ -392,12 +392,12 @@ class Admin extends Admin_Controller {
             'value' => $this->form_validation->set_value('prod_price', $prod_detail->prod_price),
         );
 
-        $this->data['prod_location'] = array(
-            'name' => 'prod_location',
+        $this->data['prod_stock'] = array(
+            'name' => 'prod_stock',
             'type' => 'text',
-            'placeholder' => 'Product Location',
+            'placeholder' => 'Product Stock',
             'class' => 'form-control',
-            'value' => $this->form_validation->set_value('prod_location', $prod_detail->prod_location),
+            'value' => $this->form_validation->set_value('prod_stock', $prod_detail->prod_stock),
         );
 
         $this->data['prod_desc'] = array(

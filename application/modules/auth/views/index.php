@@ -21,11 +21,11 @@
                                 </div>
                             <?php } ?>
                             <div class="form-group has-feedback">
-                                <input type="text" name="identity" class="form-control" placeholder="Username" required="" />
+                                <input type="text" name="identity" class="form-control" placeholder="Username" required="" tabindex="1" autofocus />
                                 <span class="glyphicon glyphicon-user form-control-feedback"></span>
                             </div>
                             <div class="form-group has-feedback">
-                                <input type="password" name="password" class="form-control" placeholder="Password" required="" />
+                                <input type="password" name="password" class="form-control" placeholder="Password" required="" tabindex="2" />
                                 <span class="glyphicon glyphicon-lock form-control-feedback"></span>
                             </div>
                             <?php echo form_hidden('ref_form', 'admin'); ?>
