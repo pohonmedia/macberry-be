@@ -51,7 +51,8 @@ class Catalogs extends Public_Controller {
 
         $detail = $this->_dbcat->get_detail('ct_slug', $slug);
 
-        if ($detail === FALSE) {
+        // var_dump($detail);
+        if ($detail == null) {
             $this->breadcrumbs->push('Not Found', 'catalogs/category/' . $slug);
             $this->set_title('Category Not Found');
             $this->data['not_found'] = 'Category Not Found';
@@ -63,11 +64,8 @@ class Catalogs extends Public_Controller {
             $is_parent = $this->_dbcat->get_all($par);
 
             $this->set_title('All Product under ' . $detail->ct_name);
-            if ($is_parent) {
-                $param[] = array('field' => 'prod_category', 'param' => '', 'operator' => '', 'value' => $detail->id);
-            } else {
-                $param[] = array('field' => 'prod_subcategory', 'param' => '', 'operator' => '', 'value' => $detail->id);
-            }
+            $param[] = array('field' => 'prod_category', 'param' => '', 'operator' => '', 'value' => $detail->id);
+
             $data_barang = $this->_db->get_all($param);
             if (!empty($data_barang)) {
                 foreach ($data_barang as $key => $value) {
