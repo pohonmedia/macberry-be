@@ -109,7 +109,7 @@ class Admin extends Admin_Controller {
     }
 
     public function edit($id) {
-        $this->set_title('Edit Slide');
+        $this->set_title('Edit Menu');
         $this->breadcrumbs->push('Edit', 'admin/sliders/edit/' . $id);
         $total_row = $this->_db->count_all(array());
         $this->data['count_data'] = $total_row;
