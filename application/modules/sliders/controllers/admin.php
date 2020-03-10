@@ -186,6 +186,7 @@ class Admin extends Admin_Controller {
             'value' => $this->form_validation->set_value('sld_title', $det_sliders->sld_title),
         );
 
+        $this->data['det_sliders'] = $det_sliders;
 
         $this->data['sld_text1'] = array(
             'name' => 'sld_text1',
@@ -215,6 +216,10 @@ class Admin extends Admin_Controller {
             'value' => $this->form_validation->set_value('menu_url', $det_sliders->sld_link),
         );
         $this->data['menu_url_val'] = $det_sliders->sld_link;
+        $this->data['sliders_img'] = array(
+            'name' => 'sliders_img',
+            'type' => 'file'
+        );
 
         // $this->data['sld_link'] = array(
         //     'name' => 'sld_link',
