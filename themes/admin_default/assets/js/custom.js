@@ -384,9 +384,10 @@ function showSelectPages() {
                 htmlStr += '<input type="hidden" name="popuptype" id="popupType" value="list-pages">';
                 htmlStr += '<div id="list-pages">';
                 $.each(resp.data, function (i, item) {
-                    htmlStr += '<div class="radio">';
-                    htmlStr += '<label>';
-                    htmlStr += '<input type="radio" name="pages_list" value="' + resp.data[i].hal_slug + '">' + resp.data[i].hal_title;
+                    htmlStr += '<div class="form-check">';
+                    htmlStr += '<input class="form-check-input" type="radio" name="pages_list" value="' + resp.data[i].hal_slug + '">';
+                    htmlStr += '<label class="form-check-label" >';
+                    htmlStr += resp.data[i].hal_title;
                     htmlStr += '</label>';
                     htmlStr += '</div>';
                 });
@@ -412,9 +413,10 @@ function showArticleCategory() {
                 htmlStr += '<input type="hidden" name="popuptype" id="popupType" value="list-article-cat">';
                 htmlStr += '<div id="list-art-cat">';
                 $.each(resp.data, function (i, item) {
-                    htmlStr += '<div class="radio">';
-                    htmlStr += '<label>';
-                    htmlStr += '<input type="radio" name="category_art_list" value="' + resp.data[i].ct_slug + '">' + resp.data[i].ct_name;
+                    htmlStr += '<div class="form-check">';
+                    htmlStr += '<input class="form-check-input" type="radio" name="category_art_list" value="' + resp.data[i].ct_slug + '">';
+                    htmlStr += '<label class="form-check-label">';
+                    htmlStr += resp.data[i].ct_name;
                     htmlStr += '</label>';
                     htmlStr += '</div>';
                 });
@@ -440,9 +442,10 @@ function showCatalogCategory() {
                 htmlStr += '<input type="hidden" name="popuptype" id="popupType" value="list-catalog-cat">';
                 htmlStr += '<div id="list-cats-cat">';
                 $.each(resp.data, function (i, item) {
-                    htmlStr += '<div class="radio">';
-                    htmlStr += '<label>';
-                    htmlStr += '<input type="radio" name="category_cats_list" value="' + resp.data[i].ct_slug + '">' + resp.data[i].ct_name;
+                    htmlStr += '<div class="form-check">';
+                    htmlStr += '<input class="form-check-input" type="radio" name="category_cats_list" value="' + resp.data[i].ct_slug + '">';
+                    htmlStr += '<label class="form-check-label">';
+                    htmlStr += resp.data[i].ct_name;
                     htmlStr += '</label>';
                     htmlStr += '</div>';
                 });

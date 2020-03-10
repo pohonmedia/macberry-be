@@ -10,13 +10,19 @@ if (!defined('BASEPATH')) {
  */
 class Admin extends Admin_Controller {
 
-    public $_db;
+    public $_db, $_dbmenu, $type;
 
     public function __construct() {
         parent::__construct();
         //LOAD MODEL
         $this->load->model('Sliders_m');
         $this->_db = $this->Sliders_m;
+
+        $this->load->model('Menus/Menus_m');
+        $this->_dbmenu = $this->Menus_m;
+
+        $this->type = $this->_dbmenu->menu_type_combo();
+
         //Main Nav IDs
         // $this->data['nav_active'] = 'plugins';
         $this->data['nav_active'] = 'sliders';
@@ -79,6 +85,7 @@ class Admin extends Admin_Controller {
                     'sld_url' => 'assets/modules/sliders/' . $img_name,
                     'sld_text1' => $this->input->post('sld_text1'),
                     'sld_text2' => $this->input->post('sld_text2'),
+                    'sld_link_cat' => $this->input->post('sld_link_cat'),
                     'sld_link' => $this->input->post('sld_link')
                 );
                 $this->_db->create($ins_data);
@@ -118,14 +125,26 @@ class Admin extends Admin_Controller {
             'class' => 'form-control',
             'value' => $this->form_validation->set_value('sld_text2'),
         );
+
+        $this->data['type_data'] = $this->type;
+        $this->data['menu_type'] = 'placeholder="Type Link" class="form-control" id="option-type"';
+
         $this->data['sld_link'] = array(
             'name' => 'sld_link',
             'type' => 'text',
             'placeholder' => 'Button Link',
             'class' => 'form-control',
-            'value' => $this->form_validation->set_value('sld_link'),
+            'id' => 'url_link_input',
+            'value' => $this->form_validation->set_value('sld_link')
         );
 
+        // $this->data['sld_link'] = array(
+        //     'name' => 'sld_link',
+        //     'type' => 'text',
+        //     'placeholder' => 'Button Link',
+        //     'class' => 'form-control',
+        //     'value' => $this->form_validation->set_value('sld_link'),
+        // );
 
         $this->template->build('admin/add', $this->data);
     }
@@ -146,7 +165,9 @@ class Admin extends Admin_Controller {
             $upd_data = array(
                 'sld_title' => $this->input->post('sld_title'),
                 'sld_text1' => $this->input->post('sld_text1'),
-                'sld_text2' => $this->input->post('sld_text2')
+                'sld_text2' => $this->input->post('sld_text2'),
+                'sld_link_cat' => $this->input->post('sld_link_cat'),
+                'sld_link' => $this->input->post('sld_link')
             );
             $this->_db->update($id, $upd_data);
             $this->session->set_flashdata('msg', $this->show_msg('<b>Success</b> Sliders has been edited'));
@@ -180,13 +201,28 @@ class Admin extends Admin_Controller {
             'class' => 'form-control',
             'value' => $this->form_validation->set_value('sld_text2', $det_sliders->sld_text2),
         );
+
+        $this->data['type_data'] = $this->type;
+        $this->data['menu_type'] = 'placeholder="Type Menu" class="form-control" id="option-type"';
+        $this->data['menu_type_val'] = $det_sliders->sld_link_cat;
+
         $this->data['sld_link'] = array(
             'name' => 'sld_link',
             'type' => 'text',
             'placeholder' => 'Button Link',
             'class' => 'form-control',
-            'value' => $this->form_validation->set_value('sld_link', $det_sliders->sld_link),
+            'id' => 'url_link_input',
+            'value' => $this->form_validation->set_value('menu_url', $det_sliders->sld_link),
         );
+        $this->data['menu_url_val'] = $det_sliders->sld_link;
+
+        // $this->data['sld_link'] = array(
+        //     'name' => 'sld_link',
+        //     'type' => 'text',
+        //     'placeholder' => 'Button Link',
+        //     'class' => 'form-control',
+        //     'value' => $this->form_validation->set_value('sld_link', $det_sliders->sld_link),
+        // );
 
         $this->template->build('admin/edit', $this->data);
     }

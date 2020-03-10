@@ -48,7 +48,7 @@ class Pages_m extends CI_Model {
         return $query->num_rows();
     }
 
-    public function get_all($params, $orders = 'ASC', $limit = NULL, $offset = NULL) {
+    public function get_all($params = NULL, $orders = 'ASC', $limit = NULL, $offset = NULL) {
         $sql = "SELECT MP.*, AU.username";
         $sql .= " FROM md_pages MP ";
         $sql .= "LEFT JOIN app_users AU ON MP.user_create = AU.id ";
