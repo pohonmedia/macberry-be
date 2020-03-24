@@ -26,8 +26,8 @@ $config = array();
 function CheckAuthentication() {
     return true;
 }
-$baseUrl = '/webfbp/assets/uploads/';
-$baseDir = '/Users/Isht/www/webfbp/assets/uploads/';
+$baseUrl = '/webmacberry/assets/uploads/';
+$baseDir = '/Users/Isht/www/webmacberry/assets/uploads/';
 $enabled = true;
 $config['SecureImageUploads'] = false;
 $config['ChmodFolders'] = 0777 ;
@@ -74,7 +74,7 @@ $config['images'] = array(
 $config['backends'][] = array(
     'name'         => 'default',
     'adapter'      => 'local',
-    'baseUrl'      => '/webakana/assets/uploads/',
+    'baseUrl'      => '/webmacberry/assets/uploads/',
 //  'root'         => '', // Can be used to explicitly set the CKFinder user files directory.
     'chmodFiles'   => 0777,
     'chmodFolders' => 0755,

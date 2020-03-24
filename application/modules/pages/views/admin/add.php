@@ -16,7 +16,7 @@
                     echo $msg;
                 }
                 ?>
-                <?php echo form_open(uri_string()); ?>
+                <?php echo form_open_multipart(uri_string()); ?>
                 <div class="row">
                     <div class="col-md-8">
                         <div class="form-group">
@@ -26,6 +26,19 @@
                         <div class="form-group">
                             <label for="hal_desc" class="control-label">Deskripsi</label>
                             <?php echo form_textarea($hal_desc); ?>
+                        </div>
+                        <div class="form-group">
+                            <label for="hal_img" class="control-label">Intro Image</label>
+                            <?php echo form_upload($hal_img); ?>
+                            <p class="help-block"><small>Image Format : *.png, *.jpg, *.jpeg, *.gif</small></p>
+                        </div>
+                        <div class="form-group">
+                            <label for="hal_img_caption" class="control-label">Image Caption</label>
+                            <?php echo form_input($hal_img_caption); ?>
+                        </div>
+                        <div class="form-group">
+                            <label for="hal_img_source" class="control-label">Image Source</label>
+                            <?php echo form_input($hal_img_source); ?>
                         </div>
                     </div>
                     <div class="col-md-4">

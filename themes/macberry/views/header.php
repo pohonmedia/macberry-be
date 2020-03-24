@@ -1,11 +1,11 @@
 <!-- Navigation start here -->
-<header class="header-area">
+<header class="header-area"><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
                 <nav class="navbar navbar-expand-lg">
                     <a class="navbar-brand" href="<?php echo base_url(); ?>">
-                        <img src="<?php echo $theme_assets . 'img/macberry.svg'; ?>" alt="Logo" style="height:40px;" alt="<?php echo $this->config->item('website_name'); ?>" >
+                        <img src="<?php echo $theme_assets . 'img/macberry.png'; ?>" alt="Logo" style="height:90px;" alt="<?php echo $this->config->item('website_name'); ?>" >
                     </a>
                     <!-- Logo -->
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

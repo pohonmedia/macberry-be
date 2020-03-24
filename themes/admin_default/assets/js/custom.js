@@ -34,9 +34,21 @@ $(document).ready(function() {
     }
     // Desc Add Textarea
     if($('#desc_area').length != 0) {
-        $('#desc_area').summernote({
-            tabsize: 2,
-            height: 300
+        $(function () {
+            // Replace the <textarea id="editor1"> with a CKEditor
+            // instance, using default configuration.
+            var url = BASE_URL + 'themes/admin_default/assets/js/';
+            console.log(BASE_URL);
+    
+            var editor = CKEDITOR.replace('desc_area',{
+                filebrowserBrowseUrl        : url + 'ckfinder/ckfinder.html',
+                filebrowserImageBrowseUrl   : url + 'ckfinder/ckfinder.html?type=Images',
+                filebrowserFlashBrowseUrl   : url + 'ckfinder/ckfinder.html?type=Flash',
+                filebrowserUploadUrl        : url + 'ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
+                filebrowserImageUploadUrl   : url + 'ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
+                filebrowserFlashUploadUrl   : url + 'ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash'
+            });
+            CKFinder.setupCKEditor( editor, '../../../' );
         });
     }
     // Desc Add Textarea

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
+  <head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title><?php echo $template['title']; ?></title>
     <meta name="description" content="">
@@ -34,7 +34,7 @@
 		if ($this->uri->uri_string() == "" && !empty($sliders)) {
 ?>
             <!-- Header Carousel -->
-            <section id="home" class="slider-area pt-100 c-slider-homepage">
+            <section id="home" class="slider-area pt-100 c-slider-homepage" style="padding-top:150px;">
             <div class="container-fluid position-relative">
                 <div  class="slider-active">
                 <!-- Indicators -->

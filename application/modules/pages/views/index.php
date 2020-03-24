@@ -1,4 +1,4 @@
-    <!-- carousel start here -->
+    <!-- carousel start here 
 <div id="carouselExampleIndicators" class="carousel slide mt-100" data-ride="carousel">
     <ol class="carousel-indicators">
         <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -17,14 +17,21 @@
         </div>
     </div>
 </div>
+carousel end here -->
 
-<section id="service" class="about-us pb-30 mt-30">
+<section id="service" class="about-us pb-30 mt-30" style="padding-top:150px;">
     <div class="container">
         <div class="row">
             <div class="col-lg-6">
                 <div class="services-left mt-25">
                     <div class="services">
-                        <img src="<?php echo $theme_assets . 'img/img-1.jpg'; ?>" alt="about us" style="max-height: 400px; object-fit:cover; border-radius:10px;">
+                        <?php 
+                            if($page->hal_img != null) {
+                                echo '<img src="'. base_url($page->hal_img. '?' . random_string('alnum', 6)) . '" alt="about us" style="max-height: 400px; object-fit:cover; border-radius:10px;">';
+                            } else {
+                                echo '<img src="' . base_url('assets/modules/pages/default-image.jpg'). '" alt="about us" style="max-height: 400px; object-fit:cover; border-radius:10px;">';
+                            }
+                        ?>
                     </div>
                     <!-- services btn -->
                 </div>
@@ -60,27 +67,34 @@
                     </a>
                     <div class="collapse" id="collapse1">
                         <div class="card card-body">
-                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                            <ul>
+                                <li>Free ongkir se-indonesia</li>
+                                <li>Free instalasi aplikasi lengkap</li>
+                                <li>Free upgrade OS / iOS terbaru</li>
+                                <li>Konsultasi & Troubleshooting 24 jam</li>
+                                <li>Garansi service 1 bulan / tukar unit </li>
+                                <li>Terpercaya dan berpengalaman selama lebih dari 10 tahun di dunia apple</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <a class="btn c-btn-primary w-100 mb-20" data-toggle="collapse" href="#collapse2" role="button" aria-expanded="false" aria-controls="collapse2">
-                        Dimana saya tau barangnya ori ?
+                        Apakah ada di marketplace lainya ?
                     </a>
                     <div class="collapse" id="collapse2">
                         <div class="card card-body">
-                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                            Iya, Macberry juga tersedia di tokopedia, shopee dan bukalapak, semuanya pakai nama : <b> Macberry Store</b>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <a class="btn c-btn-primary w-100 mb-20" data-toggle="collapse" href="#collapse3" role="button" aria-expanded="false" aria-controls="collapse3">
-                        Adminya ganteng kah ?
+                        Bisakah update iOS & clean macOS ?
                     </a>
                     <div class="collapse" id="collapse3">
                         <div class="card card-body">
-                            jelas.
+                            Iya, untuk update iOS kurang lebih 40 menit. Untuk clean macOS 3 - 4 jam kalau antrianya tidak banyak. Sudah include software microsoft office dan Adobe. Bisa request software lain juga.
                         </div>
                     </div>
                 </div>
@@ -95,10 +109,10 @@
             <div class="row">
 
                 <div class="col-lg-6">
-                    <h2 class="text-uppercase pb-20 text-center">term & condition</h2>
+                    <h2 class="text-uppercase pb-20 text-center">Apa yang Kamu Dapat?</h2>
                     <div class="d-flex justify-content-center">
                         <a class="btn c-btn-primary w-85 mb-20" data-toggle="modal" data-target="#modalTerm" href="#">
-                            Lihat term & condition
+                            Lihat keuntungan
                         </a>
                     </div>
 
@@ -107,15 +121,20 @@
                         <div class="modal-dialog modal-dialog-scrollable" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="modalTermTitle">Term & Condition</h5>
+                                    <h5 class="modal-title" id="modalTermTitle">Keuntungan yang Kamu Dapat</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatem temporibus nihil culpa tenetur eos voluptatum, nesciunt, repudiandae maiores blanditiis tempora assumenda dolore voluptatibus tempore pariatur? Ab saepe delectus provident illum!
-                                    <br><br>
-                                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Amet suscipit sint hic, ratione tempora labore odit doloremque! Laudantium explicabo laboriosam quo nemo provident exercitationem veritatis maiores culpa est. Animi, dignissimos.
+                                    <p>
+                                   1. Free Ongkir <br>
+2. Free Instalasi Aplikasi Lengkap <br>
+3. Free upgrade OS terbaru <br>
+4. Konsultasi 24 jam <br>
+5. Garansi Service 1 Bulan / Tukar Unit <br>
+6. Terpercaya dan Pengalaman selama lebih dari 10 Tahun di dunia Apple. <br>
+</p>
                                 </div>
                             </div>
                         </div>

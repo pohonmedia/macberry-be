@@ -5,7 +5,7 @@
                 <div class="col-lg-6">
                     <div class="section-title pb-30">
                         <h3 class="title mb-15 text-capitalize">about macberry</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusm od tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
+                        <p>MACBERRYSTORE established di Kota Pelajar, Yogyakarta, sebagai salah satu pelopor berdirinya “Warung Gadget Independen” yang secara eksklusif mengusung brand APPLE</p>
                     </div>
                     <!-- section title -->
                 </div>
@@ -33,8 +33,8 @@
                                         <i class="fas fa-medal"></i>
                                     </div>
                                     <div class="services-content mt-20">
-                                        <h5 class="title mb-10">terpercaya</h5>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusm od tempor.</p>
+                                        <h5 class="title mb-10">Trusted & Recommended</h5>
+                                        <p>Terpercaya dan Pengalaman sejak tahun 2009 di dunia Apple.</p>
                                     </div>
                                 </div>
                                 <!-- single services -->
@@ -45,7 +45,7 @@
                                     </div>
                                     <div class="services-content mt-20">
                                         <h5 class="title mb-10">fast response</h5>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusm od tempor.</p>
+                                        <p>Mudah dihubungi via Whatsapp, Line, Instagram untuk konsultasi selama 24/7</p>
                                     </div>
                                 </div>
                                 <!-- single services -->
@@ -56,8 +56,8 @@
                                         <i class="fas fa-mobile"></i>
                                     </div>
                                     <div class="services-content mt-20">
-                                        <h5 class="title mb-10">produk beragam</h5>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusm od tempor.</p>
+                                        <h5 class="title mb-10">Bergaransi dan Beragam</h5>
+                                        <p>Tersedia semua produk Mac dan iDevice yang sesuai dengan kebutuhan, dan Garansi Service 1 Bulan / Tukar Unit untuk unit secondhand.</p>
                                     </div>
                                 </div>
                                 <!-- single services -->
@@ -67,8 +67,8 @@
                                         <i class="fas fa-truck"></i>
                                     </div>
                                     <div class="services-content mt-20">
-                                        <h5 class="title mb-10">free ongkir</h5>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusm od tempor.</p>
+                                        <h5 class="title mb-10">Free Ongkir se-Indonesia</h5>
+                                        <p>serta Free instalasi aplikasi lengkap dan Free Update OS terbaru. T&C berlaku.</p>
                                     </div>
                                 </div>
                                 <!-- single services -->
@@ -172,19 +172,19 @@
                     <a href="<?php echo base_url('catalogs/category/iphone');?>" alt="Iphone"><img src="<?php echo $theme_assets . 'img/product-1.png'; ?>" alt="product img"></a>
                 </div>
                 <div class="col-lg-4">
-                    <a href="<?php echo base_url('catalogs/category/imac');?>" alt="Imac"><img src="<?php echo $theme_assets . 'img/product-2.png'; ?>" alt="product img"></a>
+                    <a href="<?php echo base_url('catalogs/category/imac');?>" alt="Iphone"><img src="<?php echo $theme_assets . 'img/product-2.png'; ?>" alt="product img"></a>
                 </div>
                 <div class="col-lg-4">
-                    <a href="<?php echo base_url('catalogs/category/macbook');?>" alt="Macbook"><img src="<?php echo $theme_assets . 'img/product-3.png'; ?>" alt="product img"></a>
+                    <a href="<?php echo base_url('catalogs/category/macbook');?>" alt="Iphone"><img src="<?php echo $theme_assets . 'img/product-3.png'; ?>" alt="product img"></a>
                 </div>
                 <div class="col-lg-4">
-                    <a href="<?php echo base_url('catalogs/category/ipad');?>" alt="Ipad"><img src="<?php echo $theme_assets . 'img/product-4.png'; ?>" alt="product img"></a>
+                    <a href="<?php echo base_url('catalogs/category/ipad');?>" alt="Iphone"><img src="<?php echo $theme_assets . 'img/product-4.png'; ?>" alt="product img"></a>
                 </div>
                 <div class="col-lg-4">
-                    <a href="<?php echo base_url('catalogs/category/apple-watch');?>" alt="Apple Watch"><img src="<?php echo $theme_assets . 'img/product-5.png'; ?>" alt="product img"></a>
+                    <a href="<?php echo base_url('catalogs/category/apple-watch');?>" alt="Iphone"><img src="<?php echo $theme_assets . 'img/product-5.png'; ?>" alt="product img"></a>
                 </div>
                 <div class="col-lg-4">
-                    <a href="<?php echo base_url('catalogs/category/earpods');?>" alt="Earpods"><img src="<?php echo $theme_assets . 'img/product-6.png'; ?>" alt="product img"></a>
+                    <a href="<?php echo base_url('catalogs/category/earpods');?>" alt="Iphone"><img src="<?php echo $theme_assets . 'img/product-6.png'; ?>" alt="product img"></a>
                 </div>
 
             </div>

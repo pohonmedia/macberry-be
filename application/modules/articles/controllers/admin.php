@@ -314,7 +314,7 @@ class Admin extends Admin_Controller {
             'name' => 'art_img',
             'type' => 'file'
         );
-        $this->data['art_img_val'] = $art_detail->art_img == 'assets/modules/articles/default-image.jpg' ? '' : $art_detail->art_img . '?' . random_string('alnum', 6); //ADD RANDOM CHAR FOR REMOVE CACHE;
+        $this->data['art_img_val'] = $art_detail->art_img == null ? 'assets/modules/articles/default-image.jpg' : $art_detail->art_img . '?' . random_string('alnum', 6); //ADD RANDOM CHAR FOR REMOVE CACHE;
         $this->data['art_img_caption'] = array(
             'name' => 'art_img_caption',
             'type' => 'text',

@@ -34,7 +34,7 @@
         <![endif]-->
         <link rel="shortcut icon" href="<?php echo base_url('assets/favicon.ico'); ?>">
     </head>
-    <body<?php echo!empty($body_class) ? $body_class : ""; ?>>
+    <body <?php echo !empty($body_class) ? $body_class : ""; ?>>
         <div id="app">
             <div class="main-wrapper">
                 <?php echo $template['partials']['header']; ?>
@@ -115,7 +115,7 @@
         
                             ?>
                         </section>
-                        <? }?>
+                        <?php } ?>
                         <section class="section-body">
                             <?php echo $template['body']; ?>
                         </section>
